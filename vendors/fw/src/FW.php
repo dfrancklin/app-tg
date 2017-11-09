@@ -61,6 +61,9 @@ class FW {
 	}
 
 	public function run() {
+		// check for context folder
+		// create .htaccess if not exists
+		
 		$systemFolders = $this->config->get('system-folders');
 
 		$this->scanComponents(...$systemFolders);
