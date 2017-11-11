@@ -2,15 +2,18 @@
 
 namespace FW\Utils;
 
-class Autoloader {
+class Autoloader
+{
 
 	protected $prefixes = array();
 
 	private static $instance;
 
-	protected function __construct() {}
+	protected function __construct() 
+	{}
 
-	public static function getInstance() : self {
+	public static function getInstance() : self
+	{
 		if (is_null(self::$instance)) {
 			self::$instance = new self();
 		}
@@ -18,11 +21,13 @@ class Autoloader {
 		return self::$instance;
 	}
 
-	public function register() {
+	public function register()
+	{
 		spl_autoload_register(array($this, 'loadClass'));
 	}
 
-	public function addNamespace($prefix, $baseDir, $prepend = false) {
+	public function addNamespace($prefix, $baseDir, $prepend = false)
+	{
 		$prefix = trim($prefix, '\\') . '\\';
 
 		$baseDir = rtrim($baseDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
@@ -38,7 +43,8 @@ class Autoloader {
 		}
 	}
 
-	public function loadClass($class) {
+	public function loadClass($class)
+	{
 		$prefix = $class;
 
 		while (false !== $pos = strrpos($prefix, '\\')) {
@@ -56,7 +62,8 @@ class Autoloader {
 		return false;
 	}
 
-	protected function loadMappedFile($prefix, $relativeClass) {
+	protected function loadMappedFile($prefix, $relativeClass)
+	{
 		if (isset($this->prefixes[$prefix]) === false) {
 			return false;
 		}
@@ -84,7 +91,8 @@ class Autoloader {
 		return false;
 	}
 
-	protected function requireFile($file) {
+	protected function requireFile($file)
+	{
 		if (file_exists($file)) {
 			require $file;
 			return true;

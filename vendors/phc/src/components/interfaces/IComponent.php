@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Interfaces;
+namespace PHC\Interfaces;
 
-interface IComponent {
+interface IComponent 
+{
 
 	function render(bool $print = false);
 

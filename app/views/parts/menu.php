@@ -1,0 +1,1 @@
+<?php //PHC\Components\MenuComponent::render(); ?>

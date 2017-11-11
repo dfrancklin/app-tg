@@ -64,10 +64,18 @@ class View {
 		$__fullPage = ob_get_contents();
 		ob_clean();
 
-		list($__head, $__foot) = preg_split('/<!--\s?content\s?-->/i', $__fullPage);
+		$__parts = preg_split('/<!--\s?content\s?-->/i', $__fullPage);
+		$__head = $__foot = null;
+		
+		if (!empty($__parts)) {
+			if (count($__parts) === 2) {
+				list($__head, $__foot) = $__parts;
+			} elseif (count($__parts) === 1) {
+				list($__head) = $__parts;
+			}
+		}
 
 		return $__head . $__content . $__foot;
 	}
 
 }
-
