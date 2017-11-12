@@ -22,6 +22,8 @@ class Orm
 
 	private $tables;
 
+	private $connectionsFile;
+
 	private $connections;
 
 	private $defaultConnection;
@@ -39,6 +41,15 @@ class Orm
 		}
 
 		return self::$instance;
+	}
+
+	public function setConnectionsFile(String $file)
+	{
+		if (!file_exists($file)) {
+			throw new \Exception('The connections\' file "' . $file . '" does not exists');
+		}
+
+		$this->connectionsFile = $file;
 	}
 
 	public function setConnection(String $name, Array $config = [])
@@ -61,46 +72,48 @@ class Orm
 			}
 
 			$table = new TableManager($this->connections[$name], $config['namespace'], $config['modelsFolder']);
-			
+
 			if (!empty($config) && isset($config['drop']) && $config['drop']) {
-				$callback = $this->createCallback($config['beforeDrop'], $name);
+				$callback = $this->createCallback($config['beforeDrop'] ?? null, $name);
 				$table->drop($callback);
 			}
 
-			$callback = $this->createCallback($config['afterCreate'], $name);
+			$callback = $this->createCallback($config['afterCreate'] ?? null, $name);
 			$table->create($callback);
 		}
 	}
-	
+
 	private function createCallback($callback, String $name) : ?\Closure
 	{
 		if (!empty($callback)) {
 			if (
 				$callback instanceof \Closure ||
 				(
-					is_string($callback) && 
+					is_string($callback) &&
 					function_exists($callback)
 				) ||
 				(
-					is_array($callback) && 
-					is_string($callback[0]) && 
-					class_exists($callback[0]) && 
+					is_array($callback) &&
+					is_string($callback[0]) &&
+					class_exists($callback[0]) &&
 					method_exists(...$callback)
 				) ||
 				(
-					is_array($callback) && 
-					is_object($callback[0]) && 
+					is_array($callback) &&
+					is_object($callback[0]) &&
 					method_exists(...$callback)
 				)
 			) {
 				$em = $this->createEntityManager($name);
 				$orm = $this;
-				
+
 				return function() use ($callback, $em, $orm) {
-					$callback($em, $orm);	
+					$callback($em, $orm);
 				};
 			}
 		}
+
+		return null;
 	}
 
 	public function setDefaultConnection(String $name)
@@ -129,13 +142,11 @@ class Orm
 			$name = $this->defaultConnection;
 		}
 
-		$configFile = __DIR__ . '/../connection.config.php';
-
-		if (!file_exists($configFile)) {
-			throw new \Exception('Arquivo de configuração de conexão não encontrado');
+		if (empty($this->connectionsFile)) {
+			$this->setConnectionsFile(__DIR__ . '/../connection.config.php');
 		}
 
-		require $configFile;
+		require $this->connectionsFile;
 
 		if (!isset($connections[$name])) {
 			throw new \Exception("Configuração de conexão \"$name\" não definida");

@@ -10,13 +10,6 @@ $menuDefinition = (object) [
 					'href' => '/dashboard',
 					'activeRoute' => '/',
 				],
-				(object) [
-					'title' => 'Products',
-					'icon' => 'settings',
-					'href' => '/products',
-					'activeRoute' => ['/products/*'],
-					'roles' => ['ADMIN'],
-				],
 			],
 		],
 		(object) [
@@ -25,9 +18,16 @@ $menuDefinition = (object) [
 			'roles' => ['ADMIN'],
 			'items' => [
 				(object) [
-					'title' => 'Users',
+					'title' => 'Products',
+					'icon' => 'settings',
+					'href' => '/products',
+					'activeRoute' => ['/products/*'],
+					'roles' => ['ADMIN'],
+				],
+				(object) [
+					'title' => 'Employees',
 					'icon' => 'face',
-					'href' => '/users',
+					'href' => '/employees',
 				],
 			],
 		],

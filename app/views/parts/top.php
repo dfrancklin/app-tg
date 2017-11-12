@@ -4,7 +4,7 @@
 			<span class="material-icons">menu</span>
 		</button>
 
-		<a class="navbar-brand mr-auto" href="/">Project</a>
+		<a class="navbar-brand mr-auto" href="/">TG Book Store</a>
 
 		<div class="dropdown">
 			<button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $this->security->getUserProfile()->getName(); ?></button>

@@ -4,14 +4,14 @@ namespace FW\Security;
 
 interface ISecurityService {
 
-	public function isAuthenticated() : bool;
+	function isAuthenticated() : bool;
 
-	public function getUserProfile();
+	function getUserProfile();
 
-	public function hasRoles(array $roles);
+	function hasRoles(array $roles);
 
-	public function authenticate(UserProfile $userProfile, bool $remember) : bool;
+	function authenticate(UserProfile $userProfile, bool $remember) : bool;
 
-	public function logout();
+	function logout();
 
 }

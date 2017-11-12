@@ -1,6 +1,6 @@
 <?php
 
-namespace PHC\Form;
+namespace PHC\Components\Form;
 
 use PHC\Interfaces\IComponent;
 

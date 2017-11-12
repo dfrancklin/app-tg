@@ -60,7 +60,7 @@ class TableManager
 			$drops[] = $this->resolveDropSequence($driver->SEQUENCE_NAME);
 		}
 
-		if (count($drops)) {
+		if (!empty($drops) && !empty($callback)) {
 			$callback();
 		}
 
@@ -89,7 +89,7 @@ class TableManager
 			$statement->execute();
 		}
 
-		if (count($creates)) {
+		if (!empty($creates) && !empty($callback)) {
 			$callback();
 		}
 	}
@@ -168,7 +168,10 @@ class TableManager
 		foreach ($table->getJoins('type', 'manyToMany') as $join) {
 			if (empty($join->getMappedBy())) {
 				$create = $this->resolveJoinTable($table, $join);
-				$creates[] = $create;
+
+				if (!empty($create)) {
+					$creates[] = $create;
+				}
 			}
 		}
 
@@ -232,7 +235,7 @@ class TableManager
 		return "\n\t" . $definition;
 	}
 
-	private function resolveJoinTable(Table $table, Join $join) : String
+	private function resolveJoinTable(Table $table, Join $join) : ?String
 	{
 		$driver = $this->connection->getDriver();
 		$referenceClass = $join->getReference();
@@ -305,9 +308,11 @@ class TableManager
 				$joinTableName,
 				implode(', ', $columns)
 			);
+
+			return $create;
 		}
 
-		return $create;
+		return null;
 	}
 
 	private function resolveCreateSequence(String $sequenceName) : String

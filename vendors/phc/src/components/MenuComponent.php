@@ -1,16 +1,13 @@
 <?php
 
-namespace PHC;
+namespace PHC\Components;
 
-class MenuComponent {
+use PHC\Interfaces\IComponent;
 
-	private static $menu;
+class MenuComponent implements IComponent
+{
 
-	private static $router;
-
-	private static $security;
-
-	private static $templates = [
+	const TEMPLATES = [
 		'menu' => '<aside class="menu js-menu"><div class="menu__wrapper js-menu-container bg-dark"><button class="menu__hide js-menu-hide">&times;</button>%s</div></aside>',
 		'menu-group' => '<nav class="menu__group">%s%s</nav>',
 		'menu-title' => '<h3 class="menu__title">%s%s</h3>',
@@ -19,31 +16,32 @@ class MenuComponent {
 		'icon' => '<span class="material-icons mr-2">%s</span>',
 	];
 
-	private function __contruct() {
+	private $definition;
 
-	}
+	private $activeRoute;
 
-	public static function render() {
-		self::init();
+	private $userRoles;
+
+	public function render(bool $print = false)
+	{
 		$output = '';
 
-		foreach (self::$menu->groups as $group) {
+		foreach ($this->definition->groups as $group) {
 			$output .= self::formatGroup($group);
 		}
 
-		echo sprintf(self::$templates['menu'], $output);
+		$menu = sprintf(self::TEMPLATES['menu'], $output);
+
+		if ($print) {
+			echo $menu;
+		} else {
+			return $menu;
+		}
 	}
 
-	private static function init() {
-		$dm = \FW\Core\DependenciesManager::getInstance();
-
-		self::$menu = \FW\Core\Config::getInstance()->get('menu');
-		self::$router = \FW\Core\Router::getInstance();
-		self::$security = $dm->resolve(\FW\Security\SecurityService::class);
-	}
-
-	private static function formatGroup($group) {
-		$show = !empty($group->roles) ? self::$security->hasAnyRoles($group->roles) : true;
+	private function formatGroup($group)
+	{
+		$show = !empty($group->roles) ? $this->hasAnyRoles($group->roles) : true;
 
 		if (!$show) {
 			return;
@@ -53,29 +51,31 @@ class MenuComponent {
 
 		if (!empty($group->icon) || !empty($group->title)) {
 			$icon = $group->icon
-					? sprintf(self::$templates['icon'], $group->icon)
+					? sprintf(self::TEMPLATES['icon'], $group->icon)
 					: '';
 
-			$title .= sprintf(self::$templates['menu-title'], $icon, $group->title);
+			$title .= sprintf(self::TEMPLATES['menu-title'], $icon, $group->title);
 		}
 
 		$content = self::formatContent($group->items);
 
-		return sprintf(self::$templates['menu-group'], $title, $content);
+		return sprintf(self::TEMPLATES['menu-group'], $title, $content);
 	}
 
-	private static function formatContent($items) {
+	private function formatContent($items)
+	{
 		$content = '';
 
 		foreach ($items as $item) {
 			$content .= self::formatItem($item);
 		}
 
-		return sprintf(self::$templates['menu-content'], $content);
+		return sprintf(self::TEMPLATES['menu-content'], $content);
 	}
 
-	private static function formatItem($item) {
-		$show = !empty($item->roles) ? self::$security->hasAnyRoles($item->roles) : true;
+	private function formatItem($item)
+	{
+		$show = !empty($item->roles) ? $this->hasAnyRoles($item->roles) : true;
 		$active = false;
 
 		if (!$show) {
@@ -97,17 +97,55 @@ class MenuComponent {
 		foreach ($item->activeRoute as $route) {
 			$pattern = '/^' . preg_replace(['/[\/\/]+/i', '/\//i', '/([\*]+)/i'], ['/', '\/', '?.*'], $route) . '$/';
 
-			if (preg_match($pattern, self::$router->getActiveRoute())) {
+			if (preg_match($pattern, $this->activeRoute)) {
 				$active = true;
 				break;
 			}
 		}
 
 		$icon = $item->icon
-				? sprintf(self::$templates['icon'], $item->icon)
+				? sprintf(self::TEMPLATES['icon'], $item->icon)
 				: '';
 
-		return sprintf(self::$templates['menu-item'], $item->href, $active ? 'active menu__link--active' : '', $icon, $item->title);
+		return sprintf(self::TEMPLATES['menu-item'], $item->href, $active ? 'active menu__link--active' : '', $icon, $item->title);
+	}
+
+	private function hasAnyRoles(array $roles)
+	{
+		if (is_null($this->userRoles) || !is_array($this->userRoles)) {
+			return true;
+		}
+
+		foreach ($roles as $role) {
+			if (in_array($role, $this->userRoles)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public function __get(string $attr)
+	{
+		if (!property_exists(__CLASS__, $attr)) {
+			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
+		}
+
+		return $this->$attr;
+	}
+
+	public function __set(string $attr, $value)
+	{
+		if (!property_exists(__CLASS__, $attr)) {
+			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
+		}
+
+		$this->$attr = $value;
+	}
+
+	public function __toString()
+	{
+		return $this->render(false);
 	}
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace PHC;
+namespace PHC\Components;
 
 use PHC\Interfaces\IComponent;
 
@@ -13,14 +13,14 @@ class FormComponent implements IComponent {
 	];
 
 	const COMPONENTS = [
-		'input' => \PHC\Form\InputComponent::class,
-		'hidden' => \PHC\Form\HiddenComponent::class,
-		'checkbox' => \PHC\Form\CheckboxComponent::class,
-		'radio' => \PHC\Form\RadioComponent::class,
-		'select' => \PHC\Form\SelectComponent::class,
-		'text' => \PHC\Form\TextAreaComponent::class,
-		'uploader' => \PHC\Form\UploaderComponent::class,
-		'button' => \PHC\Form\ButtonComponent::class,
+		'input' => \PHC\Components\Form\InputComponent::class,
+		'hidden' => \PHC\Components\Form\HiddenComponent::class,
+		'checkbox' => \PHC\Components\Form\CheckboxComponent::class,
+		'radio' => \PHC\Components\Form\RadioComponent::class,
+		'select' => \PHC\Components\Form\SelectComponent::class,
+		'text' => \PHC\Components\Form\TextAreaComponent::class,
+		'uploader' => \PHC\Components\Form\UploaderComponent::class,
+		'button' => \PHC\Components\Form\ButtonComponent::class,
 	];
 
 	private $action;

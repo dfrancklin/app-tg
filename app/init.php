@@ -1,6 +1,7 @@
 <?php
 
 include_once __DIR__ . '/config.php';
+include_once __DIR__ . '/database.php';
 
 $fw = \FW\FW::getInstance();
 $config = \FW\Core\Config::getInstance();

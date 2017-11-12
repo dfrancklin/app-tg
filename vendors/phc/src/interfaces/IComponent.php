@@ -2,7 +2,7 @@
 
 namespace PHC\Interfaces;
 
-interface IComponent 
+interface IComponent
 {
 
 	function render(bool $print = false);

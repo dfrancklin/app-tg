@@ -11,7 +11,7 @@ use FW\Security\ISecurityService;
 use FW\Security\IAuthentication;
 use FW\Security\UserProfile;
 
-use App\Interfaces\ILoginService;
+use App\Interfaces\Services\ILoginService;
 
 /**
  * @Controller
@@ -36,7 +36,8 @@ class LoginController implements IAuthentication
 	/**
 	 * @RequestMap /login
 	 */
-	public function login($returnsTo='') {
+	public function login($returnsTo = '')
+	{
 		$view = $this->factory::create();
 
 		$view->pageTitle = 'Login';
@@ -51,7 +52,8 @@ class LoginController implements IAuthentication
 	 * @RequestMap /authenticate
 	 * @RequestMethod POST
 	 */
-	public function authenticate() {
+	public function authenticate()
+	{
 		try {
 			$user = $this->service->authenticate($_POST['email'], $_POST['password']);
 
@@ -77,20 +79,24 @@ class LoginController implements IAuthentication
 	/**
 	 * @RequestMap /forbidden
 	 */
-	public function forbidden($route) {
+	public function forbidden($route)
+	{
 		return $this->factory::create()->render('forbidden');
 	}
 
 	/**
 	 * @RequestMap /logout
 	 */
-	public function logout() {
+	public function logout()
+	{
 		$this->security->logout();
 		$this->message->info('You are now logged out!');
+
 		Router::redirect('/');
 	}
 
-	private function redirect() {
+	private function redirect()
+	{
 		if (isset($_POST['returns-to']) && !empty(trim($_POST['returns-to']))) {
 			Router::redirect($_POST['returns-to']);
 		} else {

@@ -2,17 +2,20 @@
 
 namespace FW\Core;
 
-class DependenciesManager {
+class DependenciesManager
+{
 
 	private static $instance;
 
 	private $instances;
 
-	protected function __construct() {
+	protected function __construct()
+	{
 		$this->instances = [];
 	}
 
-	public static function getInstance() : self {
+	public static function getInstance() : self
+	{
 		if (is_null(self::$instance)) {
 			self::$instance = new self();
 		}
@@ -20,7 +23,8 @@ class DependenciesManager {
 		return self::$instance;
 	}
 
-	public function register($class) {
+	public function register($class)
+	{
 		$reflection = new \ReflectionClass($class);
 
 		$dependencies = [];
@@ -68,7 +72,8 @@ class DependenciesManager {
 		}
 	}
 
-	public function value($name, $value) {
+	public function value($name, $value)
+	{
 		if (array_key_exists($name, $this->instances)) {
 			throw new \Exception('A value with the name "' . $name . '" already exists');
 		}
@@ -80,7 +85,8 @@ class DependenciesManager {
 		];
 	}
 
-	public function resolve($class) {
+	public function resolve($class)
+	{
 		if (!array_key_exists($class, $this->instances)) {
 			throw new \Exception('An instance for "' . $class . '" was not founded');
 		}
