@@ -7,7 +7,8 @@ use \FW\Core\FlashMessages;
 use \FW\Core\DependenciesManager;
 use \FW\Security\ISecurityService;
 
-class View {
+class View
+{
 
 	private $data;
 
@@ -19,7 +20,12 @@ class View {
 
 	private $views;
 
-	public function __construct(ISecurityService $security, FlashMessages $messages, string $template, string $views) {
+	public function __construct(
+		ISecurityService $security,
+		FlashMessages $messages,
+		String $template,
+		String $views)
+	{
 		$this->security = $security;
 		$this->messages = $messages;
 		$this->template = $template;
@@ -27,7 +33,8 @@ class View {
 		$this->data = [];
 	}
 
-	public function __get($name) {
+	public function __get($name)
+	{
 		if (!array_key_exists($name, $this->data)) {
 			throw new \Exception('A variable "' . $name . '" was not defined on the view');
 		}
@@ -35,11 +42,13 @@ class View {
 		return $this->data[$name];
 	}
 
-	public function __set($name, $value) {
+	public function __set($name, $value)
+	{
 		$this->data[$name] = $value;
 	}
 
-	public function render($__view) {
+	public function render($__view)
+	{
 		$__template = $this->views . '/' . $this->template . '.php';
 		if (!file_exists($__template)) {
 			throw new \Exception('Template file "' . $__template . '" does not exists!');
@@ -66,7 +75,7 @@ class View {
 
 		$__parts = preg_split('/<!--\s?content\s?-->/i', $__fullPage);
 		$__head = $__foot = null;
-		
+
 		if (!empty($__parts)) {
 			if (count($__parts) === 2) {
 				list($__head, $__foot) = $__parts;
