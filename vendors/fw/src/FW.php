@@ -6,7 +6,8 @@ use \FW\Core\DependenciesManager;
 use \FW\Core\Router;
 use \FW\Core\Config;
 
-class FW {
+class FW
+{
 
 	private static $instance;
 
@@ -20,7 +21,8 @@ class FW {
 
 	private $folders;
 
-	protected function __construct() {
+	protected function __construct()
+	{
 		$this->dm = DependenciesManager::getInstance();
 		$this->router = Router::getInstance();
 		$this->config = Config::getInstance();
@@ -28,7 +30,8 @@ class FW {
 		$this->folders = [];
 	}
 
-	public static function getInstance() : self {
+	public static function getInstance() : self
+	{
 		if (is_null(self::$instance)) {
 			self::$instance = new self();
 		}
@@ -36,7 +39,8 @@ class FW {
 		return self::$instance;
 	}
 
-	public function scanComponents(String ...$folders) {
+	public function scanComponents(String ...$folders)
+	{
 		if (!count($folders)) {
 			throw new \Exception('At least 1 folder needs to be informed');
 		}
@@ -46,7 +50,8 @@ class FW {
 		return $this;
 	}
 
-	private function lookUp($folder, $recursive = false) {
+	private function lookUp($folder, $recursive = false)
+	{
 		if (!$folder) {
 			throw new \Exception('A folder needs to be informed');
 		}
@@ -60,7 +65,8 @@ class FW {
 		}
 	}
 
-	public function run() {
+	public function run()
+	{
 		$systemFolders = $this->config->get('system-folders');
 
 		$this->scanComponents(...$systemFolders);
@@ -76,7 +82,8 @@ class FW {
 		}
 	}
 
-	private function resolveEntry($entry) {
+	private function resolveEntry($entry)
+	{
 		$handler = fopen($entry, 'r');
 
 		if (!$handler) {

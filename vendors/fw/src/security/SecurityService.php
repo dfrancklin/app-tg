@@ -7,18 +7,21 @@ use \FW\Core\Config;
 /**
  * @Service
  */
-class SecurityService implements ISecurityService {
+class SecurityService implements ISecurityService
+{
 
 	private $appId;
 
 	private $config;
 
-	public function __construct() {
+	public function __construct()
+	{
 		$this->config = Config::getInstance();
 		$this->appId = $this->config->get('app-id');
 	}
 
-	public function isAuthenticated() : bool {
+	public function isAuthenticated() : bool
+	{
 		if (session_status() !== PHP_SESSION_ACTIVE || session_id() === '') {
 			return false;
 		}
@@ -37,7 +40,8 @@ class SecurityService implements ISecurityService {
 		return true;
 	}
 
-	private function validateCookies() {
+	private function validateCookies()
+	{
 		if (!array_key_exists($this->appId, $_COOKIE) || !array_key_exists('token', $_COOKIE[$this->appId])) {
 			return;
 		}
@@ -70,7 +74,8 @@ class SecurityService implements ISecurityService {
 		return false;
 	}
 
-	public function getUserProfile() {
+	public function getUserProfile()
+	{
 		if (!array_key_exists($this->appId, $_SESSION) || !array_key_exists('user-profile', $_SESSION[$this->appId])) {
 			return null;
 		}
@@ -80,7 +85,8 @@ class SecurityService implements ISecurityService {
 		return $userProfile;
 	}
 
-	public function hasRoles(array $roles) {
+	public function hasRoles(array $roles)
+	{
 		if (!$this->isAuthenticated() || empty($roles)) {
 			return false;
 		}
@@ -96,7 +102,8 @@ class SecurityService implements ISecurityService {
 		return true;
 	}
 
-	public function hasAnyRoles(array $roles) {
+	public function hasAnyRoles(array $roles)
+	{
 		if (!$this->isAuthenticated() || empty($roles)) {
 			return false;
 		}
@@ -112,7 +119,8 @@ class SecurityService implements ISecurityService {
 		return false;
 	}
 
-	public function authenticate(UserProfile $userProfile, bool $remember) : bool {
+	public function authenticate(UserProfile $userProfile, bool $remember) : bool
+	{
 		if (session_status() !== PHP_SESSION_ACTIVE || session_id() === '') {
 			return false;
 		}
@@ -127,7 +135,8 @@ class SecurityService implements ISecurityService {
 		return true;
 	}
 
-	private function setCookie($userProfile) {
+	private function setCookie($userProfile)
+	{
 		$context = $this->config->get('context');
 		$secretKey = $this->config->get('secret-key');
 		$expiration = $this->config->get('valid-time-token');
@@ -141,7 +150,8 @@ class SecurityService implements ISecurityService {
 		setcookie($this->appId . '[token]', $token, time() + $expiration, $context);
 	}
 
-	public function logout() {
+	public function logout()
+	{
 		if ($this->isAuthenticated()) {
 			unset($_SESSION[$this->appId]['user-profile']);
 		}
@@ -157,7 +167,8 @@ class SecurityService implements ISecurityService {
 		$this->unsetCookie();
 	}
 
-	private function unsetCookie() {
+	private function unsetCookie()
+	{
 		if (!array_key_exists($this->appId, $_COOKIE) || !array_key_exists('token', $_COOKIE[$this->appId])) {
 			return;
 		}

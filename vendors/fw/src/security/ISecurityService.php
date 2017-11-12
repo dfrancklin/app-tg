@@ -2,7 +2,8 @@
 
 namespace FW\Security;
 
-interface ISecurityService {
+interface ISecurityService
+{
 
 	function isAuthenticated() : bool;
 

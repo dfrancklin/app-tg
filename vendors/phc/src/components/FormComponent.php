@@ -4,9 +4,10 @@ namespace PHC\Components;
 
 use PHC\Interfaces\IComponent;
 
-class FormComponent implements IComponent {
+class FormComponent implements IComponent
+{
 
-	const METHODS = ['GET', 'POST', 'PUT', 'DELETE'];
+	const METHODS = ['GET', 'POST'];
 
 	const TEMPLATES = [
 		'form' => '<form class="row" action="%s" method="%s" name="%s" id="%s"%s>%s%s</form>'
@@ -37,7 +38,8 @@ class FormComponent implements IComponent {
 
 	private $buttons = [];
 
-	public function __call(string $method, array $parameters) {
+	public function __call(string $method, array $parameters)
+	{
 		if (array_key_exists($method, self::COMPONENTS)) {
 			return $this->add($method, ...$parameters);
 		} else {
@@ -45,7 +47,8 @@ class FormComponent implements IComponent {
 		}
 	}
 
-	private function add(string $type, array $config) {
+	private function add(string $type, array $config)
+	{
 		$component = self::COMPONENTS[$type];
 		$component = new $component;
 
@@ -66,7 +69,8 @@ class FormComponent implements IComponent {
 		return $this;
 	}
 
-	public function render(bool $print = true) {
+	public function render(bool $print = true)
+	{
 		if (empty($this->method)) {
 			$this->method = 'GET';
 		}
@@ -102,7 +106,8 @@ class FormComponent implements IComponent {
 		}
 	}
 
-	public function __get(string $attr) {
+	public function __get(string $attr)
+	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
 		}
@@ -110,7 +115,8 @@ class FormComponent implements IComponent {
 		return $this->$attr;
 	}
 
-	public function __set(string $attr, $value) {
+	public function __set(string $attr, $value)
+	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
 		}
@@ -118,7 +124,8 @@ class FormComponent implements IComponent {
 		$this->$attr = $value;
 	}
 
-	public function __toString() {
+	public function __toString()
+	{
 		return $this->render(false);
 	}
 

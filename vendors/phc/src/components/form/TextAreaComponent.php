@@ -4,7 +4,8 @@ namespace PHC\Components\Form;
 
 use PHC\Interfaces\IComponent;
 
-class TextAreaComponent implements IComponent {
+class TextAreaComponent implements IComponent
+{
 
 	const SIZES = [
 		's' => ' input-group-sm',
@@ -44,7 +45,8 @@ class TextAreaComponent implements IComponent {
 
 	private $width;
 
-	public function render(bool $print = false) {
+	public function render(bool $print = false)
+	{
 		$input = $this->formatFormGroup();
 
 		if ($print) {
@@ -54,7 +56,8 @@ class TextAreaComponent implements IComponent {
 		}
 	}
 
-	private function formatFormGroup() {
+	private function formatFormGroup()
+	{
 		$inputGroup = $this->formatInputGroup();
 		$label = $this->formatLabel();
 
@@ -65,14 +68,16 @@ class TextAreaComponent implements IComponent {
 		return sprintf(self::TEMPLATES['form-group'], self::WIDTHS[$this->width], $label, $inputGroup);
 	}
 
-	private function formatLabel() {
+	private function formatLabel()
+	{
 		return sprintf(self::TEMPLATES['label'],
 						($this->hideLabel ? ' class="sr-only"' : ''),
 						$this->name,
 						$this->title);
 	}
 
-	private function formatInputGroup() {
+	private function formatInputGroup()
+	{
 		$input = $this->formatTextArea();
 		$icon = '';
 
@@ -89,7 +94,8 @@ class TextAreaComponent implements IComponent {
 		return sprintf(self::TEMPLATES['input-group'], $size, $icon, $input);
 	}
 
-	private function formatTextArea() {
+	private function formatTextArea()
+	{
 		if (empty($this->name)) {
 			throw new \Exception('The name of the input must be informed');
 		}
@@ -108,7 +114,8 @@ class TextAreaComponent implements IComponent {
 						$this->value);
 	}
 
-	public function __get(string $attr) {
+	public function __get(string $attr)
+	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
 		}
@@ -116,7 +123,8 @@ class TextAreaComponent implements IComponent {
 		return $this->$attr;
 	}
 
-	public function __set(string $attr, $value) {
+	public function __set(string $attr, $value)
+	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
 		}
@@ -124,7 +132,8 @@ class TextAreaComponent implements IComponent {
 		$this->$attr = $value;
 	}
 
-	public function __toString() {
+	public function __toString()
+	{
 		return $this->render(false);
 	}
 

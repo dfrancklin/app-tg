@@ -6,7 +6,8 @@ use FW\View\IViewFactory;
 use FW\Security\ISecurityService;
 use FW\Security\IAuthentication;
 
-class Router {
+class Router
+{
 
 	private static $instance;
 
@@ -18,14 +19,16 @@ class Router {
 
 	private $activeRoute;
 
-	protected function __construct() {
+	protected function __construct()
+	{
 		$this->routes = [];
 		$this->validMethods = ['CONNECT', 'COPY', 'DELETE', 'GET', 'HEAD', 'LOCK', 'OPTIONS', 'PATCH', 'POST', 'PROPFIND', 'PUT', 'TRACE', 'UNLOCK'];
 		$this->dm = DependenciesManager::getInstance();
 		$this->page404 = Config::getInstance()->get('page-404');
 	}
 
-	public static function getInstance() : self {
+	public static function getInstance() : self
+	{
 		if (is_null(self::$instance)) {
 			self::$instance = new self();
 		}
@@ -33,7 +36,8 @@ class Router {
 		return self::$instance;
 	}
 
-	public function register($class) {
+	public function register($class)
+	{
 		$reflection = new \ReflectionClass($class);
 
 		if ($reflection->isAbstract()) {
@@ -97,7 +101,8 @@ class Router {
 		}
 	}
 
-	private function resolveMethod($method) {
+	private function resolveMethod($method)
+	{
 		$path = '';
 		$methods = ['GET'];
 		$requiresAuthentication = false;
@@ -105,11 +110,13 @@ class Router {
 
 // 		$doc = preg_replace("/[ \t]*(?:\/\*\*|\*\/|\*)?[ ]?(.*)?/i", "$1", $method->getDocComment());
 
-		if (preg_match("/@RequestMap\s([^" . PHP_EOL . "]+)/i", $method->getDocComment(), $matches)) {
+		if (preg_match("/@RequestMap\s([^" . PHP_EOL . "]+)/i", $method->getDocComment(), $matches))
+		{
 			$path = trim($matches[1]);
 		}
 
-		if (preg_match("/@RequestMethod\s([^" . PHP_EOL . "]+)/i", $method->getDocComment(), $matches)) {
+		if (preg_match("/@RequestMethod\s([^" . PHP_EOL . "]+)/i", $method->getDocComment(), $matches))
+		{
 			$methods = trim($matches[1], "[]");
 			$methods = preg_split("/(,\s?)/i", $methods);
 			$methods = array_filter($methods);
@@ -144,7 +151,8 @@ class Router {
 		];
 	}
 
-	private function validateMethods(array $methods) {
+	private function validateMethods(array $methods)
+	{
 		foreach ($methods as $method) {
 			if (!in_array($method, $this->validMethods)) {
 				throw new \Exception('Invalid HTTP Method "' . $method . '"');
@@ -152,7 +160,8 @@ class Router {
 		}
 	}
 
-	private function existsRoutesMethods($routes, $requestMethods) {
+	private function existsRoutesMethods($routes, $requestMethods)
+	{
 		foreach($routes as $route) {
 			foreach ($requestMethods as $method) {
 				if (in_array($method, $route->requestMethods)) {
@@ -164,7 +173,8 @@ class Router {
 		return false;
 	}
 
-	public function handle($route, $requestMethod) {
+	public function handle($route, $requestMethod)
+	{
 		$map = $this->findRoute($route, $requestMethod);
 
 		if (!$map) {
@@ -207,7 +217,8 @@ class Router {
 		echo $controller->{$map->method}(...$matches);
 	}
 
-	private function findRoute($address, $requestMethod) {
+	private function findRoute($address, $requestMethod)
+	{
 		$routes = [];
 
 		foreach ($this->routes as $items) {
@@ -231,7 +242,8 @@ class Router {
 		throw new \Exception('HTTP Method "' . $requestMethod . '" not allowed on route "' . $address . '"');
 	}
 
-	private function notFoundHandler($route, $requestMethod) {
+	private function notFoundHandler($route, $requestMethod)
+	{
 		$factory = $this->dm->resolve(IViewFactory::class);
 		$view = $factory::create();
 
@@ -241,12 +253,14 @@ class Router {
 		return $view->render($this->page404);
 	}
 
-	public static function redirect($route) {
+	public static function redirect($route)
+	{
 		header('location: ' . $route);
 		exit;
 	}
 
-	public function getActiveRoute() {
+	public function getActiveRoute()
+	{
 		return $this->activeRoute;
 	}
 

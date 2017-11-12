@@ -8,15 +8,18 @@ use App\Interfaces\Repositories\IUserRepository;
 /**
  * @Service
  */
-class LoginService implements ILoginService {
+class LoginService implements ILoginService
+{
 
 	private $repository;
 
-	public function __construct(IUserRepository $repository) {
+	public function __construct(IUserRepository $repository)
+	{
 		$this->repository = $repository;
 	}
 
-	public function authenticate($email, $pass) {
+	public function authenticate($email, $pass)
+	{
 		return $this->repository->findOne($email, $pass);
 	}
 

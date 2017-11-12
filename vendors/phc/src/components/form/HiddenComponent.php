@@ -4,7 +4,8 @@ namespace PHC\Components\Form;
 
 use PHC\Interfaces\IComponent;
 
-class HiddenComponent implements IComponent {
+class HiddenComponent implements IComponent
+{
 
 	private $templates = [
 		'input' => '<input type="hidden" name="%s" value="%s">',
@@ -14,7 +15,8 @@ class HiddenComponent implements IComponent {
 
 	private $name;
 
-	public function render(bool $print = false) {
+	public function render(bool $print = false)
+	{
 		$input = $this->formatInput();
 
 		if ($print) {
@@ -24,7 +26,8 @@ class HiddenComponent implements IComponent {
 		}
 	}
 
-	private function formatInput() {
+	private function formatInput()
+	{
 		if (empty($this->name)) {
 			throw new \Exception('The name of the input must be informed');
 		}
@@ -34,7 +37,8 @@ class HiddenComponent implements IComponent {
 						$this->value);
 	}
 
-	public function __get(string $attr) {
+	public function __get(string $attr)
+	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
 		}
@@ -42,7 +46,8 @@ class HiddenComponent implements IComponent {
 		return $this->$attr;
 	}
 
-	public function __set(string $attr, $value) {
+	public function __set(string $attr, $value)
+	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
 		}
@@ -50,7 +55,8 @@ class HiddenComponent implements IComponent {
 		$this->$attr = $value;
 	}
 
-	public function __toString() {
+	public function __toString()
+	{
 		return $this->render(false);
 	}
 

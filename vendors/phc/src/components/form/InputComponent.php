@@ -4,7 +4,8 @@ namespace PHC\Components\Form;
 
 use PHC\Interfaces\IComponent;
 
-class InputComponent implements IComponent {
+class InputComponent implements IComponent
+{
 
 	const TYPES = [
 		'color',
@@ -68,7 +69,8 @@ class InputComponent implements IComponent {
 
 	private $additional;
 
-	public function render(bool $print = false) {
+	public function render(bool $print = false)
+	{
 		$input = $this->formatFormGroup();
 
 		if ($print) {
@@ -78,7 +80,8 @@ class InputComponent implements IComponent {
 		}
 	}
 
-	private function formatFormGroup() {
+	private function formatFormGroup()
+	{
 		$label = $this->formatLabel();
 		$inputGroup = $this->formatInputGroup();
 
@@ -117,7 +120,8 @@ class InputComponent implements IComponent {
 		return sprintf(self::TEMPLATES['input-group'], $size, $icon, $input);
 	}
 
-	private function formatInput() {
+	private function formatInput()
+	{
 		if (empty($this->name)) {
 			throw new \Exception('The name of the input must be informed');
 		}
@@ -150,7 +154,8 @@ class InputComponent implements IComponent {
 						$additional);
 	}
 
-	public function __get(string $attr) {
+	public function __get(string $attr)
+	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
 		}
@@ -158,7 +163,8 @@ class InputComponent implements IComponent {
 		return $this->$attr;
 	}
 
-	public function __set(string $attr, $value) {
+	public function __set(string $attr, $value)
+	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
 		}
@@ -166,7 +172,8 @@ class InputComponent implements IComponent {
 		$this->$attr = $value;
 	}
 
-	public function __toString() {
+	public function __toString()
+	{
 		return $this->render(false);
 	}
 

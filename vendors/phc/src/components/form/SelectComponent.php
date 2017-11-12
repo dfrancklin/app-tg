@@ -4,7 +4,8 @@ namespace PHC\Components\Form;
 
 use PHC\Interfaces\IComponent;
 
-class SelectComponent implements IComponent {
+class SelectComponent implements IComponent
+{
 
 	const SIZES = [
 		's' => ' input-group-sm',
@@ -48,7 +49,8 @@ class SelectComponent implements IComponent {
 
 	private $icon;
 
-	public function render(bool $print = false) {
+	public function render(bool $print = false)
+	{
 		$input = $this->formatFormGroup();
 
 		if ($print) {
@@ -58,7 +60,8 @@ class SelectComponent implements IComponent {
 		}
 	}
 
-	private function formatFormGroup() {
+	private function formatFormGroup()
+	{
 		$inputGroup = $this->formatInputGroup();
 		$label = $this->formatLabel();
 
@@ -69,14 +72,16 @@ class SelectComponent implements IComponent {
 		return sprintf(self::TEMPLATES['form-group'], self::WIDTHS[$this->width], $label, $inputGroup);
 	}
 
-	private function formatLabel() {
+	private function formatLabel()
+	{
 		return sprintf(self::TEMPLATES['label'],
 						($this->hideLabel ? ' class="sr-only"' : ''),
 						$this->name,
 						$this->title);
 	}
 
-	private function formatInputGroup() {
+	private function formatInputGroup()
+	{
 		$input = $this->formatSelect();
 		$icon = '';
 
@@ -93,7 +98,8 @@ class SelectComponent implements IComponent {
 		return sprintf(self::TEMPLATES['input-group'], $size, $icon, $input);
 	}
 
-	private function formatSelect() {
+	private function formatSelect()
+	{
 		if (empty($this->name)) {
 			throw new \Exception('The name of the select must be informed');
 		}
@@ -113,7 +119,8 @@ class SelectComponent implements IComponent {
 						$options);
 	}
 
-	private function formatOptions() {
+	private function formatOptions()
+	{
 		if (empty($this->options)) {
 			throw new \Exception('The options of the select must be informed');
 		}
@@ -130,7 +137,8 @@ class SelectComponent implements IComponent {
 		return $options;
 	}
 
-	public function __get(string $attr) {
+	public function __get(string $attr)
+	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
 		}
@@ -138,7 +146,8 @@ class SelectComponent implements IComponent {
 		return $this->$attr;
 	}
 
-	public function __set(string $attr, $value) {
+	public function __set(string $attr, $value)
+	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
 		}
@@ -146,7 +155,8 @@ class SelectComponent implements IComponent {
 		$this->$attr = $value;
 	}
 
-	public function __toString() {
+	public function __toString()
+	{
 		return $this->render(false);
 	}
 

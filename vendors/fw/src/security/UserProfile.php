@@ -2,30 +2,35 @@
 
 namespace FW\Security;
 
-class UserProfile {
-	
+class UserProfile
+{
+
 	private $id;
-	
+
 	private $name;
-	
+
 	private $roles;
-	
-	public function __construct(string $id, string $name, array $roles) {
+
+	public function __construct(string $id, string $name, array $roles)
+	{
 		$this->id = $id;
 		$this->name = $name;
 		$this->roles = $roles;
 	}
-	
-	public function getId() {
+
+	public function getId()
+	{
 		return $this->id;
 	}
-	
-	public function getName() {
+
+	public function getName()
+	{
 		return $this->name;
 	}
-	
-	public function getRoles() {
+
+	public function getRoles()
+	{
 		return $this->roles;
 	}
-	
+
 }

@@ -4,7 +4,8 @@ namespace PHC\Components\Form;
 
 use PHC\Interfaces\IComponent;
 
-class ButtonComponent implements IComponent {
+class ButtonComponent implements IComponent
+{
 
 	const STYLES = [
 		'primary' => ' btn-primary',
@@ -52,7 +53,8 @@ class ButtonComponent implements IComponent {
 
 	private $additional;
 
-	public function render(bool $print = false) {
+	public function render(bool $print = false)
+	{
 		$button = $this->formatButton();
 
 		if ($print) {
@@ -62,7 +64,8 @@ class ButtonComponent implements IComponent {
 		}
 	}
 
-	private function formatButton() {
+	private function formatButton()
+	{
 		$icon = '';
 
 		if (empty($this->name)) {
@@ -128,7 +131,8 @@ class ButtonComponent implements IComponent {
 		}
 	}
 
-	public function __get(string $attr) {
+	public function __get(string $attr)
+	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
 		}
@@ -136,7 +140,8 @@ class ButtonComponent implements IComponent {
 		return $this->$attr;
 	}
 
-	public function __set(string $attr, $value) {
+	public function __set(string $attr, $value)
+	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
 		}
@@ -144,7 +149,8 @@ class ButtonComponent implements IComponent {
 		$this->$attr = $value;
 	}
 
-	public function __toString() {
+	public function __toString()
+	{
 		return $this->render(false);
 	}
 

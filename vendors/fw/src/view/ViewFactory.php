@@ -10,18 +10,21 @@ use \FW\Security\ISecurityService;
 /**
  * @Factory
  */
-class ViewFactory implements IViewFactory {
+class ViewFactory implements IViewFactory
+{
 
 	private static $dm;
 
 	private static $config;
 
-	public function __construct() {
+	public function __construct()
+	{
 		self::$dm = DependenciesManager::getInstance();
 		self::$config = Config::getInstance();
 	}
 
-	public static function create($template = null) : View {
+	public static function create($template = null) : View
+	{
 		$security = self::$dm->resolve(ISecurityService::class);
 		$views = self::$config->get('views-folder');
 
@@ -29,7 +32,7 @@ class ViewFactory implements IViewFactory {
 			$template = self::$config->get('template');
 		}
 
-		return new View($security,FlashMessages::getInstance(), $template, $views);
+		return new View($security, FlashMessages::getInstance(), $template, $views);
 	}
 
 }

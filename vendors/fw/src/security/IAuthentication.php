@@ -4,16 +4,15 @@ namespace FW\Security;
 
 use FW\View\IViewFactory;
 
-interface IAuthentication {
+interface IAuthentication
+{
 
-// 	public function __construct(ISecurityService $service, IViewFactory $factory);
+	function login($returnsTo);
 
-	public function login($returnsTo);
+	function authenticate();
 
-	public function authenticate();
+	function forbidden($route);
 
-	public function forbidden($route);
-
-	public function logout();
+	function logout();
 
 }

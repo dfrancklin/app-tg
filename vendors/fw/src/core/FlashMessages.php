@@ -2,7 +2,8 @@
 
 namespace FW\Core;
 
-class FlashMessages {
+class FlashMessages
+{
 
 	private static $instance;
 
@@ -31,7 +32,8 @@ class FlashMessages {
 
 	private $id = 'flash-messages';
 
-	protected function __construct() {
+	protected function __construct()
+	{
 		$this->appId = Config::getInstance()->get('app-id');
 
 		if (!array_key_exists($this->appId, $_SESSION)) {
@@ -43,7 +45,8 @@ class FlashMessages {
 		}
 	}
 
-	public static function getInstance() : self {
+	public static function getInstance() : self
+	{
 		if (is_null(self::$instance)) {
 			self::$instance = new self();
 		}
@@ -51,7 +54,8 @@ class FlashMessages {
 		return self::$instance;
 	}
 
-	public function __call($method, $parameters) {
+	public function __call($method, $parameters)
+	{
 		if (defined('self::' . strtoupper($method))) {
 			$type = constant('self::' . strtoupper($method));
 			$this->add($type, ...$parameters);
@@ -60,7 +64,8 @@ class FlashMessages {
 		}
 	}
 
-	public function add($type, $text, $title = null) {
+	private function add($type, $text, $title = null)
+	{
 		if (!trim($text)) {
 			return false;
 		}
@@ -79,7 +84,8 @@ class FlashMessages {
 		];
 	}
 
-	public function display($types = null, $print = true) {
+	public function display($types = null, $print = true)
+	{
 		if (!isset($_SESSION[$this->appId]) || !isset($_SESSION[$this->appId][$this->id])) {
 			return false;
 		}
@@ -118,11 +124,13 @@ class FlashMessages {
 		}
 	}
 
-	public function hasErrors() {
+	public function hasErrors()
+	{
 		return !empty($_SESSION[$this->appId][$this->id][self::ERROR]);
 	}
 
-	public function hasMessages($type = null) {
+	public function hasMessages($type = null)
+	{
 		if (!is_null($type)) {
 			if (!empty($_SESSION[$this->appId][$this->id][$type])) {
 				return $_SESSION[$this->appId][$this->id][$type];
@@ -138,7 +146,8 @@ class FlashMessages {
 		return false;
 	}
 
-	protected function format($message, $type) {
+	protected function format($message, $type)
+	{
 		$type = isset($this->types[$type]) ? $type : $this->defaultType;
 		$body = '';
 
@@ -151,7 +160,8 @@ class FlashMessages {
 		return sprintf($this->wrapper, $this->css[$type], $body);
 	}
 
-	protected function clear($types = []) {
+	protected function clear($types = [])
+	{
 		if ((is_array($types) && empty($types)) || is_null($types) || !$types) {
 			unset($_SESSION[$this->appId][$this->id]);
 		} elseif (!is_array($types)) {

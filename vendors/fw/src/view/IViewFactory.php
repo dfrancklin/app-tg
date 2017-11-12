@@ -2,8 +2,9 @@
 
 namespace FW\View;
 
-interface IViewFactory {
+interface IViewFactory
+{
 
-	public static function create() : View;
+	static function create() : View;
 
 }

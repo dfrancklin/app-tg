@@ -4,7 +4,8 @@ namespace PHC\Components\Form;
 
 use PHC\Interfaces\IComponent;
 
-class CheckboxComponent implements IComponent {
+class CheckboxComponent implements IComponent
+{
 
 	const WIDTHS = [
 		'1' => ' col-12',
@@ -33,7 +34,8 @@ class CheckboxComponent implements IComponent {
 
 	private $width;
 
-	public function render(bool $print = false) {
+	public function render(bool $print = false)
+	{
 		$input = $this->formatFormCheck();
 
 		if ($print) {
@@ -43,7 +45,8 @@ class CheckboxComponent implements IComponent {
 		}
 	}
 
-	private function formatFormCheck() {
+	private function formatFormCheck()
+	{
 		$label = $this->formatLabel();
 
 		if (empty($this->width) || !array_key_exists($this->width, self::WIDTHS)) {
@@ -53,13 +56,15 @@ class CheckboxComponent implements IComponent {
 		return sprintf(self::TEMPLATES['form-check'], self::WIDTHS[$this->width], $label);
 	}
 
-	private function formatLabel() {
+	private function formatLabel()
+	{
 		$input = $this->formatInput();
 
 		return sprintf(self::TEMPLATES['label'], $input, $this->title);
 	}
 
-	private function formatInput() {
+	private function formatInput()
+	{
 		if (empty($this->name)) {
 			throw new \Exception('The name of the input must be informed');
 		}
@@ -78,7 +83,8 @@ class CheckboxComponent implements IComponent {
 						($this->autofocus ? ' autofocus' : null));
 	}
 
-	public function __get(string $attr) {
+	public function __get(string $attr)
+	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
 		}
@@ -86,7 +92,8 @@ class CheckboxComponent implements IComponent {
 		return $this->$attr;
 	}
 
-	public function __set(string $attr, $value) {
+	public function __set(string $attr, $value)
+	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
 		}
@@ -94,7 +101,8 @@ class CheckboxComponent implements IComponent {
 		$this->$attr = $value;
 	}
 
-	public function __toString() {
+	public function __toString()
+	{
 		return $this->render(false);
 	}
 
