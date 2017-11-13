@@ -12,7 +12,7 @@ class MenuComponent implements IComponent
 		'menu-group' => '<nav class="menu__group">%s%s</nav>',
 		'menu-title' => '<h3 class="menu__title">%s%s</h3>',
 		'menu-content' => '<ul class="menu__content nav flex-column nav-pills">%s</ul>',
-		'menu-item' => '<li class="menu__item nav-item"><a href="%s" class="menu__link nav-link %s">%s%s</a></li>',
+		'menu-item' => '<li class="menu__item nav-item"><a href="%s" class="menu__link nav-link text-white%s">%s%s</a></li>',
 		'icon' => '<span class="material-icons mr-2">%s</span>',
 	];
 
@@ -107,7 +107,7 @@ class MenuComponent implements IComponent
 				? sprintf(self::TEMPLATES['icon'], $item->icon)
 				: '';
 
-		return sprintf(self::TEMPLATES['menu-item'], $item->href, $active ? 'active menu__link--active' : '', $icon, $item->title);
+		return sprintf(self::TEMPLATES['menu-item'], $item->href, ($active ? ' active menu__link--active' : ''), $icon, $item->title);
 	}
 
 	private function hasAnyRoles(Array $roles)
