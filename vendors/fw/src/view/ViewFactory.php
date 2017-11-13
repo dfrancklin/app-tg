@@ -26,13 +26,9 @@ class ViewFactory implements IViewFactory
 	public static function create($template = null) : View
 	{
 		$security = self::$dm->resolve(ISecurityService::class);
-		$views = self::$config->get('views-folder');
+		$template = $template ?? self::$config->get('template');
 
-		if (!$template) {
-			$template = self::$config->get('template');
-		}
-
-		return new View($security, FlashMessages::getInstance(), $template, $views);
+		return new View($security, FlashMessages::getInstance(), self::$config, $template);
 	}
 
 }

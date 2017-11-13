@@ -18,18 +18,21 @@ class View
 
 	private $messages;
 
+	private $config;
+
 	private $views;
 
 	public function __construct(
 		ISecurityService $security,
 		FlashMessages $messages,
-		String $template,
-		String $views)
+		Config $config,
+		String $template)
 	{
 		$this->security = $security;
 		$this->messages = $messages;
 		$this->template = $template;
-		$this->views = $views;
+		$this->config = $config;
+		$this->views = $this->config->get('views-folder');
 		$this->data = [];
 	}
 
@@ -84,7 +87,46 @@ class View
 			}
 		}
 
-		return $__head . $__content . $__foot;
+		$__rendered = $__head . $__content . $__foot;
+
+		if ($this->config->get('watching')) {
+			$__rendered = $this->addWatchScript($__rendered);
+		}
+
+		return $__rendered;
+	}
+
+	public function addWatchScript($rendered)
+	{
+		list($top, $botton) = preg_split('/<\/body>/i', $rendered);
+
+		$path['protocol'] = 'http' . (!empty($_SERVER['HTTPS']) ? 's' : '') . '://';
+		$path['server'] = $_SERVER['SERVER_NAME'];
+		$path['port'] = $_SERVER['SERVER_PORT'] !== '80' ? $_SERVER['SERVER_PORT'] : '';
+		$path['uri'] = '/--has-changes-to-watched-files';
+
+		$url = implode('', $path);
+
+		$script = "
+	<script>
+		setInterval(_ => {
+			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = _ => {
+				if (xhttp.readyState === 4 && xhttp.status === 200) {
+					if (xhttp.response === 'true') {
+						console.log('refreshing...');
+						setTimeout(_=> window.location.reload(), 500);
+					}
+				}
+			};
+
+			xhttp.open('GET', '$url', true);
+			xhttp.send();
+		}, 1000);
+	</script>
+";
+
+		return implode('', [$top, $script, '</body>', $botton]);
 	}
 
 }

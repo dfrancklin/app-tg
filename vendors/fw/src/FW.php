@@ -21,6 +21,10 @@ class FW
 
 	private $folders;
 
+	private $watchFolders;
+
+	private $session;
+
 	protected function __construct()
 	{
 		$this->dm = DependenciesManager::getInstance();
@@ -28,6 +32,8 @@ class FW
 		$this->config = Config::getInstance();
 		$this->components = ['Controller', 'Service', 'Repository', 'Factory', 'Component'];
 		$this->folders = [];
+		$this->watchFolders = [];
+		$this->session = new \FW\Storage\Strategies\SessionStorageStrategy('watch');
 	}
 
 	public static function getInstance() : self
@@ -50,6 +56,51 @@ class FW
 		return $this;
 	}
 
+	public function enableWatch(...$folders)
+	{
+		$this->config->set('watching', true);
+		$this->watchFolders = $folders;
+
+		return $this;
+	}
+
+	public function run()
+	{
+		$this->resolveScan();
+
+		if ($this->config->get('watching')) {
+			$this->resolveWatch();
+		}
+
+		$path = $_SERVER['PATH_INFO'] ?? $_SERVER['REDIRECT_URL'] ?? '/';
+
+		if ($path === '/--has-changes-to-watched-files' && $this->config->get('watching')) {
+			$hasChanges = $this->compareWatch();
+
+			if ($hasChanges) {
+				$this->resolveWatch(true);
+				echo 'true';
+			} else {
+				echo 'false';
+			}
+
+			return;
+		}
+
+		$controller = $this->router->handle($path, $_SERVER['REQUEST_METHOD']);
+	}
+
+	private function resolveScan()
+	{
+		$systemFolders = $this->config->get('system-folders');
+
+		$this->scanComponents(...$systemFolders);
+
+		foreach ($this->folders as $folder) {
+			$this->lookUp($folder, true);
+		}
+	}
+
 	private function lookUp($folder, $recursive = false)
 	{
 		if (!$folder) {
@@ -62,23 +113,6 @@ class FW
 			} else {
 				$this->resolveEntry($entry);
 			}
-		}
-	}
-
-	public function run()
-	{
-		$systemFolders = $this->config->get('system-folders');
-
-		$this->scanComponents(...$systemFolders);
-
-		foreach ($this->folders as $folder) {
-			$this->lookUp($folder, true);
-		}
-
-		if (!isset($_SERVER['PATH_INFO']) && !isset($_SERVER['REDIRECT_URL'])) {
-			$controller = $this->router->handle('/', $_SERVER['REQUEST_METHOD']);
-		} else {
-			$controller = $this->router->handle($_SERVER['PATH_INFO'] ?? $_SERVER['REDIRECT_URL'], $_SERVER['REQUEST_METHOD']);
 		}
 	}
 
@@ -122,6 +156,66 @@ class FW
 		if($isController) {
 			$this->router->register($fullName);
 		}
+	}
+
+	private function resolveWatch(bool $reload = false)
+	{
+		if (!$this->session || !empty($this->session->get('files')) && !$reload) {
+			return;
+		}
+
+		$files = $this->loadWatchedFiles();
+		$this->session->save('files', $files);
+	}
+
+	private function compareWatch() : bool
+	{
+		$hasChanges = false;
+
+		$files = $this->loadWatchedFiles();
+		$cached = $this->session->get('files');
+
+		foreach ($files as $file => $time) {
+			if (!isset($cached[$file])) {
+				$hasChanges = true;
+				break;
+			}
+
+			if (!($cached[$file] === $files[$file])) {
+				$hasChanges = true;
+				break;
+			}
+		}
+
+		return $hasChanges;
+	}
+
+	private function loadWatchedFiles()
+	{
+		$files = [];
+
+		foreach ($this->watchFolders as $folder) {
+			$_files = $this->loadModificationTime($folder);
+			$files = array_merge($files, $_files);
+		}
+
+		return $files;
+	}
+
+	private function loadModificationTime(String $folder)
+	{
+		$times = [];
+
+		foreach (glob($folder . '/*') as $entry) {
+			if (is_dir($entry)) {
+				$_times = $this->loadModificationTime($entry);
+				$times = array_merge($times, $_times);
+			} else {
+				$times[$entry] = filemtime($entry);
+			}
+		}
+
+		return $times;
 	}
 
 }

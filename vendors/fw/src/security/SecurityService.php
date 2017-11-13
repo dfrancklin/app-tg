@@ -22,7 +22,7 @@ class SecurityService implements ISecurityService
 
 	public function isAuthenticated() : bool
 	{
-		if (session_status() !== PHP_SESSION_ACTIVE || session_id() === '') {
+		if (!$this->isSessionOpen()) {
 			return false;
 		}
 
@@ -121,7 +121,7 @@ class SecurityService implements ISecurityService
 
 	public function authenticate(UserProfile $userProfile, bool $remember) : bool
 	{
-		if (session_status() !== PHP_SESSION_ACTIVE || session_id() === '') {
+		if (!$this->isSessionOpen()) {
 			return false;
 		}
 
@@ -176,6 +176,11 @@ class SecurityService implements ISecurityService
 		$context = $this->config->get('context');
 
 		setcookie($this->appId . '[token]', null, time() - 1000, $context);
+	}
+
+	private function isSessionOpen() : bool
+	{
+		return (session_status() === PHP_SESSION_ACTIVE && session_id() !== '');
 	}
 
 }
