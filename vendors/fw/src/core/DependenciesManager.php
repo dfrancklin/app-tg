@@ -28,7 +28,12 @@ class DependenciesManager
 		$reflection = new \ReflectionClass($class);
 
 		$dependencies = [];
-		$interfaces = array_merge($reflection->getInterfaceNames(), [$reflection->getName()]);
+
+		if (!empty($reflection->getInterfaceNames())) {
+			$names[] = $reflection->getInterfaceNames()[0];
+		}
+
+		$names[] = $reflection->getName();
 		$constructor = $reflection->getConstructor();
 
 		if ($constructor) {
@@ -59,12 +64,12 @@ class DependenciesManager
 			}
 		}
 
-		foreach ($interfaces as $interface) {
-			if (array_key_exists($interface, $this->instances)) {
-				throw new \Exception('An instance for the interface "' . $interface . '" already exists');
+		foreach ($names as $name) {
+			if (array_key_exists($name, $this->instances)) {
+				throw new \Exception('An instance for the interface "' . $name . '" already exists');
 			}
 
-			$this->instances[$interface] = (object) [
+			$this->instances[$name] = (object) [
 				'name' => $reflection->getName(),
 				'instance' => null,
 				'dependencies' => $dependencies

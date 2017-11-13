@@ -110,7 +110,7 @@ class MenuComponent implements IComponent
 		return sprintf(self::TEMPLATES['menu-item'], $item->href, $active ? 'active menu__link--active' : '', $icon, $item->title);
 	}
 
-	private function hasAnyRoles(array $roles)
+	private function hasAnyRoles(Array $roles)
 	{
 		if (is_null($this->userRoles) || !is_array($this->userRoles)) {
 			return true;
@@ -125,7 +125,7 @@ class MenuComponent implements IComponent
 		return false;
 	}
 
-	public function __get(string $attr)
+	public function __get(String $attr)
 	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
@@ -134,7 +134,7 @@ class MenuComponent implements IComponent
 		return $this->$attr;
 	}
 
-	public function __set(string $attr, $value)
+	public function __set(String $attr, $value)
 	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');

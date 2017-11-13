@@ -151,7 +151,9 @@ class UploaderComponent {
 	static loadComponents() {
 		document
 			.querySelectorAll('.component__uploader')
-			.forEach(component => new UploaderComponent(component));
+			.forEach(component => new this(component));
 	}
 
 }
+
+UploaderComponent.loadComponents();

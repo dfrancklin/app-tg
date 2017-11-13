@@ -11,7 +11,7 @@ use FW\Security\ISecurityService;
 use FW\Security\IAuthentication;
 use FW\Security\UserProfile;
 
-use App\Interfaces\Services\ILoginService;
+use App\Interfaces\Services\IEmployeeService;
 
 /**
  * @Controller
@@ -25,7 +25,11 @@ class LoginController implements IAuthentication
 
 	private $factory;
 
-	public function __construct(ILoginService $service, ISecurityService $security, IViewFactory $factory)
+	public function __construct(
+		IEmployeeService $service,
+		ISecurityService $security,
+		IViewFactory $factory
+	)
 	{
 		$this->service = $service;
 		$this->security = $security;

@@ -5,11 +5,11 @@ namespace FW\Utils;
 class Autoloader
 {
 
-	protected $prefixes = array();
+	protected $prefixes = [];
 
 	private static $instance;
 
-	protected function __construct() 
+	protected function __construct()
 	{}
 
 	public static function getInstance() : self
@@ -23,7 +23,7 @@ class Autoloader
 
 	public function register()
 	{
-		spl_autoload_register(array($this, 'loadClass'));
+		spl_autoload_register([$this, 'loadClass']);
 	}
 
 	public function addNamespace($prefix, $baseDir, $prepend = false)

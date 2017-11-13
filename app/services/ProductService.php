@@ -19,12 +19,12 @@ class ProductService implements IProductService
 		$this->repository = $repository;
 	}
 
-	public function all() : array
+	public function all() : Array
 	{
 		return $this->repository->all();
 	}
 
-	public function page(int $page, int $quantity) : array
+	public function page(int $page, int $quantity) : Array
 	{
 		return $this->repository->page($page, $quantity);
 	}
@@ -34,7 +34,7 @@ class ProductService implements IProductService
 		return $this->repository->byId($id);
 	}
 
-	public function save(Product $product)
+	public function save($product)
 	{
 		return $this->repository->save($product);
 	}

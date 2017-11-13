@@ -151,7 +151,7 @@ class Router
 		];
 	}
 
-	private function validateMethods(array $methods)
+	private function validateMethods(Array $methods)
 	{
 		foreach ($methods as $method) {
 			if (!in_array($method, $this->validMethods)) {
@@ -175,46 +175,53 @@ class Router
 
 	public function handle($route, $requestMethod)
 	{
-		$map = $this->findRoute($route, $requestMethod);
+		try {
+			$map = $this->findRoute($route, $requestMethod);
 
-		if (!$map) {
-			echo $this->notFoundHandler($route, $requestMethod);
-			return;
-		}
-
-		$security = $this->dm->resolve(ISecurityService::class);
-
-		if ($map->requiresAuthentication && !$security->isAuthenticated()) {
-			$login = $this->dm->resolve(IAuthentication::class);
-
-			if ($login) {
-				echo $login->login($route);
+			if (!$map) {
+				echo $this->notFoundHandler($route, $requestMethod);
+				return;
 			}
 
-			return;
-		}
+			$security = $this->dm->resolve(ISecurityService::class);
 
-		if (count($map->roles) && !$security->hasAnyRoles($map->roles)) {
-			$login = $this->dm->resolve(IAuthentication::class);
+			if ($map->requiresAuthentication && !$security->isAuthenticated()) {
+				$login = $this->dm->resolve(IAuthentication::class);
 
-			if ($login) {
-				echo $login->forbidden($route);
+				if ($login) {
+					header('HTTP/1.1 401 Unauthorized');
+					echo $login->login($route);
+				}
+
+				return;
 			}
 
-			return;
+			if (count($map->roles) && !$security->hasAnyRoles($map->roles)) {
+				$login = $this->dm->resolve(IAuthentication::class);
+
+				if ($login) {
+					header('HTTP/1.1 403 Forbidden');
+					echo $login->forbidden($route);
+				}
+
+				return;
+			}
+
+			if (!in_array($requestMethod, $map->requestMethods)) {
+				throw new \Exception('HTTP Method "' . $requestMethod . '" not allowed on route "' . $route . '"');
+			}
+
+			$controller = $this->dm->resolve($map->class);
+			preg_match($map->pattern, $route, $matches);
+			array_shift($matches);
+
+			$this->activeRoute = $route;
+
+			echo $controller->{$map->method}(...$matches);
+		} catch (\Exception $e) {
+			header('HTTP/1.1 500 Internal Server Error');
+			throw $e;
 		}
-
-		if (!in_array($requestMethod, $map->requestMethods)) {
-			throw new \Exception('HTTP Method "' . $requestMethod . '" not allowed on route "' . $route . '"');
-		}
-
-		$controller = $this->dm->resolve($map->class);
-		preg_match($map->pattern, $route, $matches);
-		array_shift($matches);
-
-		$this->activeRoute = $route;
-
-		echo $controller->{$map->method}(...$matches);
 	}
 
 	private function findRoute($address, $requestMethod)
@@ -244,6 +251,8 @@ class Router
 
 	private function notFoundHandler($route, $requestMethod)
 	{
+		header("HTTP/1.1 404 Not Found");
+
 		$factory = $this->dm->resolve(IViewFactory::class);
 		$view = $factory::create();
 

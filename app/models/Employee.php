@@ -5,7 +5,7 @@ namespace App\Models;
 /**
  * @ORM/Entity
  */
-class employee
+class Employee
 {
 
 	/**
@@ -42,7 +42,7 @@ class employee
 	public $roles;
 
 	/**
-	 * @ORM/BelongsTo(class=App\Models\Employee)
+	 * @ORM/BelongsTo(class=App\Models\Employee, optional=true)
 	 * @ORM/JoinColumn(name=supervisor_id)
 	 */
 	public $supervisor;

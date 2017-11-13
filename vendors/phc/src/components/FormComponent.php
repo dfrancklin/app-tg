@@ -38,7 +38,7 @@ class FormComponent implements IComponent
 
 	private $buttons = [];
 
-	public function __call(string $method, array $parameters)
+	public function __call(String $method, Array $parameters)
 	{
 		if (array_key_exists($method, self::COMPONENTS)) {
 			return $this->add($method, ...$parameters);
@@ -47,7 +47,7 @@ class FormComponent implements IComponent
 		}
 	}
 
-	private function add(string $type, array $config)
+	private function add(String $type, Array $config)
 	{
 		$component = self::COMPONENTS[$type];
 		$component = new $component;
@@ -106,7 +106,7 @@ class FormComponent implements IComponent
 		}
 	}
 
-	public function __get(string $attr)
+	public function __get(String $attr)
 	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
@@ -115,7 +115,7 @@ class FormComponent implements IComponent
 		return $this->$attr;
 	}
 
-	public function __set(string $attr, $value)
+	public function __set(String $attr, $value)
 	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');

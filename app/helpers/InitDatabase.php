@@ -3,47 +3,72 @@
 namespace App\Helpers;
 
 use App\Models\Role;
+use App\Models\Employee;
 
 use ORM\Interfaces\IEntityManager;
 
 class InitDatabase
 {
 
-	private $roles;
-
 	public function beforeDrop(IEntityManager $em)
-	{
-		$this->roles = $em->list(Role::class);
-	}
+	{}
 
 	public function afterCreate(IEntityManager $em)
 	{
-		if (empty($this->roles)) {
-			$this->roles = $this->loadPreDefined('roles');
-		}
+		$roles = $this->loadPreDefined('roles');
+		$employee = $this->loadPreDefined('employees')[0];
+		$employee->roles = $roles;
 
-		try {
-			$em->beginTransaction();
-			$em->save($this->roles);
-			$em->commit();
-		} catch (\Exception $e) {
-			vd($e);
-		}
+		$em->beginTransaction();
+		$em->save($roles);
+		$em->save($employee);
+		$em->commit();
 	}
 
-	private function loadPreDefined($data)
+	private function loadPreDefined($name)
 	{
-		$preDefined = [];
+		$repo = [
+			'roles' => [
+				'class' => Role::class,
+				'registers' => [
+					['name' => 'ADMIN'],
+					['name' => 'SALESMAN'],
+					['name' => 'STOCK'],
+				]
+			],
+			'employees' => [
+				'class' => Employee::class,
+				'registers' => [
+					[
+						'name' => 'Default User',
+						'email' => 'default@user.com',
+						'password' => md5(123),
+					],
+				]
+			],
+		];
 
-		$roles = ['ADMIN', 'SALESMAN', 'STOCK'];
-
-		foreach ($roles as $name) {
-			$role = new Role();
-			$role->name = $name;
-			$preDefined['roles'][] = $role;
+		if (!array_key_exists($name, $repo)) {
+			return;
 		}
 
-		return $preDefined[$data];
+		$objects = [];
+		$class = $repo[$name]['class'];
+		$registers = $repo[$name]['registers'];
+
+		foreach ($registers as $register) {
+			$object = new $class();
+
+			foreach ($register as $property => $value) {
+				$object->{$property} = $value;
+			}
+
+			$objects[] = $object;
+		}
+
+		vd($objects);
+
+		return $objects;
 	}
 
 }

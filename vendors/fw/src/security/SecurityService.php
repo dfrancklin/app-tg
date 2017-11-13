@@ -85,7 +85,7 @@ class SecurityService implements ISecurityService
 		return $userProfile;
 	}
 
-	public function hasRoles(array $roles)
+	public function hasRoles(Array $roles)
 	{
 		if (!$this->isAuthenticated() || empty($roles)) {
 			return false;
@@ -102,7 +102,7 @@ class SecurityService implements ISecurityService
 		return true;
 	}
 
-	public function hasAnyRoles(array $roles)
+	public function hasAnyRoles(Array $roles)
 	{
 		if (!$this->isAuthenticated() || empty($roles)) {
 			return false;

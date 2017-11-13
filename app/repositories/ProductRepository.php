@@ -19,12 +19,12 @@ class ProductRepository implements IProductRepository
 		$this->em = $orm->createEntityManager();
 	}
 
-	public function all() : array
+	public function all() : Array
 	{
 		return $this->em->list(Product::class);
 	}
 
-	public function page(int $page, int $quantity) : array
+	public function page(int $page, int $quantity) : Array
 	{
 		return $this->em->list(Product::class, $page, $quantity);
 	}
@@ -34,7 +34,7 @@ class ProductRepository implements IProductRepository
 		return $this->em->find(Product::class, $id);
 	}
 
-	public function save(Product $product)
+	public function save($product)
 	{
 		$this->em->beginTransaction();
 		$product = $this->em->save($product);

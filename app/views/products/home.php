@@ -5,6 +5,16 @@
 	</a>
 </h1>
 
+<hr>
+
+<form>
+	<div class="component__picklist" data-source="/roles/json">
+		<input type="text" class="form-control">
+	</div>
+</form>
+
+<hr>
+
 <table class="component__table table table-bordered table-striped table-responsive table-hover">
 	<thead class="thead-default">
 		<tr>

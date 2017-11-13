@@ -8,7 +8,7 @@ use ORM\Mappers\Join;
 
 use ORM\Interfaces\IEntityManager;
 
-class Proxy
+class Proxy implements \JsonSerializable
 {
 
 	private $em;
@@ -80,7 +80,12 @@ class Proxy
 
 	public function __debugInfo()
 	{
-		return (array) $this->object;
+		return (Array) $this->object;
+	}
+
+	public function jsonSerialize()
+	{
+		return (Array) $this->object;
 	}
 
 	private function lazy(Join $join, String $property)

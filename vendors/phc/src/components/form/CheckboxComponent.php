@@ -83,7 +83,7 @@ class CheckboxComponent implements IComponent
 						($this->autofocus ? ' autofocus' : null));
 	}
 
-	public function __get(string $attr)
+	public function __get(String $attr)
 	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');
@@ -92,7 +92,7 @@ class CheckboxComponent implements IComponent
 		return $this->$attr;
 	}
 
-	public function __set(string $attr, $value)
+	public function __set(String $attr, $value)
 	{
 		if (!property_exists(__CLASS__, $attr)) {
 			throw new \Exception('The property "' . $attr . '" does not exists on the class "' . __CLASS__ . '"');

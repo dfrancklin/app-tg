@@ -9,7 +9,7 @@ interface ISecurityService
 
 	function getUserProfile();
 
-	function hasRoles(array $roles);
+	function hasRoles(Array $roles);
 
 	function authenticate(UserProfile $userProfile, bool $remember) : bool;
 

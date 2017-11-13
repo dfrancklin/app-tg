@@ -11,7 +11,7 @@ class UserProfile
 
 	private $roles;
 
-	public function __construct(string $id, string $name, array $roles)
+	public function __construct(String $id, String $name, Array $roles)
 	{
 		$this->id = $id;
 		$this->name = $name;

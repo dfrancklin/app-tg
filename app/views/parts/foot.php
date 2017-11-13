@@ -17,6 +17,7 @@
 	<script src="/vendors/phc/src/resources/js/detabinator.js"></script>
 	<script src="/vendors/phc/src/resources/js/Menu.js"></script>
 	<script src="/vendors/phc/src/resources/js/UploaderComponent.js"></script>
+	<script src="/vendors/phc/src/resources/js/PicklistComponent.js"></script>
 	<script src="/resources/js/app.js"></script>
 
 	<?php
