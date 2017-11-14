@@ -5,15 +5,15 @@
 	</a>
 </h1>
 
-<?php if (!empty($_POST)) : ?>
+<?php if (!empty($_GET)) : ?>
 	<hr>
 
-	<?php vd($_POST); ?>
+	<?php vd($_GET); ?>
 <?php endif;?>
 
 <hr>
 
-<form>
+<form action="" method="GET">
 	<div class="component__picklist"
 		 data-name="roles"
 		 data-title="Roles"
@@ -21,11 +21,13 @@
 		 data-label="name"
 		 data-source="/roles/json">
 		<input type="text" class="form-control">
-		
+
 		<div class="show-select-list"></div>
-		
+
 		<div class="show-selected-list"></div>
 	</div>
+
+	<button type="submit">Submit</button>
 </form>
 
 <hr>

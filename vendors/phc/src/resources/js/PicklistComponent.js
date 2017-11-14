@@ -36,6 +36,8 @@ class PicklistComponent {
 	}
 
 	_binds() {
+		this._onBlur = this._onBlur.bind(this);
+		this._onFocus = this._onFocus.bind(this);
 		this._onKeyUp = this._onKeyUp.bind(this);
 		this._fetchData = this._fetchData.bind(this);
 		this._clear = this._clear.bind(this);
@@ -46,11 +48,25 @@ class PicklistComponent {
 	}
 
 	_addEventListeners() {
+		this.input.addEventListener('blur', this._onBlur, false);
+		this.input.addEventListener('focus', this._onFocus, false);
 		this.input.addEventListener('keyup', this._onKeyUp, false);
 	}
 
+	_onBlur() {
+		if (this.showSelectList.innerHTML === '') {
+			this.showSelectList.style.display = 'none';
+		}
+	}
+
+	_onFocus() {
+		if (this.input.value.trim()) {
+			this._onKeyUp();
+		}
+	}
+
 	_onKeyUp(evt) {
-		if (!this._isValidKey(evt.which || evt.keyCode)) {
+		if (evt && !this._isValidKey(evt.which || evt.keyCode)) {
 			return;
 		}
 
@@ -69,11 +85,13 @@ class PicklistComponent {
 			this.request.abort();
 		}
 
+		this.showSelectList.style.display = 'block';
 		this.timeout = setTimeout(this._fetchData, 500);
 	}
 
 	_fetchData() {
 		this.active = true;
+		this.input.classList.add('active');
 
 		this.request = new XMLHttpRequest();
 		this.request.onabort = this._clear;
@@ -88,6 +106,7 @@ class PicklistComponent {
 		this.active = false;
 		this.request = null;
 		this.timeout = null;
+		this.input.classList.remove('active');
 	}
 
 	_onError() {
@@ -107,18 +126,23 @@ class PicklistComponent {
 			this._clear();
 		}
 	}
-	
+
 	_removeUsedItems(list) {
 		const newList = list.filter(item => {
 			return !this.list.some(_item => {
 				return item[this.value] == _item.value;
 			});
 		});
-		
+
 		return newList;
 	}
 
 	_updateShowSelectList(list) {
+		if (!list.length) {
+			this.showSelectList.innerHTML = '';
+			return;
+		}
+
 		let items = '';
 
 		list.forEach(item => {
@@ -126,26 +150,35 @@ class PicklistComponent {
 		});
 
 		this.showSelectList.innerHTML = `<ul>${items}</ul>`;
-		this.showSelectList.style.display = 'block';
-		
+
 		const links = this.showSelectList.querySelectorAll('a');
-		
+
 		links.forEach(item => {
 			item.addEventListener('click', this._selectValue);
 		});
 	}
-	
+
 	_selectValue(evt) {
 		const value = evt.target.getAttribute('data-value');
 		const label = evt.target.innerText;
-		
-		this.list.push({value, label});
+
+		this.list.push({
+			value,
+			label
+		});
 		this.showSelectList.style.display = 'none';
 		this.input.value = '';
 		this._updateShowSelectedList();
 	}
-	
+
 	_updateShowSelectedList() {
+		if (!this.list.length) {
+			this.showSelectedList.innerHTML = '';
+			this.showSelectedList.style.display = 'none';
+
+			return;
+		}
+
 		let items = `
 <thead class="thead-inverse">
 	<tr>
@@ -158,7 +191,10 @@ class PicklistComponent {
 		this.list.forEach(item => {
 			items += `
 				<tr>
-					<td>"${item.value}" ${item.label}</td>
+					<td>
+						<input type="checkbox" checked name="${this.name}[]" value="${item.value}" style="display: none">
+						${item.label}
+					</td>
 					<td>
 						<a href="#" class="btn btn-sm btn-danger">
 							<spam class="material-icons">delete</spam>
@@ -166,19 +202,19 @@ class PicklistComponent {
 					</td>
 				</tr>`;
 		});
-		
+
 		items += `</tbody>`;
 
 		this.showSelectedList.innerHTML = `<table class="table table-bordered table-striped table-responsive table-hover">${items}</table>`;
 		this.showSelectedList.style.display = 'block';
-		
+
 		const links = this.showSelectedList.querySelectorAll('a');
-		
+
 		links.forEach(item => {
 			item.addEventListener('click', this._removeItem);
 		});
 	}
-	
+
 	_removeItem(evt) {
 		console.log(evt.target);
 	}
