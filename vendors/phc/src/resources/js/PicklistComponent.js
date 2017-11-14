@@ -3,7 +3,13 @@ class PicklistComponent {
 	constructor(root) {
 		this.root = root;
 		this.source = this.root.getAttribute('data-source');
+		this.label = this.root.getAttribute('data-label');
+		this.value = this.root.getAttribute('data-value');
+		this.title = this.root.getAttribute('data-title');
 		this.input = this.root.querySelector('input[type=text]');
+		this.showSelectList = this.root.querySelector('.show-select-list');
+		this.showSelectedList = this.root.querySelector('.show-selected-list');
+		this.list = [];
 		this.timeout = null;
 		this.request = null;
 		this.active = false;
@@ -12,6 +18,18 @@ class PicklistComponent {
 			console.error('[PickList Component] A valid source needs to be informed');
 			return;
 		}
+
+		if (!this.label || !this.label.trim()) {
+			console.error('[PickList Component] A valid label needs to be informed');
+			return;
+		}
+
+		if (!this.value || !this.value.trim()) {
+			console.error('[PickList Component] A valid value needs to be informed');
+			return;
+		}
+
+		this.showSelectList.style.top = this.input.offsetHeight + 5;
 
 		this._binds();
 		this._addEventListeners();
@@ -23,6 +41,8 @@ class PicklistComponent {
 		this._clear = this._clear.bind(this);
 		this._onError = this._onError.bind(this);
 		this._onReady = this._onReady.bind(this);
+		this._selectValue = this._selectValue.bind(this);
+		this._removeItem = this._removeItem.bind(this);
 	}
 
 	_addEventListeners() {
@@ -41,13 +61,11 @@ class PicklistComponent {
 		}
 
 		if (this.timeout) {
-			console.log('clearing...');
 			clearTimeout(this.timeout);
 			this.timeout = null;
 		}
 
 		if (this.active) {
-			console.log('aborting...');
 			this.request.abort();
 		}
 
@@ -55,8 +73,6 @@ class PicklistComponent {
 	}
 
 	_fetchData() {
-		console.log('search', this.input.value, 'on source', this.source);
-
 		this.active = true;
 
 		this.request = new XMLHttpRequest();
@@ -81,9 +97,90 @@ class PicklistComponent {
 
 	_onReady() {
 		if (this.request.readyState === 4 && this.request.status === 200) {
-			console.log(this.request.response);
+			if (!this.request.response || this.request.response.trim()) {
+				this._updateShowSelectList([]);
+			}
+
+			let list = JSON.parse(this.request.response);
+			list = this._removeUsedItems(list);
+			this._updateShowSelectList(list);
 			this._clear();
 		}
+	}
+	
+	_removeUsedItems(list) {
+		const newList = list.filter(item => {
+			return !this.list.some(_item => {
+				return item[this.value] == _item.value;
+			});
+		});
+		
+		return newList;
+	}
+
+	_updateShowSelectList(list) {
+		let items = '';
+
+		list.forEach(item => {
+			items += `<li><a href="#" data-value="${item[this.value]}">${item[this.label]}</a></li>`;
+		});
+
+		this.showSelectList.innerHTML = `<ul>${items}</ul>`;
+		this.showSelectList.style.display = 'block';
+		
+		const links = this.showSelectList.querySelectorAll('a');
+		
+		links.forEach(item => {
+			item.addEventListener('click', this._selectValue);
+		});
+	}
+	
+	_selectValue(evt) {
+		const value = evt.target.getAttribute('data-value');
+		const label = evt.target.innerText;
+		
+		this.list.push({value, label});
+		this.showSelectList.style.display = 'none';
+		this.input.value = '';
+		this._updateShowSelectedList();
+	}
+	
+	_updateShowSelectedList() {
+		let items = `
+<thead class="thead-inverse">
+	<tr>
+		<th>${this.title}</th>
+		<th>Action</th>
+	</tr>
+</thead>
+<tbody>`;
+
+		this.list.forEach(item => {
+			items += `
+				<tr>
+					<td>"${item.value}" ${item.label}</td>
+					<td>
+						<a href="#" class="btn btn-sm btn-danger">
+							<spam class="material-icons">delete</spam>
+						</a>
+					</td>
+				</tr>`;
+		});
+		
+		items += `</tbody>`;
+
+		this.showSelectedList.innerHTML = `<table class="table table-bordered table-striped table-responsive table-hover">${items}</table>`;
+		this.showSelectedList.style.display = 'block';
+		
+		const links = this.showSelectedList.querySelectorAll('a');
+		
+		links.forEach(item => {
+			item.addEventListener('click', this._removeItem);
+		});
+	}
+	
+	_removeItem(evt) {
+		console.log(evt.target);
 	}
 
 	_isValidKey(key) {

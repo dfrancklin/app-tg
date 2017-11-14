@@ -5,18 +5,33 @@
 	</a>
 </h1>
 
+<?php if (!empty($_POST)) : ?>
+	<hr>
+
+	<?php vd($_POST); ?>
+<?php endif;?>
+
 <hr>
 
 <form>
-	<div class="component__picklist" data-source="/roles/json">
+	<div class="component__picklist"
+		 data-name="roles"
+		 data-title="Roles"
+		 data-value="id"
+		 data-label="name"
+		 data-source="/roles/json">
 		<input type="text" class="form-control">
+		
+		<div class="show-select-list"></div>
+		
+		<div class="show-selected-list"></div>
 	</div>
 </form>
 
 <hr>
 
 <table class="component__table table table-bordered table-striped table-responsive table-hover">
-	<thead class="thead-default">
+	<thead class="thead-inverse">
 		<tr>
 			<th>#</th>
 			<th>Picture</th>

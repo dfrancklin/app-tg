@@ -4,10 +4,16 @@
 			<span class="material-icons">menu</span>
 		</button>
 
-		<a class="navbar-brand mr-auto" href="/">TG Book Store</a>
+		<a class="navbar-brand mr-auto d-none d-md-block" href="/">TG Book Store</a>
+		<a class="navbar-brand mr-auto d-block d-md-none" href="/">TBS</a>
 
 		<div class="dropdown">
-			<button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $this->security->getUserProfile()->getName(); ?></button>
+			<button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<spam class="material-icons">account_circle</spam>
+				<span class="d-none d-md-inline-block">
+					<?php echo $this->security->getUserProfile()->getName(); ?>
+				</span>
+			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 				<a class="dropdown-item" href="/profile">Profile</a>
 				<div class="dropdown-divider"></div>
