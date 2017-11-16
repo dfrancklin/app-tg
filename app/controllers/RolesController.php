@@ -23,7 +23,7 @@ class RolesController
 	 * @RequestMap /json
 	 * @RequestMethod POST
 	 */
-	public function rolesJson() {
+	public function json() {
 		$list = $this->service->searchByName($_POST['search']);
 
 		header('Content-type:application/json; charset=UTF-8');

@@ -43,6 +43,7 @@ class InitDatabase
 						'name' => 'Default User',
 						'email' => 'default@user.com',
 						'password' => md5(123),
+						'admissionDate' => new \DateTime,
 					],
 				]
 			],
