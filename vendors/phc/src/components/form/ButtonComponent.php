@@ -68,7 +68,7 @@ class ButtonComponent implements IComponent
 	{
 		$icon = '';
 
-		if (empty($this->name)) {
+		if ($this->type !== 'link' && empty($this->name)) {
 			throw new \Exception('The name of the button must be informed');
 		}
 
@@ -106,7 +106,11 @@ class ButtonComponent implements IComponent
 			}
 		}
 
-		if ($this->type === 'link' && !empty($this->action)) {
+		if ($this->type === 'link' && empty($this->action)) {
+			$this->action = '#';
+		}
+
+		if ($this->type === 'link') {
 			return sprintf($this->templates['link'],
 							$this->action,
 							$this->name,

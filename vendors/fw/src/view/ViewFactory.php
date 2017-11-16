@@ -27,8 +27,14 @@ class ViewFactory implements IViewFactory
 	{
 		$security = self::$dm->resolve(ISecurityService::class);
 		$template = $template ?? self::$config->get('template');
+		$views = self::$config->get('views-folder');
 
-		return new View($security, FlashMessages::getInstance(), self::$config, $template);
+		return new View(
+			$security,
+			FlashMessages::getInstance(),
+			$views,
+			$template
+		);
 	}
 
 }

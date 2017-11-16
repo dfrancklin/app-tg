@@ -38,7 +38,7 @@ class EmployeeRepository implements IEmployeeRepository
 		return $this->em->list(Employee::class, $page, $quantity);
 	}
 
-	public function byId(int $id)
+	public function findById(int $id)
 	{
 		return $this->em->find(Employee::class, $id);
 	}
@@ -54,7 +54,7 @@ class EmployeeRepository implements IEmployeeRepository
 
 	public function delete(int $id) : bool
 	{
-		$employee = $this->byId($id);
+		$employee = $this->findById($id);
 
 		$this->em->beginTransaction();
 		$employee = $this->em->remove($employee);

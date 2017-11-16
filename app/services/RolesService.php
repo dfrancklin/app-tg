@@ -18,9 +18,9 @@ class RolesService implements IRolesService
 		$this->repository = $repository;
 	}
 
-	public function findByName(String $search) : Array
+	public function searchByName(String $search) : Array
 	{
-		return $this->repository->findByName($search);
+		return $this->repository->searchByName($search);
 	}
 
 }

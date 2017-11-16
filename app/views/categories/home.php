@@ -1,6 +1,6 @@
 <h1>
 	<?=$pageTitle?>
-	<a href="/products/form" class="btn btn-primary">
+	<a href="/categories/form" class="btn btn-primary">
 		New <span class="material-icons">add_circle</span>
 	</a>
 </h1>
@@ -11,31 +11,21 @@
 	<thead class="thead-inverse">
 		<tr>
 			<th>#</th>
-			<th>Picture</th>
 			<th>Name</th>
-			<th>Price</th>
-			<th>Quantity</th>
 			<th>Actions</th>
 		</tr>
 	</thead>
 
 	<tbody>
-		<?php foreach ($products as $product): ?>
+		<?php foreach ($categories as $category): ?>
 			<tr>
-				<th scope="row"><?=$product->id?></th>
-				<td class="image-cell">
-					<?php if ($product->picture) : ?>
-						<img src="<?=$product->picture?>" alt="<?=$product->name?>" class="img-fluid rounded">
-					<?php endif; ?>
-				</td>
-				<td><?=$product->name?></td>
-				<td>$ <?=number_format($product->price, 2)?></td>
-				<td><?=$product->quantity?></td>
+				<th scope="row"><?=$category->id?></th>
+				<td><?=$category->name?></td>
 				<td>
-					<a href="/products/form/<?=$product->id?>" class="btn btn-sm btn-success">
+					<a href="/categories/form/<?=$category->id?>" class="btn btn-sm btn-success">
 						Edit <span class="material-icons">edit</span>
 					</a>
-					<button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#confirm-modal" data-id="<?=$product->id?>">
+					<button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#confirm-modal" data-id="<?=$category->id?>">
 						Delete <span class="material-icons">delete</span>
 					</button>
 				</td>
@@ -48,12 +38,12 @@
 	<nav aria-label="Page navigation">
 		<ul class="pagination justify-content-center">
 			<li class="page-item<?=($this->page === 1 ? ' disabled' : '')?>">
-				<a class="page-link" href="/products?page=<?=$this->page - 1?>" tabindex="-1">Previous</a>
+				<a class="page-link" href="/categories?page=<?=$this->page - 1?>" tabindex="-1">Previous</a>
 			</li>
 
 			<?php foreach (range(1, $this->totalPages) as $value) : ?>
 				<li class="page-item<?=($this->page === $value ? ' active' : '')?>">
-					<a class="page-link" href="/products?page=<?=$value?>">
+					<a class="page-link" href="/categories?page=<?=$value?>">
 						<?=$value?>
 						<?php if ($this->page === $value) : ?>
 							<span class="sr-only">(current)</span>
@@ -63,7 +53,7 @@
 			<?php endforeach; ?>
 
 			<li class="page-item<?=($this->page === $this->totalPages ? ' disabled' : '')?>">
-				<a class="page-link" href="/products?page=<?=$this->page + 1?>">Next</a>
+				<a class="page-link" href="/categories?page=<?=$this->page + 1?>">Next</a>
 			</li>
 		</ul>
 	</nav>
@@ -87,7 +77,7 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-				<form method="POST" id="confirm-form" data-destiny="/products/delete/">
+				<form method="POST" id="confirm-form" data-destiny="/categories/delete/">
 					<button type="submit" class="btn btn-danger">
 						Delete <span class="material-icons">delete</span>
 					</button>

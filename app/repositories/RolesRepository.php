@@ -17,7 +17,7 @@ class RolesRepository implements IRolesRepository
 		$this->em = $orm->createEntityManager();
 	}
 
-	public function findByName(String $search) : Array
+	public function searchByName(String $search) : Array
 	{
 		$query = $this->em->createQuery(\App\Models\Role::class);
 

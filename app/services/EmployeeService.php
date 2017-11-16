@@ -48,9 +48,9 @@ class EmployeeService implements IEmployeeService
 		return $this->repository->page($page, $quantity);
 	}
 
-	public function byId(int $id)
+	public function findById(int $id)
 	{
-		return $this->repository->byId();
+		return $this->repository->findById();
 	}
 
 	public function save($object)

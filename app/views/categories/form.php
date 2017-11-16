@@ -3,63 +3,18 @@
 <hr>
 
 <?php
-	$this->form->action = '/products';
+	$this->form->action = '/categories';
 	$this->form->method = 'POST';
 
 	$this->form->hidden([
 		'name' => 'id',
-		'value' => !is_null($this->product) ? $this->product->id : ''
+		'value' => !is_null($this->category) ? $this->category->id : ''
 	]);
 	$this->form->input([
 		'name' => 'name',
 		'hideLabel' => true,
 		'required' => true,
-		'value' => !is_null($this->product) ? $this->product->name : ''
-	]);
-	$this->form->input([
-		'name' => 'price',
-		'type' => 'number',
-		'hideLabel' => true,
-		'required' => true,
-		'value' => !is_null($this->product) ? $this->product->price : '',
-		'width' => '1/2',
-		'additional' => [
-			'min' => 0,
-			'step' => 0.01
-		]
-	]);
-	$this->form->input([
-		'name' => 'quantity',
-		'type' => 'number',
-		'hideLabel' => true,
-		'required' => true,
-		'value' => !is_null($this->product) ? $this->product->quantity : '',
-		'width' => '1/2',
-		'additional' => [
-			'min' => 0
-		]
-	]);
-	$this->form->uploader([
-		'name' => 'picture',
-		'hideLabel' => true,
-		'width' => '1/2',
-		'accept' => 'images',
-		'value' => !is_null($this->product) ? $this->product->picture : ''
-	]);
-	$this->form->picklist([
-		'name' => 'categories',
-		'value' => 'id',
-		'label' => 'name',
-		'source' => '/categories/json',
-		'placeholder' => 'Start typing to search categories...',
-		'hideLabel' => true,
-		'width' => '1/2',
-		'values' => !is_null($this->product) ? $this->product->categories : null
-	]);
-	$this->form->text([
-		'name' => 'description',
-		'hideLabel' => true,
-		'value' => !is_null($this->product) ? $this->product->description : ''
+		'value' => !is_null($this->category) ? $this->category->name : ''
 	]);
 	$this->form->button([
 		'name' => 'save',
@@ -68,7 +23,7 @@
 		'type' => 'submit',
 	]);
 
-	if (!is_null($this->product)) {
+	if (!is_null($this->category)) {
 		$this->form->button([
 			'name' => 'delete',
 			'style' => 'danger',
@@ -85,13 +40,13 @@
 		'style' => 'warning',
 		'icon' => 'cancel',
 		'type' => 'link',
-		'action' => '/products'
+		'action' => '/categories'
 	]);
 
 	$this->form->render();
 ?>
 
-<?php if (!is_null($this->product)) : ?>
+<?php if (!is_null($this->category)) : ?>
 	<div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-modal-label" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -110,7 +65,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-					<form method="POST" id="confirm-form" action="/products/delete/<?=$this->product->id?>">
+					<form method="POST" id="confirm-form" action="/categories/delete/<?=$this->category->id?>">
 						<button type="submit" class="btn btn-danger">
 							Delete <span class="material-icons">delete</span>
 						</button>

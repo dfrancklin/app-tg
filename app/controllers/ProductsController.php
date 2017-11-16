@@ -57,7 +57,7 @@ class ProductsController
 	 */
 	public function edit(int $id)
 	{
-		$product = $this->service->byId($id);
+		$product = $this->service->findById($id);
 
 		if ($product) {
 			return $this->form($product);
@@ -146,6 +146,26 @@ class ProductsController
 			$file = file_get_contents($_FILES['picture']['tmp_name']);
 			$picture = sprintf('data:%s;base64,%s', $mime, base64_encode($file));
 			$product->picture = $picture;
+		} else {
+			if (!empty($product->id)) {
+				$old = $this->service->findById($product->id);
+
+				if (!empty($old)) {
+					$product->picture = $old->picture;
+				}
+			}
+		}
+
+		if (!empty($_POST['categories'])) {
+			$categories = [];
+
+			foreach ($_POST['categories'] as $id) {
+				$category = new \App\Models\Category;
+				$category->id = $id;
+				$categories[] = $category;
+			}
+
+			$product->categories = $categories;
 		}
 
 		return $product;

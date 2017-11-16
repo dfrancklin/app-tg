@@ -108,7 +108,7 @@ class Router
 		$requiresAuthentication = false;
 		$roles = [];
 
-// 		$doc = preg_replace("/[ \t]*(?:\/\*\*|\*\/|\*)?[ ]?(.*)?/i", "$1", $method->getDocComment());
+		// $doc = preg_replace("/[ \t]*(?:\/\*\*|\*\/|\*)?[ ]?(.*)?/i", "$1", $method->getDocComment());
 
 		if (preg_match("/@RequestMap\s([^" . PHP_EOL . "]+)/i", $method->getDocComment(), $matches))
 		{
@@ -173,14 +173,13 @@ class Router
 		return false;
 	}
 
-	public function handle($route, $requestMethod)
+	public function handle($route, $requestMethod) : String
 	{
 		try {
 			$map = $this->findRoute($route, $requestMethod);
 
 			if (!$map) {
-				echo $this->notFoundHandler($route, $requestMethod);
-				return;
+				return $this->notFoundHandler($route, $requestMethod);
 			}
 
 			$security = $this->dm->resolve(ISecurityService::class);
@@ -190,10 +189,9 @@ class Router
 
 				if ($login) {
 					header('HTTP/1.1 401 Unauthorized');
-					echo $login->login($route);
-				}
 
-				return;
+					return $login->login($route);
+				}
 			}
 
 			if (count($map->roles) && !$security->hasAnyRoles($map->roles)) {
@@ -201,10 +199,9 @@ class Router
 
 				if ($login) {
 					header('HTTP/1.1 403 Forbidden');
-					echo $login->forbidden($route);
-				}
 
-				return;
+					return $login->forbidden($route);
+				}
 			}
 
 			if (!in_array($requestMethod, $map->requestMethods)) {
@@ -217,9 +214,10 @@ class Router
 
 			$this->activeRoute = $route;
 
-			echo $controller->{$map->method}(...$matches);
-		} catch (\Exception $e) {
+			return $controller->{$map->method}(...$matches);
+		} catch (\Throwable $e) {
 			header('HTTP/1.1 500 Internal Server Error');
+
 			throw $e;
 		}
 	}

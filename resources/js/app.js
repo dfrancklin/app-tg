@@ -1,8 +1,8 @@
 $('#confirm-modal').on('show.bs.modal', function (event) {
-	var button = $(event.relatedTarget);
-	var id = button.data('id');
+	const button = $(event.relatedTarget);
+	const id = button.data('id');
 
-	$(this)
-		.find('#confirm-form')
-		.attr('action', '/products/delete/' + id);
+	const form = $(this).find('#confirm-form');
+	const destiny = form.data('destiny');
+	form.attr('action', destiny + id);
 });

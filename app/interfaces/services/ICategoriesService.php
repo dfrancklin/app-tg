@@ -2,7 +2,7 @@
 
 namespace App\Interfaces\Services;
 
-interface IRolesService
+interface ICategoriesService extends IGenericService
 {
 
 	function searchByName(String $search) : Array;

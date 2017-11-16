@@ -2,10 +2,11 @@ class PicklistComponent {
 
 	constructor(root) {
 		this.root = root;
-		this.source = this.root.getAttribute('data-source');
+		this.name = this.root.getAttribute('data-name');
+		this.title = this.root.getAttribute('data-title');
 		this.label = this.root.getAttribute('data-label');
 		this.value = this.root.getAttribute('data-value');
-		this.title = this.root.getAttribute('data-title');
+		this.source = this.root.getAttribute('data-source');
 		this.input = this.root.querySelector('input[type=text]');
 		this.showSelectList = this.root.querySelector('.show-select-list');
 		this.showSelectedList = this.root.querySelector('.show-selected-list');
@@ -32,6 +33,7 @@ class PicklistComponent {
 		this.showSelectList.style.top = this.input.offsetHeight + 5;
 
 		this._binds();
+		this._loadPreset();
 		this._addEventListeners();
 	}
 
@@ -150,7 +152,10 @@ class PicklistComponent {
 		});
 
 		this.showSelectList.innerHTML = `<ul>${items}</ul>`;
+		this._addSelectListeners();
+	}
 
+	_addSelectListeners() {
 		const links = this.showSelectList.querySelectorAll('a');
 
 		links.forEach(item => {
@@ -166,6 +171,7 @@ class PicklistComponent {
 			value,
 			label
 		});
+		this.showSelectList.innerHTML = '';
 		this.showSelectList.style.display = 'none';
 		this.input.value = '';
 		this._updateShowSelectedList();
@@ -179,24 +185,26 @@ class PicklistComponent {
 			return;
 		}
 
-		let items = `
-<thead class="thead-inverse">
-	<tr>
-		<th>${this.title}</th>
-		<th>Action</th>
-	</tr>
-</thead>
-<tbody>`;
+		let items = `<thead class="thead-inverse">
+			<tr>
+				<th>#</th>
+				<th>${this.title}</th>
+				<th>Action</th>
+			</tr>
+		</thead>`;
+
+		items += '<tbody>';
 
 		this.list.forEach(item => {
 			items += `
 				<tr>
-					<td>
-						<input type="checkbox" checked name="${this.name}[]" value="${item.value}" style="display: none">
-						${item.label}
+					<td class="value">
+						<input type="hidden" name="${this.name}[]" value="${item.value}">
+						${item.value}
 					</td>
+					<td class="label">${item.label}</td>
 					<td>
-						<a href="#" class="btn btn-sm btn-danger">
+						<a href="#" class="btn btn-sm btn-danger" data-value="${item.value}">
 							<spam class="material-icons">delete</spam>
 						</a>
 					</td>
@@ -207,16 +215,39 @@ class PicklistComponent {
 
 		this.showSelectedList.innerHTML = `<table class="table table-bordered table-striped table-responsive table-hover">${items}</table>`;
 		this.showSelectedList.style.display = 'block';
+		this._addRemoveListeners();
+	}
 
+	_loadPreset() {
+		const rows = Array.from(this.showSelectedList.querySelectorAll('tbody tr'));
+
+		this.list = rows.map(item => {
+			const value = item.querySelector('.value').innerText;
+			const label = item.querySelector('.label').innerText;
+
+			return {
+				value,
+				label
+			};
+		});
+
+		this._addRemoveListeners();
+	}
+
+	_addRemoveListeners() {
 		const links = this.showSelectedList.querySelectorAll('a');
 
 		links.forEach(item => {
-			item.addEventListener('click', this._removeItem);
+			item.addEventListener('click', this._removeItem, false);
 		});
 	}
 
 	_removeItem(evt) {
-		console.log(evt.target);
+		const btn = evt.currentTarget;
+		const value = btn.getAttribute('data-value');
+
+		this.list = this.list.filter(item => item.value != value);
+		this._updateShowSelectedList();
 	}
 
 	_isValidKey(key) {

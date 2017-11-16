@@ -87,7 +87,35 @@ class FW
 			return;
 		}
 
-		$controller = $this->router->handle($path, $_SERVER['REQUEST_METHOD']);
+		$page = '';
+
+		try {
+			$page = $this->router->handle($path, $_SERVER['REQUEST_METHOD']);
+		} catch (\Throwable $e) {
+			$page .= $e;
+		}
+
+		if (
+			$this->config->get('watching') &&
+			(
+				$this->isHTML($page) ||
+				!$this->isJSON($page)
+			)
+		) {
+			$page = $this->addWatchScript($page);
+		}
+
+		echo $page;
+	}
+
+	private function isHTML($page){
+		return $page != strip_tags($page) ? true : false;
+	}
+
+	private function isJSON($json){
+		json_decode($json);
+
+		return (json_last_error() === JSON_ERROR_NONE);
 	}
 
 	private function resolveScan()
@@ -216,6 +244,44 @@ class FW
 		}
 
 		return $times;
+	}
+
+	public function addWatchScript($page)
+	{
+		$path['protocol'] = 'http' . (!empty($_SERVER['HTTPS']) ? 's' : '') . '://';
+		$path['server'] = $_SERVER['SERVER_NAME'];
+		$path['port'] = $_SERVER['SERVER_PORT'] !== '80' ? $_SERVER['SERVER_PORT'] : '';
+		$path['uri'] = '/--has-changes-to-watched-files';
+
+		$url = implode('', $path);
+
+		$script = "<script>
+			(function() {
+				xhttp = new XMLHttpRequest();
+
+				xhttp.onreadystatechange = _ => {
+					if (xhttp.readyState === 4 && xhttp.status === 200) {
+						if (xhttp.response === 'true') {
+							console.log('refreshing...');
+							setTimeout(_=> window.location.reload(), 500);
+						}
+					}
+				};
+
+				const refreshInterval = setInterval(_ => {
+					xhttp.open('GET', '$url', true);
+					xhttp.send();
+				}, 1000);
+			})();
+		</script>";
+
+		if (strpos('</head>', $page)) {
+			list($top, $botton) = preg_split('/<\/head>/i', $page);
+
+			return implode('', [$top, $script, '</head>', $botton]);
+		} else {
+			return $script . $page;
+		}
 	}
 
 }

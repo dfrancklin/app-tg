@@ -29,7 +29,7 @@ class ProductRepository implements IProductRepository
 		return $this->em->list(Product::class, $page, $quantity);
 	}
 
-	public function byId(int $id)
+	public function findById(int $id)
 	{
 		return $this->em->find(Product::class, $id);
 	}
@@ -45,7 +45,7 @@ class ProductRepository implements IProductRepository
 
 	public function delete(int $id) : bool
 	{
-		$product = $this->byId($id);
+		$product = $this->findById($id);
 
 		$this->em->beginTransaction();
 		$product = $this->em->remove($product);

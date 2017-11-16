@@ -9,7 +9,7 @@ interface IGenericService
 
 	function page(int $page, int $quantity) : Array;
 
-	function byId(int $id);
+	function findById(int $id);
 
 	function save($object);
 

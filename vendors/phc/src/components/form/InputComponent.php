@@ -55,6 +55,8 @@ class InputComponent implements IComponent
 
 	private $title;
 
+	private $placeholder;
+
 	private $hideLabel;
 
 	private $required;
@@ -68,6 +70,19 @@ class InputComponent implements IComponent
 	private $icon;
 
 	private $additional;
+
+	private $requireName;
+
+	private $widthNull;
+
+	public function __construct(
+		bool $requireName = true,
+		bool $widthNull = false
+	)
+	{
+		$this->requireName = $requireName;
+		$this->widthNull = $widthNull;
+	}
 
 	public function render(bool $print = false)
 	{
@@ -89,11 +104,17 @@ class InputComponent implements IComponent
 			$this->width = '1';
 		}
 
-		return sprintf(self::TEMPLATES['form-group'], self::WIDTHS[$this->width], $label, $inputGroup);
+		$width = '';
+
+		if (!$this->widthNull) {
+			$width = self::WIDTHS[$this->width];
+		}
+
+		return sprintf(self::TEMPLATES['form-group'], $width, $label, $inputGroup);
 	}
 
 	private function formatLabel() {
-		if (empty($this->title)) {
+		if (empty($this->title) && !empty($this->name)) {
 			$this->title = ucfirst($this->name);
 		}
 
@@ -122,7 +143,7 @@ class InputComponent implements IComponent
 
 	private function formatInput()
 	{
-		if (empty($this->name)) {
+		if ($this->requireName && empty($this->name)) {
 			throw new \Exception('The name of the input must be informed');
 		}
 
@@ -130,8 +151,12 @@ class InputComponent implements IComponent
 			$this->type = 'text';
 		}
 
-		if (empty($this->title)) {
+		if (empty($this->title) && !empty($this->name)) {
 			$this->title = ucfirst($this->name);
+		}
+
+		if (empty($this->placeholder) && !empty($this->title)) {
+			$this->placeholder = ucfirst($this->title);
 		}
 
 		$additional = '';
@@ -146,7 +171,7 @@ class InputComponent implements IComponent
 						$this->type,
 						$this->name,
 						$this->name,
-						$this->title,
+						$this->placeholder,
 						$this->title,
 						$this->value,
 						($this->required ? ' required' : null),

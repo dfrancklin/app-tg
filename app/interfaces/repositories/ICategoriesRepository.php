@@ -2,7 +2,7 @@
 
 namespace App\Interfaces\Repositories;
 
-interface IRolesRepository
+interface ICategoriesRepository extends IGenericRepository
 {
 
 	function searchByName(String $search) : Array;

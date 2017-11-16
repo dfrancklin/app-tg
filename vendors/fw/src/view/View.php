@@ -14,25 +14,22 @@ class View
 
 	private $security;
 
-	private $template;
-
 	private $messages;
 
-	private $config;
-
 	private $views;
+
+	private $template;
 
 	public function __construct(
 		ISecurityService $security,
 		FlashMessages $messages,
-		Config $config,
+		String $views,
 		String $template)
 	{
 		$this->security = $security;
 		$this->messages = $messages;
 		$this->template = $template;
-		$this->config = $config;
-		$this->views = $this->config->get('views-folder');
+		$this->views = $views;
 		$this->data = [];
 	}
 
@@ -67,13 +64,23 @@ class View
 		}
 
 		ob_start();
-		require $__view;
-		$__content = ob_get_contents();
+		try {
+			require $__view;
+			$__content = ob_get_contents();
+		} catch (\Throwable $e) {
+			$__content = ob_get_contents();
+			$__content .= $e;
+		}
 		ob_clean();
 
 		ob_start();
-		require $__template;
-		$__fullPage = ob_get_contents();
+		try {
+			require $__template;
+			$__fullPage = ob_get_contents();
+		} catch (\Throwable $e) {
+			$__fullPage = ob_get_contents();
+			$__content .= $e;
+		}
 		ob_clean();
 
 		$__parts = preg_split('/<!--\s?content\s?-->/i', $__fullPage);
@@ -87,46 +94,7 @@ class View
 			}
 		}
 
-		$__rendered = $__head . $__content . $__foot;
-
-		if ($this->config->get('watching')) {
-			$__rendered = $this->addWatchScript($__rendered);
-		}
-
-		return $__rendered;
-	}
-
-	public function addWatchScript($rendered)
-	{
-		list($top, $botton) = preg_split('/<\/body>/i', $rendered);
-
-		$path['protocol'] = 'http' . (!empty($_SERVER['HTTPS']) ? 's' : '') . '://';
-		$path['server'] = $_SERVER['SERVER_NAME'];
-		$path['port'] = $_SERVER['SERVER_PORT'] !== '80' ? $_SERVER['SERVER_PORT'] : '';
-		$path['uri'] = '/--has-changes-to-watched-files';
-
-		$url = implode('', $path);
-
-		$script = "
-	<script>
-		setInterval(_ => {
-			xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = _ => {
-				if (xhttp.readyState === 4 && xhttp.status === 200) {
-					if (xhttp.response === 'true') {
-						console.log('refreshing...');
-						setTimeout(_=> window.location.reload(), 500);
-					}
-				}
-			};
-
-			xhttp.open('GET', '$url', true);
-			xhttp.send();
-		}, 1000);
-	</script>
-";
-
-		return implode('', [$top, $script, '</body>', $botton]);
+		return $__head . $__content . $__foot;
 	}
 
 }

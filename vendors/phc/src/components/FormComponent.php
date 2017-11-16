@@ -21,6 +21,7 @@ class FormComponent implements IComponent
 		'select' => \PHC\Components\Form\SelectComponent::class,
 		'text' => \PHC\Components\Form\TextAreaComponent::class,
 		'uploader' => \PHC\Components\Form\UploaderComponent::class,
+		'picklist' => \PHC\Components\Form\PicklistComponent::class,
 		'button' => \PHC\Components\Form\ButtonComponent::class,
 	];
 

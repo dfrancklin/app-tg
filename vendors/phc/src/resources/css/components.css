@@ -200,10 +200,6 @@ td img {
 	position: relative;
 }
 
-.component__picklist input[type="text"] {
-	margin-bottom: 5px;
-}
-
 .component__picklist input[type="text"].active {
 	background-image: url(../img/ajax-loader.gif);
 	background-repeat: no-repeat;
@@ -212,7 +208,6 @@ td img {
 
 .component__picklist .show-select-list {
 	display: none;
-	width: 100%;
 	padding: .5rem 0;
 	font-size: 1rem;
 	line-height: 1.25;
@@ -228,6 +223,9 @@ td img {
 	overflow-y: visible;
 	overflow-x: auto;
 	box-shadow: 2px 7px 12px rgba(0, 0, 0, 0.4);
+	z-index: 10;
+	left: 15px;
+	right: 15px;
 }
 
 .component__picklist .show-select-list ul {

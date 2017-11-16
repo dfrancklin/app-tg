@@ -2,19 +2,19 @@
 
 namespace App\Services;
 
-use App\Models\Product;
-use App\Interfaces\Services\IProductService;
-use App\Interfaces\Repositories\IProductRepository;
+use App\Models\Category;
+use App\Interfaces\Services\ICategoriesService;
+use App\Interfaces\Repositories\ICategoriesRepository;
 
 /**
  * @Service
  */
-class ProductService implements IProductService
+class CategoriesService implements ICategoriesService
 {
 
 	private $repository;
 
-	public function __construct(IProductRepository $repository)
+	public function __construct(ICategoriesRepository $repository)
 	{
 		$this->repository = $repository;
 	}
@@ -32,6 +32,11 @@ class ProductService implements IProductService
 	public function findById(int $id)
 	{
 		return $this->repository->findById($id);
+	}
+
+	public function searchByName(String $search) : Array
+	{
+		return $this->repository->searchByName($search);
 	}
 
 	public function save($product)
