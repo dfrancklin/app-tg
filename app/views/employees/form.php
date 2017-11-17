@@ -3,63 +3,58 @@
 <hr>
 
 <?php
-	$this->form->action = '/products';
+	$this->form->action = '/employees';
 	$this->form->method = 'POST';
 
 	$this->form->hidden([
 		'name' => 'id',
-		'value' => !is_null($this->product) ? $this->product->id : ''
+		'value' => !is_null($this->employee) ? $this->employee->id : ''
 	]);
 	$this->form->input([
 		'name' => 'name',
 		'hideLabel' => true,
 		'required' => true,
-		'value' => !is_null($this->product) ? $this->product->name : ''
+		'value' => !is_null($this->employee) ? $this->employee->name : ''
 	]);
 	$this->form->input([
-		'name' => 'price',
-		'type' => 'number',
+		'name' => 'email',
+		'type' => 'email',
 		'hideLabel' => true,
 		'required' => true,
-		'value' => !is_null($this->product) ? $this->product->price : '',
-		'width' => '1/2',
-		'additional' => [
-			'min' => 0,
-			'step' => 0.01
-		]
+		'value' => !is_null($this->employee) ? $this->employee->email : ''
 	]);
 	$this->form->input([
-		'name' => 'quantity',
-		'type' => 'number',
+		'name' => 'date',
+		'title' => 'Date',
+		'type' => 'datetime-local',
+		'hideLabel' => true,
+		'required' => true
+	]);
+	$this->form->input([
+		'name' => 'admission-date',
+		'title' => 'Admission Date',
+		'type' => 'datetime-local',
 		'hideLabel' => true,
 		'required' => true,
-		'value' => !is_null($this->product) ? $this->product->quantity : '',
-		'width' => '1/2',
-		'additional' => [
-			'min' => 0
-		]
+		'readOnly' => true,
+		'value' => !is_null($this->employee) ? (!empty($this->employee->admissionDate) ? $this->employee->admissionDate : date('Y-m-d\TH:i:s')) : '',
+		'width' => '1/2'
 	]);
-	$this->form->uploader([
-		'name' => 'picture',
+	$this->form->select([
+		'name' => 'supervisor',
+		'selected' => !is_null($this->employee) ? (!empty($this->employee->supervisor) ? $this->employee->supervisor->id : '') : '',
+		'options' => $supervisors,
 		'hideLabel' => true,
 		'width' => '1/2',
-		'accept' => 'images',
-		'value' => !is_null($this->product) ? $this->product->picture : ''
 	]);
 	$this->form->picklist([
-		'name' => 'categories',
+		'name' => 'roles',
 		'value' => 'id',
 		'label' => 'name',
-		'source' => '/categories/json',
-		'placeholder' => 'Start typing to search categories...',
+		'source' => '/roles/json',
+		'placeholder' => 'Start typing to search roles...',
 		'hideLabel' => true,
-		'width' => '1/2',
-		'values' => !is_null($this->product) ? $this->product->categories : null
-	]);
-	$this->form->text([
-		'name' => 'description',
-		'hideLabel' => true,
-		'value' => !is_null($this->product) ? $this->product->description : ''
+		'values' => !is_null($this->employee) ? $this->employee->roles : null
 	]);
 	$this->form->button([
 		'name' => 'save',
@@ -68,7 +63,7 @@
 		'type' => 'submit',
 	]);
 
-	if (!is_null($this->product)) {
+	if (!is_null($this->employee)) {
 		$this->form->button([
 			'name' => 'delete',
 			'style' => 'danger',
@@ -85,13 +80,13 @@
 		'style' => 'warning',
 		'icon' => 'cancel',
 		'type' => 'link',
-		'action' => '/products'
+		'action' => '/employees'
 	]);
 
 	$this->form->render();
 ?>
 
-<?php if (!is_null($this->product)) : ?>
+<?php if (!is_null($this->employee)) : ?>
 	<div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-modal-label" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -110,7 +105,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-					<form method="POST" id="confirm-form" action="/products/delete/<?=$this->product->id?>">
+					<form method="POST" id="confirm-form" action="/employees/delete/<?=$this->employee->id?>">
 						<button type="submit" class="btn btn-danger">
 							Delete <span class="material-icons">delete</span>
 						</button>

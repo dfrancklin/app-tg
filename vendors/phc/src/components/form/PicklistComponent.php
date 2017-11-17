@@ -134,16 +134,16 @@ class PicklistComponent implements IComponent
 	{
 		$head = '<thead class="thead-inverse">';
 		$head .= '<tr>';
-		$head .= '<th>#</th>';
+		$head .= '<th style="width: 5%; text-align: right;">#</th>';
 		$head .= '<th>' . $this->title . '</th>';
-		$head .= '<th>Action</th>';
+		$head .= '<th style="width: 5%;">Action</th>';
 		$head .= '</tr>';
 		$head .= '</thead>';
 
 		$body = '<tbody>';
 
 		$row = '<tr>
-			<td class="value">%s%s</td>
+			<td class="value" style="text-align: right;">%s%s</td>
 			<td class="label">%s</td>
 			<td>%s</td>
 		</tr>';

@@ -62,7 +62,8 @@ class EmployeesController
 		if ($employee) {
 			return $this->form($employee);
 		} else {
-			$this->message->error('No product with the ID ' . $id . ' was found!');
+			$this->message->error('No employee with the ID ' . $id . ' was found!');
+			$this->message->error('No supervisors with the ID ' . $id . ' was found!');
 			Router::redirect('/employees');
 		}
 	}
@@ -86,7 +87,8 @@ class EmployeesController
 		if ($employee) {
 			$this->message->info('Employee saved!');
 		} else {
-			$this->message->error('A problem occurred while saving the product!');
+			$this->message->error('A problem occurred while saving the employee!');
+			$this->message->error('A problem occurred while saving the supervisors!');
 		}
 
 		Router::redirect('/employees');
@@ -101,7 +103,8 @@ class EmployeesController
 		if ($this->service->delete($id)) {
 			$this->message->info('Employee deleted!');
 		} else {
-			$this->message->error('A problem occurred while deleting the product!');
+			$this->message->error('A problem occurred while deleting the employee!');
+			$this->message->error('A problem occurred while deleting the supervisors!');
 		}
 
 		Router::redirect('/employees');
@@ -111,8 +114,18 @@ class EmployeesController
 	{
 		$view = $this->factory::create();
 
+		$employees = $this->service->all();
+		$supervisors = ['' => 'Supervisor'];
+
+		if (!empty($employees)) {
+			foreach ($employees as $e) {
+				$supervisors[$employee->id] = $employee->name;
+			}
+		}
+
 		$view->pageTitle = (is_null($employee) ? 'New' : 'Update') . ' Employee';
-		$view->product = $employee;
+		$view->employee = $employee;
+		$view->supervisors = $supervisors;
 		$view->form = new FormComponent;
 
 		return $view->render('employees/form');
@@ -120,6 +133,9 @@ class EmployeesController
 
 	private function createEmployee() : Employee
 	{
+		new \DateInterval;
+		vd(new \DateTime($_POST['admission-date']));
+		vd($_POST);
 		die();
 		$properties = ['id', 'name', 'description', 'price', 'quantity'];
 		$employee = new Employee;

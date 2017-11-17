@@ -32,7 +32,7 @@ class PicklistComponent {
 		}
 
 		const fg = this.root.querySelector('.form-group');
-		
+
 		this.showSelectList.style.top = fg.offsetHeight + 5;
 		this.loader.style.top = fg.offsetHeight - 35;
 
@@ -192,9 +192,9 @@ class PicklistComponent {
 
 		let items = `<thead class="thead-inverse">
 			<tr>
-				<th>#</th>
+				<th style="width: 5%;">#</th>
 				<th>${this.title}</th>
-				<th>Action</th>
+				<th style="width: 5%;">Action</th>
 			</tr>
 		</thead>`;
 
@@ -203,7 +203,7 @@ class PicklistComponent {
 		this.list.forEach(item => {
 			items += `
 				<tr>
-					<td class="value">
+					<td class="value" style="text-align: right;">
 						<input type="hidden" name="${this.name}[]" value="${item.value}">
 						${item.value}
 					</td>

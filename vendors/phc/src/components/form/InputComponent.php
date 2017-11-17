@@ -61,6 +61,8 @@ class InputComponent implements IComponent
 
 	private $required;
 
+	private $readOnly;
+
 	private $autofocus;
 
 	private $size;
@@ -175,6 +177,7 @@ class InputComponent implements IComponent
 						$this->title,
 						$this->value,
 						($this->required ? ' required' : null),
+						($this->readOnly ? ' readonly' : null),
 						($this->autofocus ? ' autofocus' : null),
 						$additional);
 	}

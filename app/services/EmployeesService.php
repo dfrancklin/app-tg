@@ -50,7 +50,7 @@ class EmployeesService implements IEmployeesService
 
 	public function findById(int $id)
 	{
-		return $this->repository->findById();
+		return $this->repository->findById($id);
 	}
 
 	public function save($object)
