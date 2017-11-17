@@ -8,15 +8,15 @@ use FW\View\IViewFactory;
 
 use PHC\Components\FormComponent;
 
-use App\Models\Product;
-use App\Interfaces\Services\IProductsService;
+use App\Models\Employee;
+use App\Interfaces\Services\IEmployeesService;
 
 /**
  * @Controller
- * @Route /products
+ * @Route /employees
  * @Authenticate
  */
-class ProductsController
+class EmployeesController
 {
 
 	private $factory;
@@ -25,31 +25,31 @@ class ProductsController
 
 	private $message;
 
-	public function __construct(IViewFactory $factory, IProductsService $service)
+	public function __construct(IViewFactory $factory, IEmployeesService $service)
 	{
 		$this->factory = $factory;
 		$this->service = $service;
 		$this->message = FlashMessages::getInstance();
 	}
 
-	public function products()
+	public function employees()
 	{
 		$quantity = 10;
 		$page = $_GET['page'] ?? 1;
-		$products = $this->service->page($page, $quantity);
+		$employees = $this->service->page($page, $quantity);
 		$totalPages = $this->service->totalPages($quantity);
 
 		if (!empty($totalPages) && $page > $totalPages) {
-			Router::redirect('/products');
+			Router::redirect('/employees');
 		}
 
 		$view = $this->factory::create();
-		$view->pageTitle = 'Products';
-		$view->products = $products;
+		$view->pageTitle = 'Employees';
+		$view->employees = $employees;
 		$view->page = (int) $page;
 		$view->totalPages = $totalPages;
 
-		return $view->render('products/home');
+		return $view->render('employees/home');
 	}
 
 	/**
@@ -57,13 +57,13 @@ class ProductsController
 	 */
 	public function edit(int $id)
 	{
-		$product = $this->service->findById($id);
+		$employee = $this->service->findById($id);
 
-		if ($product) {
-			return $this->form($product);
+		if ($employee) {
+			return $this->form($employee);
 		} else {
 			$this->message->error('No product with the ID ' . $id . ' was found!');
-			Router::redirect('/products');
+			Router::redirect('/employees');
 		}
 	}
 
@@ -80,16 +80,16 @@ class ProductsController
 	 */
 	public function save()
 	{
-		$product = $this->createProduct();
-		$product = $this->service->save($product);
+		$employee = $this->createEmployee();
+		$employee = $this->service->save($employee);
 
-		if ($product) {
-			$this->message->info('Product saved!');
+		if ($employee) {
+			$this->message->info('Employee saved!');
 		} else {
 			$this->message->error('A problem occurred while saving the product!');
 		}
 
-		Router::redirect('/products');
+		Router::redirect('/employees');
 	}
 
 	/**
@@ -99,29 +99,30 @@ class ProductsController
 	public function delete($id)
 	{
 		if ($this->service->delete($id)) {
-			$this->message->info('Product deleted!');
+			$this->message->info('Employee deleted!');
 		} else {
 			$this->message->error('A problem occurred while deleting the product!');
 		}
 
-		Router::redirect('/products');
+		Router::redirect('/employees');
 	}
 
-	private function form($product = null)
+	private function form($employee = null)
 	{
 		$view = $this->factory::create();
 
-		$view->pageTitle = (is_null($product) ? 'New' : 'Update') . ' Product';
-		$view->product = $product;
+		$view->pageTitle = (is_null($employee) ? 'New' : 'Update') . ' Employee';
+		$view->product = $employee;
 		$view->form = new FormComponent;
 
-		return $view->render('products/form');
+		return $view->render('employees/form');
 	}
 
-	private function createProduct() : Product
+	private function createEmployee() : Employee
 	{
+		die();
 		$properties = ['id', 'name', 'description', 'price', 'quantity'];
-		$product = new Product;
+		$employee = new Employee;
 
 		foreach ($properties as $property) {
 			$value = $_POST[$property];
@@ -129,14 +130,14 @@ class ProductsController
 			if (!empty($value)) {
 				if (is_numeric($value)) {
 					if (is_int($value)) {
-						$product->{$property} = (int) $value;
+						$employee->{$property} = (int) $value;
 					} elseif (is_float($value)) {
-						$product->{$property} = (float) $value;
+						$employee->{$property} = (float) $value;
 					} else {
-						$product->{$property} = $value + 0;
+						$employee->{$property} = $value + 0;
 					}
 				} else {
-					$product->{$property} = $value;
+					$employee->{$property} = $value;
 				}
 			}
 		}
@@ -145,13 +146,13 @@ class ProductsController
 			$mime = $_FILES['picture']['type'];
 			$file = file_get_contents($_FILES['picture']['tmp_name']);
 			$picture = sprintf('data:%s;base64,%s', $mime, base64_encode($file));
-			$product->picture = $picture;
+			$employee->picture = $picture;
 		} else {
-			if (!empty($product->id)) {
-				$old = $this->service->findById($product->id);
+			if (!empty($employee->id)) {
+				$old = $this->service->findById($employee->id);
 
 				if (!empty($old)) {
-					$product->picture = $old->picture;
+					$employee->picture = $old->picture;
 				}
 			}
 		}
@@ -165,10 +166,10 @@ class ProductsController
 				$categories[] = $category;
 			}
 
-			$product->categories = $categories;
+			$employee->categories = $categories;
 		}
 
-		return $product;
+		return $employee;
 	}
 
 }

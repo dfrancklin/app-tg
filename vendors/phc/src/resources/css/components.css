@@ -200,10 +200,23 @@ td img {
 	position: relative;
 }
 
-.component__picklist input[type="text"].active {
-	background-image: url(../img/ajax-loader.gif);
-	background-repeat: no-repeat;
-	background-position: calc(100% - 5px) center;
+@keyframes spin {
+	from {
+		transform: rotate(360deg);
+	}
+
+	to {
+		transform: rotate(0deg);
+	}
+}
+
+.component__picklist .loader {
+	animation: spin 1s infinite linear;
+	position: absolute;
+	right: 25px;
+	z-index: 10;
+	font-size: 20px;
+	display: none;
 }
 
 .component__picklist .show-select-list {

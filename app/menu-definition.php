@@ -25,6 +25,13 @@ $menuDefinition = (object) [
 					'roles' => ['ADMIN'],
 				],
 				(object) [
+					'title' => 'Categories',
+					'icon' => 'local_offer',
+					'href' => '/categories',
+					'activeRoute' => ['/categories/*'],
+					'roles' => ['ADMIN'],
+				],
+				(object) [
 					'title' => 'Employees',
 					'icon' => 'face',
 					'href' => '/employees',

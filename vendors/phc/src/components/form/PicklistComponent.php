@@ -21,7 +21,8 @@ class PicklistComponent implements IComponent
 	];
 
 	const TEMPLATES = [
-		'component' => '<div class="component__picklist%s" data-name="%s" data-title="%s" data-value="%s" data-label="%s" data-source="%s">%s%s%s</div>',
+		'component' => '<div class="component__picklist%s" data-name="%s" data-title="%s" data-value="%s" data-label="%s" data-source="%s">%s%s%s%s</div>',
+		'loader' => '<spam class="material-icons loader">sync</spam>',
 		'select-list' => '<div class="show-select-list"></div>',
 		'selected-list' => '<div class="show-selected-list">%s</div>',
 	];
@@ -62,6 +63,7 @@ class PicklistComponent implements IComponent
 	private function formatComponent()
 	{
 		$input = $this->formatInput();
+		$loader = self::TEMPLATES['loader'];
 		$selectList = self::TEMPLATES['select-list'];
 		$selectedList = $this->formatSelectedList();
 
@@ -90,6 +92,7 @@ class PicklistComponent implements IComponent
 			$this->label,
 			$this->source,
 			$input,
+			$loader,
 			$selectList,
 			$selectedList
 		);

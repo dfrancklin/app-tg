@@ -8,6 +8,7 @@ class PicklistComponent {
 		this.value = this.root.getAttribute('data-value');
 		this.source = this.root.getAttribute('data-source');
 		this.input = this.root.querySelector('input[type=text]');
+		this.loader = this.root.querySelector('.loader');
 		this.showSelectList = this.root.querySelector('.show-select-list');
 		this.showSelectedList = this.root.querySelector('.show-selected-list');
 		this.list = [];
@@ -30,7 +31,10 @@ class PicklistComponent {
 			return;
 		}
 
-		this.showSelectList.style.top = this.input.offsetHeight + 5;
+		const fg = this.root.querySelector('.form-group');
+		
+		this.showSelectList.style.top = fg.offsetHeight + 5;
+		this.loader.style.top = fg.offsetHeight - 35;
 
 		this._binds();
 		this._loadPreset();
@@ -93,7 +97,7 @@ class PicklistComponent {
 
 	_fetchData() {
 		this.active = true;
-		this.input.classList.add('active');
+		this.loader.style.display = 'block';
 
 		this.request = new XMLHttpRequest();
 		this.request.onabort = this._clear;
@@ -108,7 +112,7 @@ class PicklistComponent {
 		this.active = false;
 		this.request = null;
 		this.timeout = null;
-		this.input.classList.remove('active');
+		this.loader.style.display = 'none';
 	}
 
 	_onError() {
@@ -164,6 +168,7 @@ class PicklistComponent {
 	}
 
 	_selectValue(evt) {
+		evt.preventDefault();
 		const value = evt.target.getAttribute('data-value');
 		const label = evt.target.innerText;
 
@@ -243,6 +248,7 @@ class PicklistComponent {
 	}
 
 	_removeItem(evt) {
+		evt.preventDefault();
 		const btn = evt.currentTarget;
 		const value = btn.getAttribute('data-value');
 
