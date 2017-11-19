@@ -5,6 +5,7 @@ namespace App\Controllers;
 use FW\Core\Router;
 use FW\Core\FlashMessages;
 use FW\View\IViewFactory;
+use FW\Security\ISecurityService;
 
 use PHC\Components\FormComponent;
 
@@ -23,12 +24,19 @@ class EmployeesController
 
 	private $service;
 
+	private $security;
+
 	private $message;
 
-	public function __construct(IViewFactory $factory, IEmployeesService $service)
+	public function __construct(
+		IViewFactory $factory, 
+		IEmployeesService $service, 
+		ISecurityService $security
+	)
 	{
 		$this->factory = $factory;
 		$this->service = $service;
+		$this->security = $security;
 		$this->message = FlashMessages::getInstance();
 	}
 
@@ -82,16 +90,41 @@ class EmployeesController
 	public function save()
 	{
 		$employee = $this->createEmployee();
-		$employee = $this->service->save($employee);
+		
+		if (!empty($employee->id)) {
+			if (!$this->security->hasRoles(['ADMIN'])) {
+				if (empty($_POST['password'])) {
+					$this->message->warning('You must inform the password to continue!');
 
-		if ($employee) {
-			$this->message->info('Employee saved!');
-		} else {
-			$this->message->error('A problem occurred while saving the employee!');
-			$this->message->error('A problem occurred while saving the supervisors!');
+					return $this->form($employee);
+				}
+
+				$old = $this->service->findById($employee->id);
+
+				if (empty($old)) {
+					$this->message->error('Error while saving');
+					Router::redirect('/employees');
+					return;
+				}
+
+				if (md5($_POST['password']) !== $old->password) {
+					$this->message->warning('The does not match with the current password!');
+
+					return $this->form($employee);
+				}
+			}
 		}
+// 		$employee = $this->service->save($employee);
 
-		Router::redirect('/employees');
+// 		if ($employee) {
+// 			$this->message->info('Employee saved!');
+// 		} else {
+// 			$this->message->error('A problem occurred while saving the employee!');
+// 			$this->message->error('A problem occurred while saving the supervisors!');
+// 		}
+
+// 		Router::redirect('/employees');
+		return '';
 	}
 
 	/**
@@ -104,7 +137,6 @@ class EmployeesController
 			$this->message->info('Employee deleted!');
 		} else {
 			$this->message->error('A problem occurred while deleting the employee!');
-			$this->message->error('A problem occurred while deleting the supervisors!');
 		}
 
 		Router::redirect('/employees');
@@ -114,12 +146,17 @@ class EmployeesController
 	{
 		$view = $this->factory::create();
 
-		$employees = $this->service->all();
+		if (!empty($employee)) {
+			$employees = $this->service->except($employee);
+		} else {
+			$employees = $this->service->all();
+		}
+
 		$supervisors = ['' => 'Supervisor'];
 
 		if (!empty($employees)) {
 			foreach ($employees as $e) {
-				$supervisors[$employee->id] = $employee->name;
+				$supervisors[$e->id] = $e->name;
 			}
 		}
 
@@ -133,58 +170,41 @@ class EmployeesController
 
 	private function createEmployee() : Employee
 	{
-		new \DateInterval;
-		vd(new \DateTime($_POST['admission-date']));
-		vd($_POST);
-		die();
-		$properties = ['id', 'name', 'description', 'price', 'quantity'];
+		$properties = ['id', 'name', 'email', 'admission-date', 'supervisor'];
 		$employee = new Employee;
 
 		foreach ($properties as $property) {
 			$value = $_POST[$property];
 
 			if (!empty($value)) {
-				if (is_numeric($value)) {
-					if (is_int($value)) {
-						$employee->{$property} = (int) $value;
-					} elseif (is_float($value)) {
-						$employee->{$property} = (float) $value;
-					} else {
-						$employee->{$property} = $value + 0;
-					}
+				if ($property === 'admission-date') {
+					$employee->admissionDate = new \DateTime($value);
 				} else {
 					$employee->{$property} = $value;
 				}
 			}
 		}
 
-		if (isset($_FILES['picture']) && !$_FILES['picture']['error']) {
-			$mime = $_FILES['picture']['type'];
-			$file = file_get_contents($_FILES['picture']['tmp_name']);
-			$picture = sprintf('data:%s;base64,%s', $mime, base64_encode($file));
-			$employee->picture = $picture;
-		} else {
-			if (!empty($employee->id)) {
-				$old = $this->service->findById($employee->id);
+		if (!empty($_POST['supervisor'])) {
+			$supervisor = new \App\Models\Employee;
+			$supervisor->id = $id;
 
-				if (!empty($old)) {
-					$employee->picture = $old->picture;
-				}
-			}
+			$employee->supervisor = $supervisor;
 		}
 
-		if (!empty($_POST['categories'])) {
-			$categories = [];
+		if (!empty($_POST['roles'])) {
+			$roles = [];
 
-			foreach ($_POST['categories'] as $id) {
-				$category = new \App\Models\Category;
-				$category->id = $id;
-				$categories[] = $category;
+			foreach ($_POST['roles'] as $id) {
+				$role = new \App\Models\Role;
+				$role->id = $id;
+				$roles[] = $role;
 			}
 
-			$employee->categories = $categories;
+			$employee->roles = $roles;
 		}
 
+		vd($employee);
 		return $employee;
 	}
 

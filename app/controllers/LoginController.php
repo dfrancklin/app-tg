@@ -11,7 +11,7 @@ use FW\Security\ISecurityService;
 use FW\Security\IAuthentication;
 use FW\Security\UserProfile;
 
-use App\Interfaces\Services\IEmployeeService;
+use App\Interfaces\Services\IEmployeesService;
 
 /**
  * @Controller
@@ -26,7 +26,7 @@ class LoginController implements IAuthentication
 	private $factory;
 
 	public function __construct(
-		IEmployeeService $service,
+		IEmployeesService $service,
 		ISecurityService $security,
 		IViewFactory $factory
 	)

@@ -7,4 +7,6 @@ interface IEmployeesRepository extends IGenericRepository
 
 	function authenticate(String $email, String $password);
 
+	function except($employee) : Array;
+
 }

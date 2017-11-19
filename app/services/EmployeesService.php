@@ -38,6 +38,11 @@ class EmployeesService implements IEmployeesService
 		return $employee;
 	}
 
+	public function except($employee) : Array
+	{
+		return $this->repository->except($employee);
+	}
+
 	public function all() : Array
 	{
 		return $this->repository->all();

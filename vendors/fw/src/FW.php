@@ -275,7 +275,7 @@ class FW
 			})();
 		</script>";
 
-		if (strpos('</head>', $page)) {
+		if (!empty($page) && strpos('</head>', $page)) {
 			list($top, $botton) = preg_split('/<\/head>/i', $page);
 
 			return implode('', [$top, $script, '</head>', $botton]);

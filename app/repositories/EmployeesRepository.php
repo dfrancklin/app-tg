@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Employee;
+
 use App\Interfaces\Repositories\IEmployeesRepository;
 
 /**
@@ -26,6 +27,15 @@ class EmployeesRepository implements IEmployeesRepository
 		$employee = $query->one();
 
 		return $employee;
+	}
+
+	public function except($employee) : Array
+	{
+		$query = $this->em->createQuery(Employee::class);
+		$query->where('e.id')->neq($employee->id);
+		$employees = $query->list();
+
+		return $employees;
 	}
 
 	public function all() : Array
