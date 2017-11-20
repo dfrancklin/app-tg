@@ -40,11 +40,12 @@ class InputComponent implements IComponent
 	];
 
 	const TEMPLATES = [
-		'form-group' => '<div class="form-group%s">%s%s</div>',
+		'form-group' => '<div class="form-group%s">%s%s%s</div>',
 		'label' => '<label%s for="%s">%s:</label>',
 		'input-group' => '<div class="input-group%s">%s%s</div>',
 		'input-group-addon' => '<span class="input-group-addon text-light%s"><span class="material-icons">%s</span></span>',
-		'input' => '<input type="%s" name="%s" id="%s" placeholder="%s" title="%s" value="%s" class="form-control"%s%s%s>',
+		'input' => '<input type="%s" name="%s" id="%s" placeholder="%s" title="%s" value="%s" class="form-control"%s%s%s%s>',
+		'help' => '<small class="text-muted text-right d-block">%s</small>',
 	];
 
 	private $type;
@@ -70,6 +71,8 @@ class InputComponent implements IComponent
 	private $width;
 
 	private $icon;
+
+	private $help;
 
 	private $additional;
 
@@ -101,6 +104,7 @@ class InputComponent implements IComponent
 	{
 		$label = $this->formatLabel();
 		$inputGroup = $this->formatInputGroup();
+		$help = '';
 
 		if (empty($this->width) || !array_key_exists($this->width, self::WIDTHS)) {
 			$this->width = '1';
@@ -112,7 +116,17 @@ class InputComponent implements IComponent
 			$width = self::WIDTHS[$this->width];
 		}
 
-		return sprintf(self::TEMPLATES['form-group'], $width, $label, $inputGroup);
+		if (!empty($this->help)) {
+			$help = sprintf(self::TEMPLATES['help'], $this->help);
+		}
+
+		return sprintf(
+			self::TEMPLATES['form-group'],
+			$width,
+			$label,
+			$inputGroup,
+			$help
+		);
 	}
 
 	private function formatLabel() {
@@ -120,10 +134,12 @@ class InputComponent implements IComponent
 			$this->title = ucfirst($this->name);
 		}
 
-		return sprintf(self::TEMPLATES['label'],
-						($this->hideLabel ? ' class="sr-only"' : ''),
-						$this->name,
-						$this->title);
+		return sprintf(
+			self::TEMPLATES['label'],
+			($this->hideLabel ? ' class="sr-only"' : ''),
+			$this->name,
+			$this->title
+		);
 	}
 
 	private function formatInputGroup() {
@@ -131,7 +147,11 @@ class InputComponent implements IComponent
 		$icon = '';
 
 		if (!empty($this->icon)) {
-			$icon = sprintf(self::TEMPLATES['input-group-addon'], ' bg-dark', $this->icon);
+			$icon = sprintf(
+				self::TEMPLATES['input-group-addon'],
+				' bg-dark',
+				$this->icon
+			);
 		}
 
 		if (empty($this->size) || !array_key_exists($this->size, self::SIZES)) {
@@ -140,7 +160,12 @@ class InputComponent implements IComponent
 
 		$size = self::SIZES[$this->size];
 
-		return sprintf(self::TEMPLATES['input-group'], $size, $icon, $input);
+		return sprintf(
+			self::TEMPLATES['input-group'],
+			$size,
+			$icon,
+			$input
+		);
 	}
 
 	private function formatInput()
@@ -169,17 +194,19 @@ class InputComponent implements IComponent
 			}
 		}
 
-		return sprintf(self::TEMPLATES['input'],
-						$this->type,
-						$this->name,
-						$this->name,
-						$this->placeholder,
-						$this->title,
-						$this->value,
-						($this->required ? ' required' : null),
-						($this->readOnly ? ' readonly' : null),
-						($this->autofocus ? ' autofocus' : null),
-						$additional);
+		return sprintf(
+			self::TEMPLATES['input'],
+			$this->type,
+			$this->name,
+			$this->name,
+			$this->placeholder,
+			$this->title,
+			$this->value,
+			($this->required ? ' required' : null),
+			($this->readOnly ? ' readonly' : null),
+			($this->autofocus ? ' autofocus' : null),
+			$additional
+		);
 	}
 
 	public function __get(String $attr)

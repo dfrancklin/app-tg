@@ -2,18 +2,18 @@
 
 namespace App\Services;
 
-use App\Interfaces\Services\IProductsService;
-use App\Interfaces\Repositories\IProductsRepository;
+use App\Interfaces\Services\ICustomersService;
+use App\Interfaces\Repositories\ICustomersRepository;
 
 /**
  * @Service
  */
-class ProductsService implements IProductsService
+class CustomersService implements ICustomersService
 {
 
 	private $repository;
 
-	public function __construct(IProductsRepository $repository)
+	public function __construct(ICustomersRepository $repository)
 	{
 		$this->repository = $repository;
 	}
@@ -33,9 +33,9 @@ class ProductsService implements IProductsService
 		return $this->repository->findById($id);
 	}
 
-	public function save($product)
+	public function save($customer)
 	{
-		return $this->repository->save($product);
+		return $this->repository->save($customer);
 	}
 
 	public function delete(int $id) : bool

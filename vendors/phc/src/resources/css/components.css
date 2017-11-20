@@ -82,7 +82,7 @@
 }
 
 .menu__title .material-icons {
-	font-size: 85%;
+	font-size: 120%;
 	vertical-align: top;
 }
 
@@ -91,7 +91,7 @@
 }
 
 .menu__item .material-icons {
-	font-size: 100%;
+	font-size: 150%;
 	vertical-align: middle;
 }
 
@@ -204,7 +204,6 @@ td img {
 	from {
 		transform: rotate(360deg);
 	}
-
 	to {
 		transform: rotate(0deg);
 	}

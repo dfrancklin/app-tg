@@ -92,9 +92,10 @@ class EmployeesController
 	public function save()
 	{
 		$employee = $this->createEmployee();
-		$old = $this->service->findById($employee->id);
 
 		if (!empty($employee->id)) {
+			$old = $this->service->findById($employee->id);
+
 			if(!$this->security->hasRoles(['ADMIN'])) {
 				if (empty($_POST['password'])) {
 					$this->message->warning('You must inform the password to continue!');
@@ -105,6 +106,7 @@ class EmployeesController
 				if (empty($old)) {
 					$this->message->error('Error while saving');
 					Router::redirect('/employees');
+					
 					return;
 				}
 

@@ -26,11 +26,11 @@
 	$this->form->input([
 		'name' => 'admission-date',
 		'title' => 'Admission Date',
-		'type' => 'datetime-local',
+		'type' => 'date',
 		'hideLabel' => true,
 		'required' => true,
 		'readOnly' => true,
-		'value' => !is_null($this->employee) ? (!empty($this->employee->admissionDate) ? $this->employee->admissionDate->format('Y-m-d\TH:i:s') : date('Y-m-d\TH:i:s')) : date('Y-m-d\TH:i:s'),
+		'value' => !is_null($this->employee) ? (!empty($this->employee->admissionDate) ? $this->employee->admissionDate->format('Y-m-d') : date('Y-m-d')) : date('Y-m-d'),
 		'width' => '1/2'
 	]);
 	$this->form->select([
@@ -52,19 +52,19 @@
 
 	$this->form->input([
 		'name' => 'new-password',
-		'title' => (!is_null($this->employee) ? 'New ' : '') . 'Password',
+		'title' => (!is_null($this->employee) && !is_null($this->employee->id) ? 'New ' : '') . 'Password',
 		'type' => 'password',
 		'hideLabel' => true,
-		'required' => is_null($this->employee),
-		'width' => !is_null($this->employee) ? '1/3' : '1/2',
+		'required' => is_null($this->employee) || is_null($this->employee->id),
+		'width' => !is_null($this->employee) && !is_null($this->employee->id) ? '1/3' : '1/2',
 	]);
 	$this->form->input([
 		'name' => 'confirm-password',
 		'title' => 'Confirm Password',
 		'type' => 'password',
 		'hideLabel' => true,
-		'required' => is_null($this->employee),
-		'width' => !is_null($this->employee) ? '1/3' : '1/2',
+		'required' => is_null($this->employee) || is_null($this->employee->id),
+		'width' => !is_null($this->employee) && !is_null($this->employee->id) ? '1/3' : '1/2',
 	]);
 	$this->form->picklist([
 		'name' => 'roles',
