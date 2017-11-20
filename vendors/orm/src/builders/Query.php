@@ -272,6 +272,8 @@ class Query
 				return (int) $value;
 			case 'float':
 				return (float) $value;
+			case 'date':
+			case 'time':
 			case 'datetime':
 				return new \DateTime($value);
 			case 'bool':

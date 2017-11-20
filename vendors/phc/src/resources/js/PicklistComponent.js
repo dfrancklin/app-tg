@@ -204,7 +204,8 @@ class PicklistComponent {
 			items += `
 				<tr>
 					<td class="value" style="text-align: right;">
-						<input type="hidden" name="${this.name}[]" value="${item.value}">
+						<input type="hidden" name="${this.name}[${item.value}][value]" value="${item.value}">
+						<input type="hidden" name="${this.name}[${item.value}][label]" value="${item.label}">
 						${item.value}
 					</td>
 					<td class="label">${item.label}</td>

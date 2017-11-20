@@ -14,7 +14,7 @@ class ProductsService implements IProductsService
 
 	private $repository;
 
-	public function __construct(IProductRepository $repository)
+	public function __construct(IProductsRepository $repository)
 	{
 		$this->repository = $repository;
 	}

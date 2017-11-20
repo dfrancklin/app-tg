@@ -9,7 +9,9 @@ use FW\Security\ISecurityService;
 
 use PHC\Components\FormComponent;
 
+use App\Models\Role;
 use App\Models\Employee;
+
 use App\Interfaces\Services\IEmployeesService;
 
 /**
@@ -29,8 +31,8 @@ class EmployeesController
 	private $message;
 
 	public function __construct(
-		IViewFactory $factory, 
-		IEmployeesService $service, 
+		IViewFactory $factory,
+		IEmployeesService $service,
 		ISecurityService $security
 	)
 	{
@@ -90,16 +92,15 @@ class EmployeesController
 	public function save()
 	{
 		$employee = $this->createEmployee();
-		
+		$old = $this->service->findById($employee->id);
+
 		if (!empty($employee->id)) {
-			if (!$this->security->hasRoles(['ADMIN'])) {
+			if(!$this->security->hasRoles(['ADMIN'])) {
 				if (empty($_POST['password'])) {
 					$this->message->warning('You must inform the password to continue!');
 
 					return $this->form($employee);
 				}
-
-				$old = $this->service->findById($employee->id);
 
 				if (empty($old)) {
 					$this->message->error('Error while saving');
@@ -108,23 +109,46 @@ class EmployeesController
 				}
 
 				if (md5($_POST['password']) !== $old->password) {
-					$this->message->warning('The does not match with the current password!');
+					$this->message->warning('The password informed does not match with the current password!');
 
 					return $this->form($employee);
 				}
 			}
+
+			$employee->password = $old->password;
 		}
-// 		$employee = $this->service->save($employee);
 
-// 		if ($employee) {
-// 			$this->message->info('Employee saved!');
-// 		} else {
-// 			$this->message->error('A problem occurred while saving the employee!');
-// 			$this->message->error('A problem occurred while saving the supervisors!');
-// 		}
+		if (empty($employee->id) && empty($_POST['new-password'])) {
+			$this->message->warning('You must inform the password!');
 
-// 		Router::redirect('/employees');
-		return '';
+			return $this->form($employee);
+		}
+
+		if (!empty($_POST['new-password'])) {
+			if (empty($_POST['confirm-password'])) {
+				$this->message->warning('You must confirm the password!');
+
+				return $this->form($employee);
+			}
+
+			if ($_POST['new-password'] != $_POST['confirm-password']) {
+				$this->message->warning('The new password and the confirm password does not match!');
+
+				return $this->form($employee);
+			}
+
+			$employee->password = md5($_POST['new-password']);
+		}
+
+		$employee = $this->service->save($employee);
+
+		if ($employee) {
+			$this->message->info('Employee saved!');
+		} else {
+			$this->message->error('A problem occurred while saving the employee!');
+		}
+
+		Router::redirect('/employees');
 	}
 
 	/**
@@ -186,8 +210,8 @@ class EmployeesController
 		}
 
 		if (!empty($_POST['supervisor'])) {
-			$supervisor = new \App\Models\Employee;
-			$supervisor->id = $id;
+			$supervisor = new Employee;
+			$supervisor->id = (int) $_POST['supervisor'];
 
 			$employee->supervisor = $supervisor;
 		}
@@ -195,16 +219,16 @@ class EmployeesController
 		if (!empty($_POST['roles'])) {
 			$roles = [];
 
-			foreach ($_POST['roles'] as $id) {
-				$role = new \App\Models\Role;
-				$role->id = $id;
+			foreach ($_POST['roles'] as $r) {
+				$role = new Role;
+				$role->id = (int) $r['value'];
+				$role->name = $r['label'];
 				$roles[] = $role;
 			}
 
 			$employee->roles = $roles;
 		}
 
-		vd($employee);
 		return $employee;
 	}
 

@@ -148,8 +148,8 @@ class PicklistComponent implements IComponent
 			<td>%s</td>
 		</tr>';
 
-		$hidden = new HiddenComponent;
-		$hidden->name = $this->name . '[]';
+		$inputValue = new HiddenComponent;
+		$inputLabel = new HiddenComponent;
 
 		$button = new ButtonComponent;
 		$button->type = 'link';
@@ -161,6 +161,8 @@ class PicklistComponent implements IComponent
 
 		foreach ($this->values as $item) {
 			if (is_array($item)) {
+				$inputValue->name = $this->name . '[' . $item[$this->value] . '][value]';
+				$inputLabel->name = $this->name . '[' . $item[$this->value] . '][label]';
 				$value = $item[$this->value];
 				$label = $item[$this->label];
 			} else {
@@ -168,10 +170,15 @@ class PicklistComponent implements IComponent
 				$label = $item->{$this->label};
 			}
 
-			$button->additional = ['data-value' => $value];
-			$hidden->value = $value;
+			$inputValue->name = $this->name . '[' . $value . '][value]';
+			$inputLabel->name = $this->name . '[' . $value . '][label]';
+			$inputValue->value = $value;
+			$inputLabel->value = $label;
 
-			$body .= sprintf($row, $hidden, $value, $label, $button);
+			$button->additional = ['data-value' => $value];
+
+
+			$body .= sprintf($row, $inputValue . $inputLabel, $value, $label, $button);
 		}
 
 		$body .= '';

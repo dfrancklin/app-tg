@@ -25,7 +25,7 @@
 				<th scope="row"><?=$employee->id?></th>
 				<td><?=$employee->name?></td>
 				<td><?=$employee->email?></td>
-				<td><?=$employee->admissionDate?></td>
+				<td><?=($employee->admissionDate ? $employee->admissionDate->format('d/m/Y') : '')?></td>
 				<td><?=$employee->supervisor ? $employee->supervisor->name : ''?></td>
 				<td>
 					<a href="/employees/form/<?=$employee->id?>" class="btn btn-sm btn-success">

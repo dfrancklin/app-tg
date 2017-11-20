@@ -30,7 +30,7 @@
 		'hideLabel' => true,
 		'required' => true,
 		'readOnly' => true,
-		'value' => !is_null($this->employee) ? (!empty($this->employee->admissionDate) ? $this->employee->admissionDate->format('Y-m-d\TH:i:s') : date('Y-m-d\TH:i:s')) : '',
+		'value' => !is_null($this->employee) ? (!empty($this->employee->admissionDate) ? $this->employee->admissionDate->format('Y-m-d\TH:i:s') : date('Y-m-d\TH:i:s')) : date('Y-m-d\TH:i:s'),
 		'width' => '1/2'
 	]);
 	$this->form->select([
@@ -41,7 +41,7 @@
 		'width' => '1/2',
 	]);
 
-	if (!is_null($this->employee)) {
+	if (!is_null($this->employee) && !is_null($this->employee->id)) {
 		$this->form->input([
 			'name' => 'password',
 			'type' => 'password',
@@ -82,7 +82,7 @@
 		'type' => 'submit',
 	]);
 
-	if (!is_null($this->employee)) {
+	if (!is_null($this->employee) && !is_null($this->employee->id)) {
 		$this->form->button([
 			'name' => 'delete',
 			'style' => 'danger',
