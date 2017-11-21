@@ -22,7 +22,7 @@ class MenuComponent implements IComponent
 
 	private $userRoles;
 
-	public function render(bool $print = false)
+	public function render(bool $print = true)
 	{
 		$output = '';
 

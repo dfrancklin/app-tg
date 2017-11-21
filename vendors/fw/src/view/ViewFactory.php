@@ -31,7 +31,6 @@ class ViewFactory implements IViewFactory
 
 		return new View(
 			$security,
-			FlashMessages::getInstance(),
 			$views,
 			$template
 		);

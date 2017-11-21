@@ -15,7 +15,7 @@ class HiddenComponent implements IComponent
 
 	private $name;
 
-	public function render(bool $print = false)
+	public function render(bool $print = true)
 	{
 		$input = $this->formatInput();
 

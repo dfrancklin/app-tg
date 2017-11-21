@@ -45,7 +45,7 @@ class TextAreaComponent implements IComponent
 
 	private $width;
 
-	public function render(bool $print = false)
+	public function render(bool $print = true)
 	{
 		$input = $this->formatFormGroup();
 

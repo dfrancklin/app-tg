@@ -61,7 +61,7 @@ class UploaderComponent implements IComponent
 
 	private $additional;
 
-	public function render(bool $print = false)
+	public function render(bool $print = true)
 	{
 		$input = $this->formatFormGroup();
 

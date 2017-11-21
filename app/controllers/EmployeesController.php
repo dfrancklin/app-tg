@@ -106,7 +106,7 @@ class EmployeesController
 				if (empty($old)) {
 					$this->message->error('Error while saving');
 					Router::redirect('/employees');
-					
+
 					return;
 				}
 
@@ -155,7 +155,6 @@ class EmployeesController
 
 	/**
 	 * @RequestMap /delete/{id}
-	 * @RequestMethod POST
 	 */
 	public function delete($id)
 	{

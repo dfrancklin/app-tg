@@ -49,7 +49,7 @@ class PicklistComponent implements IComponent
 
 	private $placeholder;
 
-	public function render(bool $print = false)
+	public function render(bool $print = true)
 	{
 		$component = $this->formatComponent();
 

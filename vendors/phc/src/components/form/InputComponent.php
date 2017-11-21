@@ -89,7 +89,7 @@ class InputComponent implements IComponent
 		$this->widthNull = $widthNull;
 	}
 
-	public function render(bool $print = false)
+	public function render(bool $print = true)
 	{
 		$input = $this->formatFormGroup();
 

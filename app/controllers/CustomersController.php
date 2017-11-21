@@ -95,7 +95,6 @@ class CustomersController
 
 	/**
 	 * @RequestMap /delete/{id}
-	 * @RequestMethod POST
 	 */
 	public function delete($id)
 	{

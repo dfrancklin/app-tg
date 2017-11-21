@@ -49,7 +49,7 @@ class CategoriesController
 		$view->pageTitle = 'Categories';
 		$view->categories = $categories;
 		$view->page = (int) $page;
-		$view->totalPages = $totalPages;
+		$view->totalPages = 10;
 
 		return $view->render('categories/home');
 	}
@@ -96,7 +96,6 @@ class CategoriesController
 
 	/**
 	 * @RequestMap /delete/{id}
-	 * @RequestMethod POST
 	 */
 	public function delete($id)
 	{

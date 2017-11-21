@@ -5,7 +5,7 @@ namespace PHC\Interfaces;
 interface IComponent
 {
 
-	function render(bool $print = false);
+	function render(bool $print = true);
 
 	function __get(String $attr);
 

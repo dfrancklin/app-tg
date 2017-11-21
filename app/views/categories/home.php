@@ -34,7 +34,16 @@
 	</tbody>
 </table>
 
-<?php if ($this->totalPages > 1) : ?>
+<?php
+$pagination = new \PHC\Components\PaginationComponent;
+
+$pagination->route = $this->router->getActiveRoute();
+$pagination->active = $this->page;
+$pagination->total = $this->totalPages;
+
+$pagination->render();
+
+if ($this->totalPages > 1) : ?>
 	<nav aria-label="Page navigation">
 		<ul class="pagination justify-content-center">
 			<li class="page-item<?=($this->page === 1 ? ' disabled' : '')?>">
@@ -57,32 +66,26 @@
 			</li>
 		</ul>
 	</nav>
-<?php endif; ?>
+<?php
+	endif;
 
-<div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-modal-label" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="confirm-modal-label">Are you sure?</h5>
 
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
+	$modal = new \PHC\Components\ModalComponent;
 
-			<div class="modal-body">
-				<p>Are you sure that you want to delete this item permanently?</p>
-			</div>
+	$modal->name = 'confirm-modal';
+	$modal->title = 'Are you sure?';
+	$modal->body = '<p>Are you sure that you want to delete this item permanently?</p>';
+	$modal->actions = [(function () {
+		$delete = new \PHC\Components\Form\ButtonComponent;
 
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		$delete->name = 'Delete';
+		$delete->type = 'link';
+		$delete->icon = 'delete';
+		$delete->style = 'danger';
+		$delete->additional = ['data-destiny' => '/categories/delete/'];
 
-				<form method="POST" id="confirm-form" data-destiny="/categories/delete/">
-					<button type="submit" class="btn btn-danger">
-						Delete <span class="material-icons">delete</span>
-					</button>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
+		return $delete;
+	})()];
+
+	$modal->render();
+?>

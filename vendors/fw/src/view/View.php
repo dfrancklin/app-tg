@@ -2,10 +2,12 @@
 
 namespace FW\View;
 
-use \FW\Core\Config;
-use \FW\Core\FlashMessages;
-use \FW\Core\DependenciesManager;
-use \FW\Security\ISecurityService;
+use FW\Core\Config;
+use FW\Core\DependenciesManager;
+use FW\Core\FlashMessages;
+use FW\Core\Router;
+
+use FW\Security\ISecurityService;
 
 class View
 {
@@ -13,6 +15,8 @@ class View
 	private $data;
 
 	private $security;
+
+	private $router;
 
 	private $messages;
 
@@ -22,12 +26,12 @@ class View
 
 	public function __construct(
 		ISecurityService $security,
-		FlashMessages $messages,
 		String $views,
 		String $template)
 	{
 		$this->security = $security;
-		$this->messages = $messages;
+		$this->router = Router::getInstance();
+		$this->messages = FlashMessages::getInstance();
 		$this->template = $template;
 		$this->views = $views;
 		$this->data = [];
