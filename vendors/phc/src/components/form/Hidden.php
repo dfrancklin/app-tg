@@ -4,7 +4,7 @@ namespace PHC\Components\Form;
 
 use PHC\Interfaces\IComponent;
 
-class HiddenComponent implements IComponent
+class Hidden implements IComponent
 {
 
 	private $templates = [

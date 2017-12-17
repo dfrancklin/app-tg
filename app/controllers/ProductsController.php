@@ -6,7 +6,7 @@ use FW\Core\Router;
 use FW\Core\FlashMessages;
 use FW\View\IViewFactory;
 
-use PHC\Components\FormComponent;
+use PHC\Components\Form;
 
 use App\Models\Product;
 use App\Interfaces\Services\IProductsService;
@@ -112,7 +112,7 @@ class ProductsController
 
 		$view->pageTitle = (is_null($product) ? 'New' : 'Update') . ' Product';
 		$view->product = $product;
-		$view->form = new FormComponent;
+		$view->form = new Form;
 
 		return $view->render('products/form');
 	}

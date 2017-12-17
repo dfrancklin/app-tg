@@ -4,8 +4,14 @@ namespace PHC\Components\Form;
 
 use PHC\Interfaces\IComponent;
 
-class RadioComponent implements IComponent
+class TextArea implements IComponent
 {
+
+	const SIZES = [
+		's' => ' input-group-sm',
+		'n' => '',
+		'l' => ' input-group-lg'
+	];
 
 	const WIDTHS = [
 		'1' => ' col-12',
@@ -15,28 +21,33 @@ class RadioComponent implements IComponent
 	];
 
 	const TEMPLATES = [
-		'form-check' => '<div class="form-check%s">%s</div>',
-		'label' => '<label class="form-check-label">%s %s</label>',
-		'input' => '<input type="radio" name="%s" id="%s" title="%s" value="%s" class="form-check-input"%s%s>',
+		'form-group' => '<div class="form-group%s">%s%s</div>',
+		'label' => '<label%s for="%s">%s:</label>',
+		'input-group' => '<div class="input-group%s">%s%s</div>',
+		'textarea' => '<textarea name="%s" id="%s" placeholder="%s" title="%s" class="form-control component__textarea"%s%s>%s</textarea>',
 	];
+
+	private $type;
+
+	private $value;
 
 	private $name;
 
 	private $title;
 
-	private $value;
-
-	private $checked;
+	private $hideLabel;
 
 	private $required;
 
 	private $autofocus;
 
+	private $size;
+
 	private $width;
 
 	public function render(bool $print = true)
 	{
-		$input = $this->formatFormCheck();
+		$input = $this->formatFormGroup();
 
 		if ($print) {
 			echo $input;
@@ -45,25 +56,45 @@ class RadioComponent implements IComponent
 		}
 	}
 
-	private function formatFormCheck()
+	private function formatFormGroup()
 	{
+		$inputGroup = $this->formatInputGroup();
 		$label = $this->formatLabel();
 
 		if (empty($this->width) || !array_key_exists($this->width, self::WIDTHS)) {
 			$this->width = '1';
 		}
 
-		return sprintf(self::TEMPLATES['form-check'], self::WIDTHS[$this->width], $label);
+		return sprintf(self::TEMPLATES['form-group'], self::WIDTHS[$this->width], $label, $inputGroup);
 	}
 
 	private function formatLabel()
 	{
-		$input = $this->formatInput();
-
-		return sprintf(self::TEMPLATES['label'], $input, $this->title);
+		return sprintf(self::TEMPLATES['label'],
+						($this->hideLabel ? ' class="sr-only"' : ''),
+						$this->name,
+						$this->title);
 	}
 
-	private function formatInput()
+	private function formatInputGroup()
+	{
+		$input = $this->formatTextArea();
+		$icon = '';
+
+		if (!empty($this->icon)) {
+			$icon = sprintf(self::TEMPLATES['input-group-addon'], ' bg-dark', $this->icon);
+		}
+
+		if (empty($this->size) || !array_key_exists($this->size, self::SIZES)) {
+			$this->size = 'n';
+		}
+
+		$size = self::SIZES[$this->size];
+
+		return sprintf(self::TEMPLATES['input-group'], $size, $icon, $input);
+	}
+
+	private function formatTextArea()
 	{
 		if (empty($this->name)) {
 			throw new \Exception('The name of the input must be informed');
@@ -73,14 +104,14 @@ class RadioComponent implements IComponent
 			$this->title = ucfirst($this->name);
 		}
 
-		return sprintf(self::TEMPLATES['input'],
+		return sprintf(self::TEMPLATES['textarea'],
 						$this->name,
 						$this->name,
 						$this->title,
-						$this->value,
-						($this->checked ? ' checked' : null),
+						$this->title,
 						($this->required ? ' required' : null),
-						($this->autofocus ? ' autofocus' : null));
+						($this->autofocus ? ' autofocus' : null),
+						$this->value);
 	}
 
 	public function __get(String $attr)

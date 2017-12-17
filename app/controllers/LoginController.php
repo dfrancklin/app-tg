@@ -11,6 +11,8 @@ use FW\Security\ISecurityService;
 use FW\Security\IAuthentication;
 use FW\Security\UserProfile;
 
+use PHC\Components\Form;
+
 use App\Interfaces\Services\IEmployeesService;
 
 /**
@@ -47,7 +49,7 @@ class LoginController implements IAuthentication
 		$view->pageTitle = 'Login';
 		$view->styles = ['/resources/css/login.css'];
 		$view->returnsTo = $returnsTo;
-		$view->form = new \PHC\Components\FormComponent;
+		$view->form = new Form;
 
 		return $view->render('login/form');
 	}

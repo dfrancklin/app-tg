@@ -4,7 +4,7 @@ namespace PHC\Components\Form;
 
 use PHC\Interfaces\IComponent;
 
-class ButtonComponent implements IComponent
+class Button implements IComponent
 {
 
 	const STYLES = [

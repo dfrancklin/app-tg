@@ -4,7 +4,7 @@ namespace PHC\Components;
 
 use PHC\Interfaces\IComponent;
 
-class PaginationComponent implements IComponent
+class Pagination implements IComponent
 {
 
 	const TEMPLATES = [
@@ -85,13 +85,13 @@ class PaginationComponent implements IComponent
 
 		$pages = [];
 
+		$start = $this->active - $this->quantity;
+		$end = $this->active + $this->quantity;
+
+		$start = $start < 1 ? 1 : $start;
+		$end = $end > $this->total ? $this->total : $end;
+
 		if ($this->showPageNumbers) {
-			$start = $this->active - $this->quantity;
-			$end = $this->active + $this->quantity;
-
-			$start = $start < 1 ? 1 : $start;
-			$end = $end > $this->total ? $this->total : $end;
-
 			foreach (range($start, $end) as $page) {
 				$pages[] = sprintf(
 					self::TEMPLATES['item'],
@@ -102,9 +102,19 @@ class PaginationComponent implements IComponent
 			}
 		}
 
-		array_unshift($pages, $previous);
-		array_unshift($pages, $first);
-		array_push($pages, $next);
+		if ($this->active > 1) {
+			array_unshift($pages, $previous);
+		}
+
+		if ($this->active - $this->quantity > 1) {
+			array_unshift($pages, $first);
+		}
+
+		if ($this->active < $this->total) {
+			array_push($pages, $next);
+		}
+
+		if ($this->active + $this->quantity < $this->total)
 		array_push($pages, $last);
 
 		return implode('', $pages);

@@ -4,7 +4,7 @@ namespace PHC\Components\Form;
 
 use PHC\Interfaces\IComponent;
 
-class PicklistComponent implements IComponent
+class Picklist implements IComponent
 {
 
 	const SIZES = [
@@ -108,7 +108,7 @@ class PicklistComponent implements IComponent
 			$this->title = ucfirst($this->name);
 		}
 
-		$input = new InputComponent(false, true);
+		$input = new Input(false, true);
 
 		$input->icon = $this->icon;
 		$input->size = $this->size;
@@ -148,10 +148,10 @@ class PicklistComponent implements IComponent
 			<td>%s</td>
 		</tr>';
 
-		$inputValue = new HiddenComponent;
-		$inputLabel = new HiddenComponent;
+		$inputValue = new Hidden;
+		$inputLabel = new Hidden;
 
-		$button = new ButtonComponent;
+		$button = new Button;
 		$button->type = 'link';
 		$button->title = 'Remove';
 		$button->icon = 'delete';

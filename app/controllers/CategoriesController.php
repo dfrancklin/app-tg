@@ -7,7 +7,7 @@ use FW\Core\FlashMessages;
 
 use FW\View\IViewFactory;
 
-use PHC\Components\FormComponent;
+use PHC\Components\Form;
 
 use App\Models\Category;
 
@@ -49,7 +49,7 @@ class CategoriesController
 		$view->pageTitle = 'Categories';
 		$view->categories = $categories;
 		$view->page = (int) $page;
-		$view->totalPages = 10;
+		$view->totalPages = $totalPages;
 
 		return $view->render('categories/home');
 	}
@@ -128,7 +128,7 @@ class CategoriesController
 
 		$view->pageTitle = (is_null($category) ? 'New' : 'Update') . ' Category';
 		$view->category = $category;
-		$view->form = new FormComponent;
+		$view->form = new Form;
 
 		return $view->render('categories/form');
 	}

@@ -4,10 +4,12 @@ namespace App\Controllers;
 
 use FW\Core\Router;
 use FW\Core\FlashMessages;
+
 use FW\View\IViewFactory;
+
 use FW\Security\ISecurityService;
 
-use PHC\Components\FormComponent;
+use PHC\Components\Form;
 
 use App\Models\Role;
 use App\Models\Employee;
@@ -188,7 +190,7 @@ class EmployeesController
 		$view->pageTitle = (is_null($employee) ? 'New' : 'Update') . ' Employee';
 		$view->employee = $employee;
 		$view->supervisors = $supervisors;
-		$view->form = new FormComponent;
+		$view->form = new Form;
 
 		return $view->render('employees/form');
 	}

@@ -46,13 +46,13 @@
 	$this->form->render();
 
 	if (!is_null($this->category)) {
-		$modal = new \PHC\Components\ModalComponent;
+		$modal = new \PHC\Components\Modal;
 
 		$modal->name = 'confirm-modal';
 		$modal->title = 'Are you sure?';
 		$modal->body = '<p>Are you sure that you want to delete this item permanently?</p>';
 		$modal->actions = [(function () {
-			$delete = new \PHC\Components\Form\ButtonComponent;
+			$delete = new \PHC\Components\Form\Button;
 
 			$delete->name = 'Delete';
 			$delete->type = 'link';

@@ -4,9 +4,10 @@ namespace App\Controllers;
 
 use FW\Core\Router;
 use FW\Core\FlashMessages;
+
 use FW\View\IViewFactory;
 
-use PHC\Components\FormComponent;
+use PHC\Components\Form;
 
 use App\Models\Customer;
 
@@ -113,7 +114,7 @@ class CustomersController
 
 		$view->pageTitle = (is_null($customer) ? 'New' : 'Update') . ' Customer';
 		$view->customer = $customer;
-		$view->form = new FormComponent;
+		$view->form = new Form;
 
 		return $view->render('customers/form');
 	}

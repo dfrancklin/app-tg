@@ -6,16 +6,16 @@ if (isset($menuDefinition)) {
 	$dm = \FW\Core\DependenciesManager::getInstance();
 	$security = $dm->resolve(\FW\Security\SecurityService::class);
 
-	$menuComponent = new \PHC\Components\MenuComponent;
+	$menu = new \PHC\Components\Menu;
 
-	$menuComponent->definition = $menuDefinition;
-	$menuComponent->activeRoute = \FW\Core\Router::getInstance()->getActiveRoute();
+	$menu->definition = $menuDefinition;
+	$menu->activeRoute = \FW\Core\Router::getInstance()->getActiveRoute();
 
 	if (!empty($security)) {
-		$menuComponent->userRoles = $security->getUserProfile()->getRoles();
+		$menu->userRoles = $security->getUserProfile()->getRoles();
 	}
 
-	echo $menuComponent;
+	echo $menu;
 }
 
 

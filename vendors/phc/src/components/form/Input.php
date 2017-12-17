@@ -4,7 +4,7 @@ namespace PHC\Components\Form;
 
 use PHC\Interfaces\IComponent;
 
-class InputComponent implements IComponent
+class Input implements IComponent
 {
 
 	const TYPES = [

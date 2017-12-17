@@ -35,7 +35,8 @@
 </table>
 
 <?php
-$pagination = new \PHC\Components\PaginationComponent;
+
+$pagination = new \PHC\Components\Pagination;
 
 $pagination->route = $this->router->getActiveRoute();
 $pagination->active = $this->page;
@@ -43,49 +44,22 @@ $pagination->total = $this->totalPages;
 
 $pagination->render();
 
-if ($this->totalPages > 1) : ?>
-	<nav aria-label="Page navigation">
-		<ul class="pagination justify-content-center">
-			<li class="page-item<?=($this->page === 1 ? ' disabled' : '')?>">
-				<a class="page-link" href="/categories?page=<?=$this->page - 1?>" tabindex="-1">Previous</a>
-			</li>
+$modal = new \PHC\Components\Modal;
 
-			<?php foreach (range(1, $this->totalPages) as $value) : ?>
-				<li class="page-item<?=($this->page === $value ? ' active' : '')?>">
-					<a class="page-link" href="/categories?page=<?=$value?>">
-						<?=$value?>
-						<?php if ($this->page === $value) : ?>
-							<span class="sr-only">(current)</span>
-						<?php endif; ?>
-					</a>
-				</li>
-			<?php endforeach; ?>
+$modal->name = 'confirm-modal';
+$modal->title = 'Are you sure?';
+$modal->body = '<p>Are you sure that you want to delete this item permanently?</p>';
+$modal->actions = [(function () {
+	$delete = new \PHC\Components\Form\Button;
 
-			<li class="page-item<?=($this->page === $this->totalPages ? ' disabled' : '')?>">
-				<a class="page-link" href="/categories?page=<?=$this->page + 1?>">Next</a>
-			</li>
-		</ul>
-	</nav>
-<?php
-	endif;
+	$delete->name = 'Delete';
+	$delete->type = 'link';
+	$delete->icon = 'delete';
+	$delete->style = 'danger';
+	$delete->additional = ['data-destiny' => '/categories/delete/'];
 
+	return $delete;
+})()];
 
-	$modal = new \PHC\Components\ModalComponent;
-
-	$modal->name = 'confirm-modal';
-	$modal->title = 'Are you sure?';
-	$modal->body = '<p>Are you sure that you want to delete this item permanently?</p>';
-	$modal->actions = [(function () {
-		$delete = new \PHC\Components\Form\ButtonComponent;
-
-		$delete->name = 'Delete';
-		$delete->type = 'link';
-		$delete->icon = 'delete';
-		$delete->style = 'danger';
-		$delete->additional = ['data-destiny' => '/categories/delete/'];
-
-		return $delete;
-	})()];
-
-	$modal->render();
+$modal->render();
 ?>

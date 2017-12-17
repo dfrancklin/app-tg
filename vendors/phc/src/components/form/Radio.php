@@ -4,7 +4,7 @@ namespace PHC\Components\Form;
 
 use PHC\Interfaces\IComponent;
 
-class CheckboxComponent implements IComponent
+class Radio implements IComponent
 {
 
 	const WIDTHS = [
@@ -17,7 +17,7 @@ class CheckboxComponent implements IComponent
 	const TEMPLATES = [
 		'form-check' => '<div class="form-check%s">%s</div>',
 		'label' => '<label class="form-check-label">%s %s</label>',
-		'input' => '<input type="checkbox" name="%s" id="%s" title="%s" value="%s" class="form-check-input"%s%s>',
+		'input' => '<input type="radio" name="%s" id="%s" title="%s" value="%s" class="form-check-input"%s%s>',
 	];
 
 	private $name;

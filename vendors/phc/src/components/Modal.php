@@ -4,7 +4,7 @@ namespace PHC\Components;
 
 use PHC\Interfaces\IComponent;
 
-class ModalComponent implements IComponent
+class Modal implements IComponent
 {
 
 	const TEMPLATES = [

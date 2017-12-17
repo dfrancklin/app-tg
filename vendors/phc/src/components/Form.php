@@ -4,7 +4,7 @@ namespace PHC\Components;
 
 use PHC\Interfaces\IComponent;
 
-class FormComponent implements IComponent
+class Form implements IComponent
 {
 
 	const METHODS = ['GET', 'POST'];
@@ -14,15 +14,15 @@ class FormComponent implements IComponent
 	];
 
 	const COMPONENTS = [
-		'input' => \PHC\Components\Form\InputComponent::class,
-		'hidden' => \PHC\Components\Form\HiddenComponent::class,
-		'checkbox' => \PHC\Components\Form\CheckboxComponent::class,
-		'radio' => \PHC\Components\Form\RadioComponent::class,
-		'select' => \PHC\Components\Form\SelectComponent::class,
-		'text' => \PHC\Components\Form\TextAreaComponent::class,
-		'uploader' => \PHC\Components\Form\UploaderComponent::class,
-		'picklist' => \PHC\Components\Form\PicklistComponent::class,
-		'button' => \PHC\Components\Form\ButtonComponent::class,
+		'input' => \PHC\Components\Form\Input::class,
+		'hidden' => \PHC\Components\Form\Hidden::class,
+		'checkbox' => \PHC\Components\Form\Checkbox::class,
+		'radio' => \PHC\Components\Form\Radio::class,
+		'select' => \PHC\Components\Form\Select::class,
+		'text' => \PHC\Components\Form\TextArea::class,
+		'uploader' => \PHC\Components\Form\Uploader::class,
+		'picklist' => \PHC\Components\Form\Picklist::class,
+		'button' => \PHC\Components\Form\Button::class,
 	];
 
 	private $action;

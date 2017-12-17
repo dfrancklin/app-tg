@@ -4,7 +4,7 @@ namespace PHC\Components\Form;
 
 use PHC\Interfaces\IComponent;
 
-class SelectComponent implements IComponent
+class Select implements IComponent
 {
 
 	const SIZES = [

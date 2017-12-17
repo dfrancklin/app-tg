@@ -4,7 +4,7 @@ namespace PHC\Components;
 
 use PHC\Interfaces\IComponent;
 
-class MenuComponent implements IComponent
+class Menu implements IComponent
 {
 
 	const TEMPLATES = [

@@ -1,3 +1,4 @@
+/*jshint esversion:6*/
 class UploaderComponent {
 
 	constructor(root) {
@@ -126,7 +127,7 @@ class UploaderComponent {
 				break;
 			default:
 				alert('An error occurred reading this file.');
-		};
+		}
 	}
 
 	_onClick(evt) {
@@ -141,7 +142,7 @@ class UploaderComponent {
 		evt.target.classList.add('border-primary');
 	}
 
-	_onDragOver(evt) {
+	_onDragEnd(evt) {
 		evt.stopPropagation();
 		evt.preventDefault();
 		evt.target.classList.remove('dragging-over');

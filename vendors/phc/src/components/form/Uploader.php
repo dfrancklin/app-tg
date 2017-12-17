@@ -4,7 +4,7 @@ namespace PHC\Components\Form;
 
 use PHC\Interfaces\IComponent;
 
-class UploaderComponent implements IComponent
+class Uploader implements IComponent
 {
 
 	const ACCEPTS = [
