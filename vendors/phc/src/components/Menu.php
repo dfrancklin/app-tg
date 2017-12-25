@@ -107,7 +107,13 @@ class Menu implements IComponent
 				? sprintf(self::TEMPLATES['icon'], $item->icon)
 				: '';
 
-		return sprintf(self::TEMPLATES['menu-item'], $item->href, ($active ? ' active menu__link--active' : ''), $icon, $item->title);
+		return sprintf(
+			self::TEMPLATES['menu-item'],
+			$item->href,
+			($active ? ' active menu__link--active' : ''),
+			$icon,
+			$item->title
+		);
 	}
 
 	private function hasAnyRoles(Array $roles)

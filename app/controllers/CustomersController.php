@@ -17,6 +17,7 @@ use App\Interfaces\Services\ICustomersService;
  * @Controller
  * @Route /customers
  * @Authenticate
+ * @Roles [ADMIN, SALES]
  */
 class CustomersController
 {

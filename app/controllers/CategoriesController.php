@@ -17,6 +17,7 @@ use App\Interfaces\Services\ICategoriesService;
  * @Controller
  * @Route /categories
  * @Authenticate
+ * @Roles [ADMIN, STOCK]
  */
 class CategoriesController
 {

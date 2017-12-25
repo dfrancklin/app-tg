@@ -31,4 +31,9 @@ class ItemOrder
 	 */
 	public $quantity;
 
+	/**
+	 * @ORM/Column(type=float, scale=10, precision=2)
+	 */
+	public $price;
+
 }

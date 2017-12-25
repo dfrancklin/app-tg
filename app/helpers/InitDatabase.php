@@ -32,7 +32,7 @@ class InitDatabase
 				'class' => Role::class,
 				'registers' => [
 					['name' => 'ADMIN'],
-					['name' => 'SALESMAN'],
+					['name' => 'SALES'],
 					['name' => 'STOCK'],
 				]
 			],

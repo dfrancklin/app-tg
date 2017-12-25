@@ -20,6 +20,7 @@ use App\Interfaces\Services\IEmployeesService;
  * @Controller
  * @Route /employees
  * @Authenticate
+ * @Roles ADMIN
  */
 class EmployeesController
 {

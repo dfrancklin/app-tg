@@ -15,6 +15,7 @@ use App\Interfaces\Services\IProductsService;
  * @Controller
  * @Route /products
  * @Authenticate
+ * @Roles [ADMIN, STOCK]
  */
 class ProductsController
 {

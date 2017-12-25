@@ -111,27 +111,31 @@ class Button implements IComponent
 		}
 
 		if ($this->type === 'link') {
-			return sprintf($this->templates['link'],
-							$this->action,
-							$this->name,
-							$this->title,
-							self::STYLES[$this->style],
-							self::SIZES[$this->size],
-							($this->block ? ' btn-block' : ''),
-							$additional,
-							$text,
-							$icon);
+			return sprintf(
+				$this->templates['link'],
+				$this->action,
+				$this->name,
+				$this->title,
+				self::STYLES[$this->style],
+				self::SIZES[$this->size],
+				($this->block ? ' btn-block' : ''),
+				$additional,
+				$text,
+				$icon
+			);
 		} else {
-			return sprintf($this->templates['button'],
-							$this->type,
-							$this->name,
-							$this->title,
-							self::STYLES[$this->style],
-							self::SIZES[$this->size],
-							($this->block ? ' btn-block' : ''),
-							$additional,
-							$text,
-							$icon);
+			return sprintf(
+				$this->templates['button'],
+				$this->type,
+				$this->name,
+				$this->title,
+				self::STYLES[$this->style],
+				self::SIZES[$this->size],
+				($this->block ? ' btn-block' : ''),
+				$additional,
+				$text,
+				$icon
+			);
 		}
 	}
 
