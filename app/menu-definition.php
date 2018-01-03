@@ -15,26 +15,26 @@ $menuDefinition = (object) [
 		(object) [
 			'title' => 'Sales',
 			'icon' => 'attach_money',
+			'roles' => ['ADMIN', 'SALES'],
 			'items' => [
 				(object) [
 					'title' => 'Customers',
 					'icon' => 'person',
 					'href' => '/customers',
 					'activeRoute' => ['/customers/*'],
-					'roles' => ['ADMIN', 'SALES'],
 				],
 				(object) [
 					'title' => 'Orders',
 					'icon' => 'payment',
 					'href' => '/orders',
 					'activeRoute' => ['/orders/*'],
-					'roles' => ['ADMIN', 'SALES'],
 				],
 			],
 		],
 		(object) [
 			'title' => 'Administration',
 			'icon' => 'build',
+			'roles' => ['ADMIN', 'STOCK'],
 			'items' => [
 				(object) [
 					'title' => 'Products',
@@ -54,6 +54,7 @@ $menuDefinition = (object) [
 					'title' => 'Employees',
 					'icon' => 'face',
 					'href' => '/employees',
+					'activeRoute' => ['/employees/*'],
 					'roles' => ['ADMIN'],
 				],
 			],

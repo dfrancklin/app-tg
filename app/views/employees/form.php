@@ -29,14 +29,14 @@
 		'type' => 'date',
 		'hideLabel' => true,
 		'required' => true,
-		'readOnly' => true,
+		// 'readOnly' => true,
 		'value' => !is_null($this->employee) ? (!empty($this->employee->admissionDate) ? $this->employee->admissionDate->format('Y-m-d') : date('Y-m-d')) : date('Y-m-d'),
 		'width' => '1/2'
 	]);
 	$this->form->select([
 		'name' => 'supervisor',
 		'selected' => !is_null($this->employee) ? (!empty($this->employee->supervisor) ? $this->employee->supervisor->id : '') : '',
-		'options' => $supervisors,
+		'options' => $this->supervisors,
 		'hideLabel' => true,
 		'width' => '1/2',
 	]);

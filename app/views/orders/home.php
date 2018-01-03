@@ -1,7 +1,7 @@
 <h1>
 	<?=$pageTitle?>
 
-	<a href="/products/form" class="btn btn-primary">
+	<a href="/orders/form" class="btn btn-primary">
 		New <span class="material-icons">add_circle</span>
 	</a>
 </h1>
@@ -10,23 +10,9 @@
 
 <?php
 	$table = new \PHC\Components\Table;
-	$table->resource = $this->products;
+	$table->resource = $this->orders;
 	$table->columns = [
 		'#' => 'id',
-		'Picture' => function($row) {
-			if ($row->picture){
-				return sprintf(
-					'<img src="%s" alt="%s" class="img-fluid rounded d-block mx-auto">',
-					$row->picture,
-					$row->name
-				);
-			}
-		},
-		'Name' => 'name',
-		'Price' => function($row) {
-			return '$' . number_format($row->price, 2);
-		},
-		'Quantity' => 'quantity',
 	];
 	$table->actions = [
 		(function () {
@@ -37,7 +23,7 @@
 			$edit->icon = 'edit';
 			$edit->size = 's';
 			$edit->style = 'success';
-			$edit->action = '/products/form/{row->id}';
+			$edit->action = '/orders/form/{row->id}';
 
 			return $edit;
 		})(),
@@ -77,7 +63,7 @@
 			$delete->type = 'link';
 			$delete->icon = 'delete';
 			$delete->style = 'danger';
-			$delete->additional = ['data-destiny' => '/products/delete/'];
+			$delete->additional = ['data-destiny' => '/orders/delete/'];
 
 			return $delete;
 		})()

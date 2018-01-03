@@ -76,7 +76,7 @@ class EmployeesController
 			return $this->form($employee);
 		} else {
 			$this->message->error('No employee with the ID ' . $id . ' was found!');
-			$this->message->error('No supervisors with the ID ' . $id . ' was found!');
+
 			Router::redirect('/employees');
 		}
 	}

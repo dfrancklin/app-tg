@@ -32,4 +32,9 @@ class Order
 	 */
 	public $date;
 
+	/**
+	 * @ORM/Column(type=bool)
+	 */
+	public $finished;
+
 }

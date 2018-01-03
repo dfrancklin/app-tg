@@ -44,7 +44,7 @@ class LoginController implements IAuthentication
 	 */
 	public function login($returnsTo = '')
 	{
-		$view = $this->factory::create();
+		$view = $this->factory::create('login-template');
 
 		$view->pageTitle = 'Login';
 		$view->styles = ['/resources/css/login.css'];

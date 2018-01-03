@@ -12,6 +12,6 @@ return $connections = [
 	'sqlite' => [
 		'db' => 'sqlite',
 		'version' => '3',
-		'file' => __DIR__ . '/data/book-store.sq3',
+		'file' => __DIR__ . '/database/book-store.sq3',
 	],
 ];

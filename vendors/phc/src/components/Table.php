@@ -14,6 +14,8 @@ class Table implements IComponent
 		'body-cell' => '<td>%s</td>',
 	];
 
+	private $pattern = '/\{row->([a-zA-Z0-9_]*)\}/i';
+
 	private $resource;
 
 	private $columns;
@@ -110,11 +112,10 @@ class Table implements IComponent
 
 	private function formatActions($row)
 	{
-		$pattern = '/\{row->([a-zA-Z0-9_]*)\}/i';
 		$actions = [];
 
 		foreach ($this->actions as $action) {
-			preg_match_all($pattern, $action, $matches);
+			preg_match_all($this->pattern, $action, $matches);
 			$matches = array_unique($matches[1]);
 			$placeholders = [];
 
@@ -135,14 +136,62 @@ class Table implements IComponent
 
 	private function getValue($row, $column)
 	{
+		if (is_null($row)) {
+			return;
+		}
+
 		$value = null;
 
-		if (is_string($column)) {
-			if (is_array($row)) {
-				$value = $row[$column];
+		if (is_callable($column)) {
+			$value = $column($row);
+		} elseif(is_array($column)) {
+			if (isset($column['function'])) {
+				$function = $column['function'];
+				$args = $column['args'];
+
+				foreach ($args as $key => $arg) {
+					if (preg_match($this->pattern, $arg, $matches)) {
+						$args[$key] = $this->_getValue($row, $matches[1]);
+					}
+				}
+
+				$value = $function(...$args);
+			} elseif (isset($column['method'])) {
+				$method = $column['method'];
+				$args = $column['args'];
+
+				foreach ($args as $key => $arg) {
+					if (preg_match($this->pattern, $arg, $matches)) {
+						$args[$key] = $this->_getValue($row, $matches[1]);
+					}
+				}
+
+				$value = $row->{$method}(...$args);
 			} else {
-				$value = $row->{$column};
+				$newColumn = array_shift($column);
+
+				if (count($column) === 1) {
+					$column = array_shift($column);
+				}
+
+				$row = $this->_getValue($row, $newColumn);
+				$value = $this->getValue($row, $column);
 			}
+		} elseif (is_string($column)) {
+			$value = $this->_getValue($row, $column);
+		}
+
+		return $value;
+	}
+
+	private function _getValue($row, $column)
+	{
+		$value = null;
+
+		if (is_array($row)) {
+			$value = $row[$column];
+		} else {
+			$value = $row->{$column};
 		}
 
 		return $value;

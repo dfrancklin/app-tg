@@ -1,5 +1,6 @@
 <h1>
 	<?=$pageTitle?>
+
 	<a href="/employees/form" class="btn btn-primary">
 		New <span class="material-icons">add_circle</span>
 	</a>
@@ -7,88 +8,75 @@
 
 <hr>
 
-<table class="component__table table table-bordered table-striped table-responsive table-hover">
-	<thead class="thead-inverse">
-		<tr>
-			<th>#</th>
-			<th>Name</th>
-			<th>E-mail</th>
-			<th>Admission Date</th>
-			<th>Supervisor</th>
-			<th>Actions</th>
-		</tr>
-	</thead>
+<?php
+	$table = new \PHC\Components\Table;
+	$table->resource = $this->employees;
+	$table->columns = [
+		'#' => 'id',
+		'Name' => 'name',
+		'E-mail' => 'email',
+		'Admission Date' => [
+			'admissionDate',
+			[
+				'method' => 'format',
+				'args' => ['d/m/Y']
+			]
+		],
+		'Supervisor' => ['supervisor', 'name'],
+	];
+	$table->actions = [
+		(function () {
+			$edit = new \PHC\Components\Form\Button;
 
-	<tbody>
-		<?php foreach ($employees as $employee): ?>
-			<tr>
-				<th scope="row"><?=$employee->id?></th>
-				<td><?=$employee->name?></td>
-				<td><?=$employee->email?></td>
-				<td><?=($employee->admissionDate ? $employee->admissionDate->format('d/m/Y') : '')?></td>
-				<td><?=$employee->supervisor ? $employee->supervisor->name : ''?></td>
-				<td>
-					<a href="/employees/form/<?=$employee->id?>" class="btn btn-sm btn-success">
-						Edit <span class="material-icons">edit</span>
-					</a>
-					<button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#confirm-modal" data-id="<?=$employee->id?>">
-						Delete <span class="material-icons">delete</span>
-					</button>
-				</td>
-			</tr>
-		<?php endforeach; ?>
-	</tbody>
-</table>
+			$edit->name = 'Edit';
+			$edit->type = 'link';
+			$edit->icon = 'edit';
+			$edit->size = 's';
+			$edit->style = 'success';
+			$edit->action = '/employees/form/{row->id}';
 
-<?php if ($this->totalPages > 1) : ?>
-	<nav aria-label="Page navigation">
-		<ul class="pagination justify-content-center">
-			<li class="page-item<?=($this->page === 1 ? ' disabled' : '')?>">
-				<a class="page-link" href="/employees?page=<?=$this->page - 1?>" tabindex="-1">Previous</a>
-			</li>
+			return $edit;
+		})(),
+		(function () {
+			$delete = new \PHC\Components\Form\Button;
 
-			<?php foreach (range(1, $this->totalPages) as $value) : ?>
-				<li class="page-item<?=($this->page === $value ? ' active' : '')?>">
-					<a class="page-link" href="/employees?page=<?=$value?>">
-						<?=$value?>
-						<?php if ($this->page === $value) : ?>
-							<span class="sr-only">(current)</span>
-						<?php endif; ?>
-					</a>
-				</li>
-			<?php endforeach; ?>
+			$delete->name = 'Delete';
+			$delete->icon = 'delete';
+			$delete->size = 's';
+			$delete->style = 'danger';
+			$delete->additional = [
+				'data-toggle'=> 'modal',
+				'data-target'=> '#confirm-modal',
+				'data-id'=> '{row->id}'
+			];
 
-			<li class="page-item<?=($this->page === $this->totalPages ? ' disabled' : '')?>">
-				<a class="page-link" href="/employees?page=<?=$this->page + 1?>">Next</a>
-			</li>
-		</ul>
-	</nav>
-<?php endif; ?>
+			return $delete;
+		})()
+	];
+	$table->render();
 
-<div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-modal-label" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="confirm-modal-label">Are you sure?</h5>
+	$pagination = new \PHC\Components\Pagination;
+	$pagination->route = $this->router->getActiveRoute();
+	$pagination->active = $this->page;
+	$pagination->total = $this->totalPages;
+	$pagination->render();
 
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
+	$modal = new \PHC\Components\Modal;
+	$modal->name = 'confirm-modal';
+	$modal->title = 'Are you sure?';
+	$modal->body = '<p>Are you sure that you want to delete this item permanently?</p>';
+	$modal->actions = [
+		(function () {
+			$delete = new \PHC\Components\Form\Button;
 
-			<div class="modal-body">
-				<p>Are you sure that you want to delete this item permanently?</p>
-			</div>
+			$delete->name = 'Delete';
+			$delete->type = 'link';
+			$delete->icon = 'delete';
+			$delete->style = 'danger';
+			$delete->additional = ['data-destiny' => '/employees/delete/'];
 
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-				<form method="POST" id="confirm-form" data-destiny="/employees/delete/">
-					<button type="submit" class="btn btn-danger">
-						Delete <span class="material-icons">delete</span>
-					</button>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
+			return $delete;
+		})()
+	];
+	$modal->render();
+?>

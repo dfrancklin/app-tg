@@ -59,11 +59,13 @@
 	$modal->actions = [
 		(function () {
 			$delete = new \PHC\Components\Form\Button;
+
 			$delete->name = 'Delete';
 			$delete->type = 'link';
 			$delete->icon = 'delete';
 			$delete->style = 'danger';
 			$delete->additional = ['data-destiny' => '/categories/delete/'];
+
 			return $delete;
 		})()
 	];

@@ -132,6 +132,19 @@ class Picklist implements IComponent
 
 	private function formatTable()
 	{
+		$head = '';
+
+		$inputValue = new Hidden;
+		$inputLabel = new Hidden;
+
+		$button = new Button;
+		$button->type = 'link';
+		$button->title = 'Remove';
+		$button->icon = 'delete';
+		$button->size = 's';
+		$button->style = 'danger';
+		$button->iconOnly = true;
+
 		$head = '<thead class="thead-inverse">';
 		$head .= '<tr>';
 		$head .= '<th style="width: 5%; text-align: right;">#</th>';
@@ -147,17 +160,6 @@ class Picklist implements IComponent
 			<td class="label">%s</td>
 			<td>%s</td>
 		</tr>';
-
-		$inputValue = new Hidden;
-		$inputLabel = new Hidden;
-
-		$button = new Button;
-		$button->type = 'link';
-		$button->title = 'Remove';
-		$button->icon = 'delete';
-		$button->size = 's';
-		$button->style = 'danger';
-		$button->iconOnly = true;
 
 		foreach ($this->values as $item) {
 			if (is_array($item)) {
@@ -176,7 +178,6 @@ class Picklist implements IComponent
 			$inputLabel->value = $label;
 
 			$button->additional = ['data-value' => $value];
-
 
 			$body .= sprintf($row, $inputValue . $inputLabel, $value, $label, $button);
 		}
