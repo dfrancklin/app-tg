@@ -271,7 +271,7 @@ class FW
 				const refreshInterval = setInterval(_ => {
 					xhttp.open('GET', '$url', true);
 					xhttp.send();
-				}, 1000);
+				}, 3000);
 			})();
 		</script>";
 

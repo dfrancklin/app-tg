@@ -132,12 +132,16 @@ class Picklist implements IComponent
 
 	private function formatTable()
 	{
-		$head = '';
+		$table = '<table class="table table-bordered table-striped table-responsive table-hover">%s%s</table>';
+		$head = '<thead class="thead-inverse"><tr><th style="width: 5%; text-align: right;">#</th><th>%s</th><th style="width: 5%;">Action</th></tr></thead>';
+		$body = '<tbody>%s</tbody>';
+		$rowTemplate = '<tr><td class="value" style="text-align: right;">%s%s%s</td><td class="label">%s</td><td>%s</td></tr>';
+		$rows = [];
 
 		$inputValue = new Hidden;
 		$inputLabel = new Hidden;
-
 		$button = new Button;
+
 		$button->type = 'link';
 		$button->title = 'Remove';
 		$button->icon = 'delete';
@@ -145,26 +149,8 @@ class Picklist implements IComponent
 		$button->style = 'danger';
 		$button->iconOnly = true;
 
-		$head = '<thead class="thead-inverse">';
-		$head .= '<tr>';
-		$head .= '<th style="width: 5%; text-align: right;">#</th>';
-		$head .= '<th>' . $this->title . '</th>';
-		$head .= '<th style="width: 5%;">Action</th>';
-		$head .= '</tr>';
-		$head .= '</thead>';
-
-		$body = '<tbody>';
-
-		$row = '<tr>
-			<td class="value" style="text-align: right;">%s%s</td>
-			<td class="label">%s</td>
-			<td>%s</td>
-		</tr>';
-
 		foreach ($this->values as $item) {
 			if (is_array($item)) {
-				$inputValue->name = $this->name . '[' . $item[$this->value] . '][value]';
-				$inputLabel->name = $this->name . '[' . $item[$this->value] . '][label]';
 				$value = $item[$this->value];
 				$label = $item[$this->label];
 			} else {
@@ -179,15 +165,19 @@ class Picklist implements IComponent
 
 			$button->additional = ['data-value' => $value];
 
-			$body .= sprintf($row, $inputValue . $inputLabel, $value, $label, $button);
+			$rows[] = sprintf(
+				$rowTemplate,
+				$inputValue,
+				$inputLabel,
+				$value,
+				$label,
+				$button
+			);
 		}
 
-		$body .= '';
-		$body .= '</tbody>';
-
-		$table = '<table class="table table-bordered table-striped table-responsive table-hover">';
-		$table .= $head . $body;
-		$table .= '</table>';
+		$head = sprintf($head, $this->title);
+		$body = sprintf($body, implode('', $rows));
+		$table = sprintf($table, $head, $body);
 
 		return $table;
 	}

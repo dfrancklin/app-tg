@@ -19,24 +19,68 @@
 					<th style="width: 5%; text-align: right;">#</th>
 					<th>Items Order</th>
 					<th style="width: 10%; text-align: right;">Quantity</th>
+					<th style="width: 10%; text-align: right;">Price</th>
+					<th style="width: 10%; text-align: right;">Subtotal</th>
 					<th style="width: 5%;">Action</th>
 				</tr>
 			</thead>
-
 			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Book 1</td>
+					<td>2</td>
+					<td>100.00</td>
+					<td>200.00</td>
+					<td>
+						<a href="#" class="btn btn-sm btn-danger" data-value="1">
+							<spam class="material-icons">delete</spam>
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Book 2</td>
+					<td>3</td>
+					<td>150.00</td>
+					<td>450.00</td>
+					<td>
+						<a href="#" class="btn btn-sm btn-danger" data-value="2">
+							<spam class="material-icons">delete</spam>
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Book 3</td>
+					<td>4</td>
+					<td>200.00</td>
+					<td>800.00</td>
+					<td>
+						<a href="#" class="btn btn-sm btn-danger" data-value="4">
+							<spam class="material-icons">delete</spam>
+						</a>
+					</td>
+				</tr>
 			</tbody>
+
+			<tfoot class="text-white bg-dark">
+				<tr class="font-weight-bold text-right">
+					<td colspan="4">Total</td>
+					<td colspan="2">1450.00</td>
+				</tr>
+			</tfoot>
 		</table>
 	</div>
 </div>
 
 <?php
-	vd($this->order ?? $this->order->finished ?? false);
+	// vd($this->order ?? $this->order->finished ?? false);
 	$this->form->action = '/orders';
 	$this->form->method = 'POST';
 
 	$this->form->hidden([
 		'name' => 'id',
-		'value' => !is_null($this->order) ? $this->order->id : ''
+		'value' => $this->order ?? $this->order->id
 	]);
 
 	$this->form->select([
@@ -53,24 +97,6 @@
 		'options' => $this->customers,
 		'hideLabel' => true,
 		'required' => true,
-		'width' => '1/2',
-	]);
-
-	$this->form->select([
-		'name' => 'salesman',
-		'selected' => (
-			!is_null($this->order) ?
-			(
-				!empty($this->order->salesman) ?
-				$this->order->salesman->id :
-				''
-			) :
-			''
-		),
-		'options' => $this->employees,
-		'hideLabel' => true,
-		'required' => true,
-		'width' => '1/2',
 	]);
 
 	$this->form->button([
