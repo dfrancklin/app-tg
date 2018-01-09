@@ -133,7 +133,7 @@ class Picklist implements IComponent
 	private function formatTable()
 	{
 		$table = '<table class="table table-bordered table-striped table-responsive table-hover">%s%s</table>';
-		$head = '<thead class="thead-inverse"><tr><th style="width: 5%; text-align: right;">#</th><th>%s</th><th style="width: 5%;">Action</th></tr></thead>';
+		$head = '<thead class="thead-inverse"><tr><th style="width: 5%%; text-align: right;">#</th><th>%s</th><th style="width: 5%%;">Action</th></tr></thead>';
 		$body = '<tbody>%s</tbody>';
 		$rowTemplate = '<tr><td class="value" style="text-align: right;">%s%s%s</td><td class="label">%s</td><td>%s</td></tr>';
 		$rows = [];

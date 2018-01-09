@@ -14,6 +14,7 @@
 		'name' => 'name',
 		'hideLabel' => true,
 		'required' => true,
+		'autofocus' => true,
 		'value' => !is_null($this->customer) ? $this->customer->name : ''
 	]);
 	$this->form->input([
@@ -39,7 +40,7 @@
 	$this->form->button([
 		'name' => 'save',
 		'style' => 'primary',
-		'icon' => 'add_circle',
+		'icon' => 'save',
 		'type' => 'submit',
 	]);
 
@@ -64,34 +65,27 @@
 	]);
 
 	$this->form->render();
+
+	if ($this->customer) {
+		$customer = $this->customer;
+
+		$modal = new \PHC\Components\Modal;
+		$modal->name = 'confirm-modal';
+		$modal->title = 'Are you sure?';
+		$modal->body = '<p>Are you sure that you want to delete this item permanently?</p>';
+		$modal->actions = [
+			(function () use ($customer) {
+				$delete = new \PHC\Components\Form\Button;
+
+				$delete->name = 'Delete';
+				$delete->type = 'link';
+				$delete->icon = 'delete';
+				$delete->style = 'danger';
+				$delete->action = '/customers/delete/' . $customer->id;
+
+				return $delete;
+			})()
+		];
+		$modal->render();
+	}
 ?>
-
-<?php if (!is_null($this->customer)) : ?>
-	<div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-modal-label" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="confirm-modal-label">Are you sure?</h5>
-
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-
-				<div class="modal-body">
-					<p>Are you sure that you want to delete this item permanently?</p>
-				</div>
-
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-					<form method="POST" id="confirm-form" action="/customers/delete/<?=$this->customer->id?>">
-						<button type="submit" class="btn btn-danger">
-							Delete <span class="material-icons">delete</span>
-						</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-<?php endif; ?>

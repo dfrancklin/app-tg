@@ -107,6 +107,19 @@ class ProductsController
 		Router::redirect('/products');
 	}
 
+	/**
+	 * @RequestMap /json
+	 * @RequestMethod POST
+	 */
+	public function json()
+	{
+		$list = $this->service->searchByName($_POST['search']);
+
+		header('Content-type:application/json; charset=UTF-8');
+
+		return json_encode($list);
+	}
+
 	private function form($product = null)
 	{
 		$view = $this->factory::create();
@@ -159,9 +172,10 @@ class ProductsController
 		if (!empty($_POST['categories'])) {
 			$categories = [];
 
-			foreach ($_POST['categories'] as $id) {
+			foreach ($_POST['categories'] as $c) {
 				$category = new \App\Models\Category;
-				$category->id = $id;
+				$category->id = $c['value'];
+			$category->name = $c['label'];
 				$categories[] = $category;
 			}
 

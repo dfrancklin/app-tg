@@ -2,7 +2,7 @@
 	<?=$pageTitle?>
 
 	<a href="/customers/form" class="btn btn-primary">
-		New <span class="material-icons">add_circle</span>
+		New <span class="material-icons">add_circle_outline</span>
 	</a>
 </h1>
 
@@ -65,7 +65,7 @@
 			$delete->type = 'link';
 			$delete->icon = 'delete';
 			$delete->style = 'danger';
-			$delete->additional = ['data-destiny' => '/categories/delete/'];
+			$delete->additional = ['data-destiny' => '/customers/delete/'];
 
 			return $delete;
 		})()

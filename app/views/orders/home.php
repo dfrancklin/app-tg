@@ -2,7 +2,7 @@
 	<?=$pageTitle?>
 
 	<a href="/orders/form" class="btn btn-primary">
-		New <span class="material-icons">add_circle</span>
+		New <span class="material-icons">add_circle_outline</span>
 	</a>
 </h1>
 
@@ -13,9 +13,43 @@
 	$table->resource = $this->orders;
 	$table->columns = [
 		'#' => 'id',
+		'Customer' => ['customer', 'name'],
+		'Salesman' => ['salesman', 'name'],
+		'Date' => ['date', ['method' => 'format', 'args' => ['d/m/Y']]],
+		'Total' => function($order) {
+			$total = 0;
+
+			if (!empty($order->items)) {
+				foreach ($order->items as $item) {
+					$total += $item->price * $item->quantity;
+				}
+			}
+
+			return '$ ' . number_format($total, 2);
+		},
 	];
 	$table->actions = [
-		(function () {
+		function ($order) {
+			if (!$order->finished) {
+				return;
+			}
+
+			$view = new \PHC\Components\Form\Button;
+
+			$view->name = 'View';
+			$view->type = 'link';
+			$view->icon = 'visibility';
+			$view->size = 's';
+			$view->style = 'primary';
+			$view->action = '/orders/view/{row->id}';
+
+			return $view;
+		},
+		function ($order) {
+			if ($order->finished) {
+				return;
+			}
+
 			$edit = new \PHC\Components\Form\Button;
 
 			$edit->name = 'Edit';
@@ -26,8 +60,8 @@
 			$edit->action = '/orders/form/{row->id}';
 
 			return $edit;
-		})(),
-		(function () {
+		},
+		function ($order) {
 			$delete = new \PHC\Components\Form\Button;
 
 			$delete->name = 'Delete';
@@ -41,7 +75,7 @@
 			];
 
 			return $delete;
-		})()
+		}
 	];
 	$table->render();
 

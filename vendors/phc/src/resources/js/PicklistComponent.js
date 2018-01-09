@@ -61,6 +61,10 @@ class PicklistComponent {
 	}
 
 	_onBlur() {
+		if (this.input.value.trim() === '') {
+			this.showSelectList.innerHTML = '';
+		}
+
 		if (this.showSelectList.innerHTML === '') {
 			this.showSelectList.style.display = 'none';
 		}

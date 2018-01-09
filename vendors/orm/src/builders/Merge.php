@@ -236,6 +236,10 @@ class Merge
 		}
 
 		foreach ($this->table->getJoins('type', 'hasMany') as $join) {
+			if (in_array(CascadeTypes::DELETE, $join->getCascade())) {
+				$this->deleteManyCascade($join);
+			}
+
 			if (in_array(CascadeTypes::UPDATE, $join->getCascade())) {
 				$this->updateManyCascade($join);
 			}
@@ -247,6 +251,47 @@ class Merge
 		$property = $join->getProperty();
 		$value = $this->object->{$property};
 		$this->object->{$property} = $this->_merge($join, $value);
+	}
+
+	private function deleteManyCascade($join)
+	{
+		$refTable = $this->orm->getTable($join->getReference());
+		$refId = $refTable->getId()->getProperty();
+
+		$id = $this->table->getId()->getProperty();
+		$value = $this->object->{$id};
+
+		$oldObject = $this->em->find($this->table->getClass(), $value);
+
+		$property = $join->getProperty();
+
+		$newValues = $this->object->{$property};
+		$oldValues = $oldObject->{$property};
+
+		if (is_null($newValues)) {
+			return;
+		}
+
+		if (!is_null($newValues) && !is_array($newValues)) {
+			$newValues = [];
+		}
+
+		if (is_array($oldValues)) {
+			foreach ($oldValues as $old) {
+				$found = false;
+
+				foreach ($newValues as $new) {
+					if ($new->{$refId} === $old->{$refId}) {
+						$found = true;
+						break;
+					}
+				}
+
+				if (!$found) {
+					$this->em->remove($old);
+				}
+			}
+		}
 	}
 
 	private function updateManyCascade(Join $join)

@@ -115,6 +115,10 @@ class Table implements IComponent
 		$actions = [];
 
 		foreach ($this->actions as $action) {
+			if (is_callable($action)) {
+				$action = $action($row);
+			}
+
 			preg_match_all($this->pattern, $action, $matches);
 			$matches = array_unique($matches[1]);
 			$placeholders = [];
@@ -158,7 +162,7 @@ class Table implements IComponent
 				$value = $function(...$args);
 			} elseif (isset($column['method'])) {
 				$method = $column['method'];
-				$args = $column['args'];
+				$args = $column['args'] ?? [];
 
 				foreach ($args as $key => $arg) {
 					if (preg_match($this->pattern, $arg, $matches)) {

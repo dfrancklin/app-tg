@@ -25,6 +25,8 @@ class Form implements IComponent
 		'button' => \PHC\Components\Form\Button::class,
 	];
 
+	private static $custom = [];
+
 	private $action;
 
 	private $method;
@@ -39,9 +41,14 @@ class Form implements IComponent
 
 	private $buttons = [];
 
+	public static function use(String $name, String $class)
+	{
+		self::$custom[$name] = $class;
+	}
+
 	public function __call(String $method, Array $parameters)
 	{
-		if (array_key_exists($method, self::COMPONENTS)) {
+		if (array_key_exists($method, array_merge(self::$custom, self::COMPONENTS))) {
 			return $this->add($method, ...$parameters);
 		} else {
 			throw new \Exception('The method "' . $method . '" does not exists on class "' . self::class . '"');
@@ -50,7 +57,12 @@ class Form implements IComponent
 
 	private function add(String $type, Array $config)
 	{
-		$component = self::COMPONENTS[$type];
+		if (array_key_exists($type, self::$custom)) {
+			$component = self::$custom[$type];
+		} else {
+			$component = self::COMPONENTS[$type];
+		}
+
 		$component = new $component;
 
 		foreach ($config as $attr => $value) {

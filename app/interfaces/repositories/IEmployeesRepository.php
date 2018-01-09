@@ -9,4 +9,6 @@ interface IEmployeesRepository extends IGenericRepository
 
 	function except($employee) : Array;
 
+	function findByEmail(String $email);
+
 }

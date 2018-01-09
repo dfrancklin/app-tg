@@ -23,6 +23,8 @@ class FW
 
 	private $watchFolders;
 
+	private $watchURI;
+
 	private $session;
 
 	protected function __construct()
@@ -33,6 +35,7 @@ class FW
 		$this->components = ['Controller', 'Service', 'Repository', 'Factory', 'Component'];
 		$this->folders = [];
 		$this->watchFolders = [];
+		$this->watchURI = '/--watched-files-have-changed';
 		$this->session = new \FW\Storage\Strategies\SessionStorageStrategy('watch');
 	}
 
@@ -43,6 +46,22 @@ class FW
 		}
 
 		return self::$instance;
+	}
+
+	public function static($path, $folders = null)
+	{
+		if (is_array($path)) {
+			$folders = $path;
+		}
+
+		if (is_string($folders)) {
+			$folders = [$folders];
+		}
+
+		$this->statics[] = [
+			'path' => $path,
+			'folders' => $folders,
+		];
 	}
 
 	public function scanComponents(String ...$folders)
@@ -74,7 +93,17 @@ class FW
 
 		$path = $_SERVER['PATH_INFO'] ?? $_SERVER['REDIRECT_URL'] ?? '/';
 
-		if ($path === '/--has-changes-to-watched-files' && $this->config->get('watching')) {
+		if (!empty($this->statics)) {
+			$file = $this->resolveStatics($path);
+
+			if ($file) {
+				echo $this->respondWithStatic($file);
+
+				return;
+			}
+		}
+
+		if ($path === $this->watchURI && $this->config->get('watching')) {
 			$hasChanges = $this->compareWatch();
 
 			if ($hasChanges) {
@@ -109,7 +138,7 @@ class FW
 	}
 
 	private function isHTML($page){
-		return $page != strip_tags($page) ? true : false;
+		return $page !== strip_tags($page) ? true : false;
 	}
 
 	private function isJSON($json){
@@ -251,19 +280,19 @@ class FW
 		$path['protocol'] = 'http' . (!empty($_SERVER['HTTPS']) ? 's' : '') . '://';
 		$path['server'] = $_SERVER['SERVER_NAME'];
 		$path['port'] = $_SERVER['SERVER_PORT'] !== '80' ? $_SERVER['SERVER_PORT'] : '';
-		$path['uri'] = '/--has-changes-to-watched-files';
+		$path['uri'] = $this->watchURI;
 
 		$url = implode('', $path);
 
 		$script = "<script>
-			(function() {
+			(_ => {
 				xhttp = new XMLHttpRequest();
 
 				xhttp.onreadystatechange = _ => {
 					if (xhttp.readyState === 4 && xhttp.status === 200) {
 						if (xhttp.response === 'true') {
 							console.log('refreshing...');
-							setTimeout(_=> window.location.reload(), 500);
+							setTimeout(_ => window.location.reload(), 500);
 						}
 					}
 				};
@@ -275,12 +304,111 @@ class FW
 			})();
 		</script>";
 
-		if (!empty($page) && strpos('</head>', $page)) {
+		if (!empty($page) && strpos($page, '</head>')) {
 			list($top, $botton) = preg_split('/<\/head>/i', $page);
 
 			return implode('', [$top, $script, '</head>', $botton]);
 		} else {
 			return $script . $page;
+		}
+	}
+
+	private function resolveStatics($path)
+	{
+		foreach ($this->statics as $static) {
+			$static['path'] = rtrim($static['path'], '/') . '/';
+			$pattern = '/^' . str_replace('/', '\/', $static['path']) . '(.*)/i';
+
+			if (preg_match($pattern, $path, $matches)) {
+				foreach ($static['folders'] as $folder) {
+					$file = $folder . '/' . $matches[1];
+
+					if (file_exists($file) && !is_dir($file)) {
+						return $file;
+					}
+				}
+			}
+		}
+	}
+
+	private function respondWithStatic($file)
+	{
+		header('Content-Type: ' . $this->getMime($file));
+		header('Content-Length: ' . filesize($file));
+
+		return file_get_contents($file);
+	}
+
+	private function getMime($file)
+	{
+		$mime_types = array(
+			'txt' => 'text/plain',
+			'htm' => 'text/html',
+			'html' => 'text/html',
+			'php' => 'text/html',
+			'css' => 'text/css',
+			'js' => 'application/javascript',
+			'json' => 'application/json',
+			'xml' => 'application/xml',
+			'swf' => 'application/x-shockwave-flash',
+			'flv' => 'video/x-flv',
+
+			// images
+			'png' => 'image/png',
+			'jpe' => 'image/jpeg',
+			'jpeg' => 'image/jpeg',
+			'jpg' => 'image/jpeg',
+			'gif' => 'image/gif',
+			'bmp' => 'image/bmp',
+			'ico' => 'image/vnd.microsoft.icon',
+			'tiff' => 'image/tiff',
+			'tif' => 'image/tiff',
+			'svg' => 'image/svg+xml',
+			'svgz' => 'image/svg+xml',
+
+			// archives
+			'zip' => 'application/zip',
+			'rar' => 'application/x-rar-compressed',
+			'exe' => 'application/x-msdownload',
+			'msi' => 'application/x-msdownload',
+			'cab' => 'application/vnd.ms-cab-compressed',
+
+			// audio/video
+			'mp3' => 'audio/mpeg',
+			'qt' => 'video/quicktime',
+			'mov' => 'video/quicktime',
+
+			// adobe
+			'pdf' => 'application/pdf',
+			'psd' => 'image/vnd.adobe.photoshop',
+			'ai' => 'application/postscript',
+			'eps' => 'application/postscript',
+			'ps' => 'application/postscript',
+
+			// ms office
+			'doc' => 'application/msword',
+			'rtf' => 'application/rtf',
+			'xls' => 'application/vnd.ms-excel',
+			'ppt' => 'application/vnd.ms-powerpoint',
+
+			// open office
+			'odt' => 'application/vnd.oasis.opendocument.text',
+			'ods' => 'application/vnd.oasis.opendocument.spreadsheet',
+		);
+
+		$ext = explode('.', $file);
+		$ext = end($ext);
+		$ext = strtolower($ext);
+
+		if (array_key_exists($ext, $mime_types)) {
+			return $mime_types[$ext];
+		} elseif (function_exists('finfo_open')) {
+			$finfo = finfo_open(FILEINFO_MIME);
+			$mimetype = finfo_file($finfo, $file);
+			finfo_close($finfo);
+			return $mimetype;
+		} else {
+			return 'application/octet-stream';
 		}
 	}
 

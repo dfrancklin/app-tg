@@ -14,6 +14,7 @@
 		'name' => 'name',
 		'hideLabel' => true,
 		'required' => true,
+		'autofocus' => true,
 		'value' => !is_null($this->employee) ? $this->employee->name : ''
 	]);
 	$this->form->input([
@@ -78,7 +79,7 @@
 	$this->form->button([
 		'name' => 'save',
 		'style' => 'primary',
-		'icon' => 'add_circle',
+		'icon' => 'save',
 		'type' => 'submit',
 	]);
 
@@ -103,6 +104,29 @@
 	]);
 
 	$this->form->render();
+
+	if ($this->employee) {
+		$employee = $this->employee;
+
+		$modal = new \PHC\Components\Modal;
+		$modal->name = 'confirm-modal';
+		$modal->title = 'Are you sure?';
+		$modal->body = '<p>Are you sure that you want to delete this item permanently?</p>';
+		$modal->actions = [
+			(function () use ($employee) {
+				$delete = new \PHC\Components\Form\Button;
+
+				$delete->name = 'Delete';
+				$delete->type = 'link';
+				$delete->icon = 'delete';
+				$delete->style = 'danger';
+				$delete->action = '/employees/delete/' . $employee->id;
+
+				return $delete;
+			})()
+		];
+		$modal->render();
+	}
 ?>
 
 <?php if (!is_null($this->employee)) : ?>

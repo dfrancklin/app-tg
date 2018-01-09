@@ -1,4 +1,20 @@
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule . index.php [L]
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+	#CSS Files
+	RewriteBase /
+	RewriteRule ^(.+)\.(css)$ /index.php [NC,L]
+
+	#JS Files
+	RewriteBase /
+	RewriteRule ^(.+)\.(js|json)$ /index.php [NC,L]
+
+	#Image Files
+	RewriteBase /
+	RewriteRule ^(.+)\.(png|jpe|jpeg|jpg|gif|bmp|ico|tiff|tif|svg|svgz)$ /index.php [NC,L]
+
+	RewriteBase /
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^(.*)$ /index.php [NC,L,QSA]
+</IfModule>

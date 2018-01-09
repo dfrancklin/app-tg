@@ -112,7 +112,6 @@ class CategoriesController
 	/**
 	 * @RequestMap /json
 	 * @RequestMethod POST
-	 * @Roles ADMIN
 	 */
 	public function json()
 	{

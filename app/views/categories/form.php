@@ -14,12 +14,13 @@
 		'name' => 'name',
 		'hideLabel' => true,
 		'required' => true,
+		'autofocus' => true,
 		'value' => !is_null($this->category) ? $this->category->name : ''
 	]);
 	$this->form->button([
 		'name' => 'save',
 		'style' => 'primary',
-		'icon' => 'add_circle',
+		'icon' => 'save',
 		'type' => 'submit',
 	]);
 
@@ -45,24 +46,27 @@
 
 	$this->form->render();
 
-	if (!is_null($this->category)) {
-		$modal = new \PHC\Components\Modal;
 
+	if ($this->category) {
+		$category = $this->category;
+
+		$modal = new \PHC\Components\Modal;
 		$modal->name = 'confirm-modal';
 		$modal->title = 'Are you sure?';
 		$modal->body = '<p>Are you sure that you want to delete this item permanently?</p>';
-		$modal->actions = [(function () {
-			$delete = new \PHC\Components\Form\Button;
+		$modal->actions = [
+			(function () use ($category) {
+				$delete = new \PHC\Components\Form\Button;
 
-			$delete->name = 'Delete';
-			$delete->type = 'link';
-			$delete->action = '/categories/delete/' . $this->category->id;
-			$delete->icon = 'delete';
-			$delete->style = 'danger';
+				$delete->name = 'Delete';
+				$delete->type = 'link';
+				$delete->icon = 'delete';
+				$delete->style = 'danger';
+				$delete->action = '/categories/delete/' . $category->id;
 
-			return $delete;
-		})()];
-
+				return $delete;
+			})()
+		];
 		$modal->render();
 	}
 ?>

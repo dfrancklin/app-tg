@@ -7,6 +7,8 @@ use FW\Core\FlashMessages;
 
 use FW\View\IViewFactory;
 
+use FW\Security\ISecurityService;
+
 use PHC\Components\Form;
 
 use App\Models\Order;
@@ -14,6 +16,8 @@ use App\Models\Order;
 use App\Interfaces\Services\IOrdersService;
 use App\Interfaces\Services\ICustomersService;
 use App\Interfaces\Services\IEmployeesService;
+
+use App\Components\ProductPicklist;
 
 /**
  * @Controller
@@ -36,13 +40,16 @@ class OrdersController
 		IViewFactory $factory,
 		IOrdersService $ordersService,
 		ICustomersService $customersService,
-		IEmployeesService $employeesService
+		IEmployeesService $employeesService,
+		ISecurityService $security
 	)
 	{
+
 		$this->factory = $factory;
 		$this->ordersService = $ordersService;
 		$this->customersService = $customersService;
 		$this->employeesService = $employeesService;
+		$this->security = $security;
 		$this->message = FlashMessages::getInstance();
 	}
 
@@ -104,11 +111,11 @@ class OrdersController
 
 		if ($order) {
 			$this->message->info('Order saved!');
+			Router::redirect('/orders/form/' . $order->id);
 		} else {
 			$this->message->error('A problem occurred while saving the order!');
+			Router::redirect('/orders');
 		}
-
-		Router::redirect('/orders');
 	}
 
 	/**
@@ -125,6 +132,20 @@ class OrdersController
 		Router::redirect('/orders');
 	}
 
+	/**
+	 * @RequestMap /finish/{id}
+	 */
+	public function finish($id)
+	{
+		if ($this->ordersService->finish($id)) {
+			$this->message->info('Order finished!');
+		} else {
+			$this->message->error('A problem occurred while finishing the order!');
+		}
+
+		Router::redirect('/orders');
+	}
+
 	private function form($order = null)
 	{
 		$view = $this->factory::create();
@@ -132,8 +153,10 @@ class OrdersController
 		$view->pageTitle = (is_null($order) ? 'New' : 'Update') . ' Order';
 		$view->order = $order;
 		$view->customers = $this->createCustomersList();
-		$view->employees = $this->createEmployeesList();
 		$view->form = new Form;
+		$view->scripts = ['/public/js/ProductPicklist.js'];
+
+		Form::use('products', ProductPicklist::class);
 
 		return $view->render('orders/form');
 	}
@@ -149,56 +172,48 @@ class OrdersController
 		return $customers;
 	}
 
-	private function createEmployeesList() : Array
-	{
-		$employees = ['' => 'Employee'];
-
-		array_map(function($item) use (&$employees) {
-			return $employees[$item->id] = $item->name;
-		}, $this->employeesService->all());
-
-		return $employees;
-	}
-
 	private function createOrder() : Order
 	{
-		// $properties = ['id', 'name', 'email', 'admission-date', 'supervisor'];
-		// $order = new Order;
+		$order = new Order;
 
-		// foreach ($properties as $property) {
-		// 	$value = $_POST[$property];
+		if (!empty($_POST['id'])) {
+			$order->id = (int) $_POST['id'];
+		}
 
-		// 	if (!empty($value)) {
-		// 		if ($property === 'admission-date') {
-		// 			$order->admissionDate = new \DateTime($value);
-		// 		} else {
-		// 			$order->{$property} = $value;
-		// 		}
-		// 	}
-		// }
+		$order->date = new \DateTime;
 
-		// if (!empty($_POST['supervisor'])) {
-		// 	$supervisor = new Order;
-		// 	$supervisor->id = (int) $_POST['supervisor'];
+		$order->customer = new \App\Models\Customer;
+		$order->customer->id = (int) $_POST['customer'];
 
-		// 	$order->supervisor = $supervisor;
-		// }
+		$email = $this->security->getUserProfile()->getId();
+		$order->salesman = $this->employeesService->findByEmail($email);
 
-		// if (!empty($_POST['roles'])) {
-		// 	$roles = [];
 
-		// 	foreach ($_POST['roles'] as $r) {
-		// 		$role = new Role;
-		// 		$role->id = (int) $r['value'];
-		// 		$role->name = $r['label'];
-		// 		$roles[] = $role;
-		// 	}
+		if (!empty($_POST['products'])) {
+			$items = [];
 
-		// 	$order->roles = $roles;
-		// }
+			foreach ($_POST['products'] as $product) {
+				$item = new \App\Models\ItemOrder;
 
-		// return $order;
-		die('Saving...');
+				if (!empty($product['item-id'])) {
+					$item->id = (int) $product['item-id'];
+				}
+
+				$item->order = $order;
+				$item->product = new \App\Models\Product;
+				$item->product->id = (int) $product['id'];
+				$item->product->name = $product['name'];
+				$item->quantity = $product['quantity'];
+				$item->price = $product['price'];
+
+				$items[] = $item;
+			}
+
+			$order->items = $items;
+		}
+
+		return $order;
+		// vd($order);
 	}
 
 }

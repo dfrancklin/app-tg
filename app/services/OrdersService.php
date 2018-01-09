@@ -33,6 +33,21 @@ class OrdersService implements IOrdersService
 		return $this->repository->findById($id);
 	}
 
+	public function finish($id)
+	{
+		$order = $this->findById($id);
+
+		if (!$order) {
+			return false;
+		}
+
+		$order->finished = true;
+
+		$order = $this->save($order);
+
+		return $order->finished;
+	}
+
 	public function save($object)
 	{
 		return $this->repository->save($object);

@@ -92,6 +92,7 @@ body {
 	font-size: 115%;
 }
 
+
 /*---------------------------*/
 
 @media (min-width: 992px) {
@@ -119,4 +120,65 @@ body {
 
 form#confirm-form {
 	margin-bottom: 0;
+}
+
+
+/*---------------------------*/
+
+.component__product-picklist {
+	position: relative;
+}
+
+.component__product-picklist .loader {
+	animation: spin 1s infinite linear;
+	position: absolute;
+	/* right: 25px; */
+	z-index: 10;
+	font-size: 20px;
+	display: none;
+}
+
+.component__product-picklist .show-select-list {
+	display: none;
+	padding: .5rem 0;
+	font-size: 1rem;
+	line-height: 1.25;
+	color: #495057;
+	background-color: #fff;
+	background-image: none;
+	background-clip: padding-box;
+	border: 1px solid rgba(0, 0, 0, .15);
+	border-radius: .25rem;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	position: absolute;
+	max-height: 150px;
+	overflow-y: visible;
+	overflow-x: auto;
+	box-shadow: 2px 7px 12px rgba(0, 0, 0, 0.4);
+	z-index: 10;
+	left: 15px;
+	right: 15px;
+}
+
+.component__product-picklist .show-select-list ul {
+	padding: 0;
+	list-style: none;
+	margin: 0;
+}
+
+.component__product-picklist .show-select-list a {
+	display: block;
+	padding: 0.25em 1em;
+	color: inherit;
+	line-height: 25px;
+}
+
+.component__product-picklist .show-select-list a:hover {
+	color: inherit;
+	text-decoration: none;
+	background-color: #ddd;
+}
+
+.component__product-picklist .show-select-list img {
+	height: 25px;
 }

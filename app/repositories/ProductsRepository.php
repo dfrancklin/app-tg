@@ -34,6 +34,23 @@ class ProductsRepository implements IProductsRepository
 		return $this->em->find(Product::class, $id);
 	}
 
+	public function searchByName(String $search) : Array
+	{
+		$query = $this->em->createQuery(Product::class);
+
+		if (!empty($search)) {
+			$query->where('p.name')->contains($search)->and('p.quantity')->greaterThan(0);
+		}
+
+		$list = $query->list();
+
+		if (!empty($list)) {
+			return $list;
+		}
+
+		return [];
+	}
+
 	public function save($product)
 	{
 		$this->em->beginTransaction();

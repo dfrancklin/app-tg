@@ -9,4 +9,6 @@ interface IEmployeesService extends IGenericService
 
 	function except($employee) : Array;
 
+	function findByEmail(String $email);
+
 }

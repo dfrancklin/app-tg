@@ -33,6 +33,11 @@ class Order
 	public $date;
 
 	/**
+	 * @ORM/HasMany(class=App\Models\ItemOrder, cascade={ALL})
+	 */
+	public $items;
+
+	/**
 	 * @ORM/Column(type=bool)
 	 */
 	public $finished;

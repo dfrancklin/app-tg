@@ -38,6 +38,15 @@ class EmployeesRepository implements IEmployeesRepository
 		return $employees;
 	}
 
+	public function findByEmail(String $email)
+	{
+		$query = $this->em->createQuery(Employee::class);
+		$query->where('e.email')->eq($email);
+		$employee = $query->one();
+
+		return $employee;
+	}
+
 	public function all() : Array
 	{
 		return $this->em->list(Employee::class);

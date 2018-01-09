@@ -2,7 +2,7 @@
 	<?=$pageTitle?>
 
 	<a href="/categories/form" class="btn btn-primary">
-		New <span class="material-icons">add_circle</span>
+		New <span class="material-icons">add_circle_outline</span>
 	</a>
 </h1>
 

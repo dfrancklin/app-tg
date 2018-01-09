@@ -33,6 +33,11 @@ class ProductsService implements IProductsService
 		return $this->repository->findById($id);
 	}
 
+	public function searchByName(String $search) : Array
+	{
+		return $this->repository->searchByName($search);
+	}
+
 	public function save($product)
 	{
 		return $this->repository->save($product);

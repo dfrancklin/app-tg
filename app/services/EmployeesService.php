@@ -38,6 +38,11 @@ class EmployeesService implements IEmployeesService
 		return $employee;
 	}
 
+	public function findByEmail(String $email)
+	{
+		return $this->repository->findByEmail($email);
+	}
+
 	public function except($employee) : Array
 	{
 		return $this->repository->except($employee);
