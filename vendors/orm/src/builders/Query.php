@@ -121,6 +121,17 @@ class Query
 		$query = $this->generateQuery();
 		$statement = $this->connection->prepare($query);
 		$executed = $statement->execute($this->values);
+
+		if (isset($this->logger)) {
+			$log = $query;
+
+			if (!empty($this->values)) {
+				$log .= "\n" . print_r($this->values, true);
+			}
+
+			$this->logger->debug($log, static::class);
+		}
+
 		$resultSet = [];
 
 		if ($executed) {
@@ -140,6 +151,17 @@ class Query
 		$query = $this->generateQuery();
 		$statement = $this->connection->prepare($query);
 		$executed = $statement->execute($this->values);
+
+		if (isset($this->logger)) {
+			$log = $query;
+
+			if (!empty($this->values)) {
+				$log .= "\n" . print_r($this->values, true);
+			}
+
+			$this->logger->debug($log, static::class);
+		}
+
 		$resultSet = null;
 
 		if ($executed) {
@@ -231,7 +253,7 @@ class Query
 		foreach ($table->getColumns() as $column) {
 			$name = $column->getName();
 
-			if (isset($resultSet[$name])) {
+			if (in_array($name, array_keys($resultSet))) {
 				$value = $resultSet[$name];
 				$type = $column->getType();
 				$property = $column->getProperty();
@@ -251,7 +273,7 @@ class Query
 		foreach ($joins as $column) {
 			$name = $column->getName();
 
-			if (isset($resultSet[$name])) {
+			if (in_array($name, array_keys($resultSet))) {
 				$value = $resultSet[$name];
 				$type = $column->getType();
 				$property = $column->getProperty();

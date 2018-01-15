@@ -9,13 +9,20 @@
 <hr>
 
 <?php
+	$security = $this->security;
 	$table = new \PHC\Components\Table;
 	$table->resource = $this->orders;
 	$table->columns = [
 		'#' => 'id',
 		'Customer' => ['customer', 'name'],
 		'Salesman' => ['salesman', 'name'],
-		'Date' => ['date', ['method' => 'format', 'args' => ['d/m/Y']]],
+		'Date' => [
+			'date',
+			[
+				'method' => 'format',
+				'args' => ['d/m/Y']
+			]
+		],
 		'Total' => function($order) {
 			$total = 0;
 
@@ -41,7 +48,7 @@
 			$view->icon = 'visibility';
 			$view->size = 's';
 			$view->style = 'primary';
-			$view->action = '/orders/view/{row->id}';
+			$view->action = '/orders/view/' . $order->id;
 
 			return $view;
 		},
@@ -57,11 +64,15 @@
 			$edit->icon = 'edit';
 			$edit->size = 's';
 			$edit->style = 'success';
-			$edit->action = '/orders/form/{row->id}';
+			$edit->action = '/orders/form/' . $order->id;
 
 			return $edit;
 		},
-		function ($order) {
+		function ($order) use ($security) {
+			if ($order->finished && !$security->hasRoles(['ADMIN'])) {
+				return;
+			}
+
 			$delete = new \PHC\Components\Form\Button;
 
 			$delete->name = 'Delete';
@@ -71,7 +82,7 @@
 			$delete->additional = [
 				'data-toggle'=> 'modal',
 				'data-target'=> '#confirm-modal',
-				'data-id'=> '{row->id}'
+				'data-id'=> $order->id
 			];
 
 			return $delete;

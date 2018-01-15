@@ -84,6 +84,16 @@ class Persist
 		$statement = $this->connection->prepare($query);
 		$executed = $statement->execute($this->values);
 
+		if (isset($this->logger)) {
+			$log = $query;
+
+			if (!empty($this->values)) {
+				$log .= "\n" . print_r($this->values, true);
+			}
+
+			$this->logger->debug($log, static::class);
+		}
+
 		if (!$statement->rowCount()) {
 			throw new \Exception('Something went wrong while persistting a register');
 		}
@@ -114,6 +124,10 @@ class Persist
 		if (in_array($this->connection->getDriver()->GENERATE_ID_TYPE, ['QUERY', 'SEQUENCE'])) {
 			$statement = $this->connection->prepare($this->connection->getDriver()->GENERATE_ID_QUERY);
 			$executed = $statement->execute();
+
+			if (isset($this->logger)) {
+				$this->logger->debug($this->connection->getDriver()->GENERATE_ID_QUERY, static::class);
+			}
 
 			if ($executed) {
 				$next = $statement->fetch(\PDO::FETCH_NUM);
@@ -197,6 +211,16 @@ class Persist
 
 			$statement = $this->connection->prepare($sql);
 			$statement->execute($values);
+
+			if (isset($this->logger)) {
+				$log = $sql;
+
+				if (!empty($values)) {
+					$log .= "\n" . print_r($values, true);
+				}
+
+				$this->logger->debug($log, static::class);
+			}
 		}
 	}
 
@@ -286,6 +310,10 @@ class Persist
 		}
 
 		$builder = new $builder($this->connection, $this->em);
+
+		if ($this->logger) {
+			$builder->logger = $this->logger;
+		}
 
 		if ($builder instanceof Persist) {
 			$newValue = $builder->exec($value, $this->original);

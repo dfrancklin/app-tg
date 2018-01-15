@@ -4,13 +4,19 @@ $config = \FW\Core\Config::getInstance();
 
 $orm = \ORM\Orm::getInstance();
 
-$file = $config->get('connection-file');
+$connectionFile = $config->get('connection-file');
+$logFile = $config->get('log-file');
 
-if ($file) {
-	$orm->setConnectionsFile($file);
+if ($connectionFile) {
+	$orm->setConnectionsFile($connectionFile);
+}
+
+if ($logFile) {
+	$orm->setLogger($logFile, \ORM\Logger\Logger::ERROR);
 }
 
 $initDatabase = new \App\Helpers\InitDatabase;
+
 $orm->setConnection('sqlite', [
 	'namespace' => 'App\\Models',
 	'modelsFolder' => __DIR__ . '/models/',

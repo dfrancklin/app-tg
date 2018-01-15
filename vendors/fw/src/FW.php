@@ -264,6 +264,10 @@ class FW
 		$times = [];
 
 		foreach (glob($folder . '/*') as $entry) {
+			if (strpos($entry, '.log')) {
+				continue;
+			}
+
 			if (is_dir($entry)) {
 				$_times = $this->loadModificationTime($entry);
 				$times = array_merge($times, $_times);

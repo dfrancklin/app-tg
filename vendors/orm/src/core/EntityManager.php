@@ -11,6 +11,7 @@ use ORM\Builders\Remove;
 
 use ORM\Interfaces\IConnection;
 use ORM\Interfaces\IEntityManager;
+use ORM\Interfaces\ILogger;
 
 class EntityManager implements IEntityManager
 {
@@ -19,9 +20,10 @@ class EntityManager implements IEntityManager
 
 	private $transactionActive;
 
-	public function __construct(IConnection $connection)
+	public function __construct(IConnection $connection, ILogger $logger)
 	{
 		$this->connection = $connection;
+		$this->logger = $logger;
 		$this->orm = Orm::getInstance();
 	}
 
@@ -52,6 +54,10 @@ class EntityManager implements IEntityManager
 	public function createQuery(String $class = null) : Query
 	{
 		$query = new Query($this->connection, $this);
+
+		if ($this->logger) {
+			$query->logger = $this->logger;
+		}
 
 		if (!empty($class)) {
 			$query->from($class);
@@ -148,6 +154,10 @@ class EntityManager implements IEntityManager
 		if ($this->exists($object)) {
 			$remove = new Remove($this->connection, $this);
 
+			if ($this->logger) {
+				$remove->logger = $this->logger;
+			}
+
 			return $remove->exec($proxy ?? $object);
 		}
 
@@ -207,6 +217,10 @@ class EntityManager implements IEntityManager
 
 		$persist = new Persist($this->connection, $this);
 
+		if ($this->logger) {
+			$persist->logger = $this->logger;
+		}
+
 		return $persist->exec($object);
 	}
 
@@ -217,6 +231,10 @@ class EntityManager implements IEntityManager
 		}
 
 		$merge = new Merge($this->connection, $this);
+
+		if ($this->logger) {
+			$merge->logger = $this->logger;
+		}
 
 		return $merge->exec($object);
 	}

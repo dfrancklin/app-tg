@@ -191,7 +191,6 @@ class ProductPicklist implements IComponent
 			</tr>
 		</tfoot>';
 		$rowTemplate = '<tr
-			data-item-id="%s"
 			data-id="%s"
 			data-name="%s"
 			data-quantity="%s"
@@ -207,7 +206,6 @@ class ProductPicklist implements IComponent
 		$rows = [];
 
 		$total = 0;
-		$inputItemId = new Hidden;
 		$inputId = new Hidden;
 		$inputName = new Hidden;
 		$inputQuantity = new Hidden;
@@ -222,30 +220,27 @@ class ProductPicklist implements IComponent
 		$button->iconOnly = true;
 
 		foreach ($this->values as $item) {
-			$inputItemId->name = $this->name . '[' . $item->id . '][item-id]';
 			$inputId->name = $this->name . '[' . $item->id . '][id]';
 			$inputName->name = $this->name . '[' . $item->id . '][name]';
 			$inputQuantity->name = $this->name . '[' . $item->id . '][quantity]';
 			$inputPrice->name = $this->name . '[' . $item->id . '][price]';
 
-			$inputItemId->value = $item->id;
 			$inputId->value = $item->product->id;
 			$inputName->value = $item->product->name;
 			$inputQuantity->value = $item->quantity;
 			$inputPrice->value = $item->price;
 
-			$button->additional = ['data-item-id' => $item->id];
+			$button->additional = ['data-id' => $item->product->id];
 
 			$subtotal = $item->price * $item->quantity;
 
 			$rows[] = sprintf(
 				$rowTemplate,
-				$item->id,
 				$item->product->id,
 				$item->product->name,
 				$item->quantity,
 				$item->price,
-				implode('', [$inputItemId, $inputId, $inputName, $inputQuantity, $inputPrice, $item->product->id]),
+				implode('', [$inputId, $inputName, $inputQuantity, $inputPrice, $item->product->id]),
 				$item->product->name,
 				$item->quantity,
 				$item->price,

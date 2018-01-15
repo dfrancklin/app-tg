@@ -9,8 +9,6 @@ use ORM\Interfaces\IConnection;
 interface IEntityManager
 {
 
-	function __construct(IConnection $connection);
-
 	function find(String $class, $id);
 
 	function list(String $class);

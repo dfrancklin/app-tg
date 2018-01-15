@@ -44,7 +44,6 @@ class OrdersController
 		ISecurityService $security
 	)
 	{
-
 		$this->factory = $factory;
 		$this->ordersService = $ordersService;
 		$this->customersService = $customersService;
@@ -72,6 +71,27 @@ class OrdersController
 
 		return $view->render('orders/home');
 	}
+
+	/**
+	 * @RequestMap /view/{id}
+	 */
+	public function view(int $id)
+	{
+		$order = $this->ordersService->findById($id);
+
+		if (!$order) {
+			$this->message->error('No order with the ID ' . $id . ' was found!');
+
+			Router::redirect('/orders');
+		}
+
+		$view = $this->factory::create();
+		$view->pageTitle = 'View Order';
+		$view->order = $order;
+
+		return $view->render('orders/view');
+	}
+
 
 	/**
 	 * @RequestMap /form/{id}
@@ -119,20 +139,6 @@ class OrdersController
 	}
 
 	/**
-	 * @RequestMap /delete/{id}
-	 */
-	public function delete($id)
-	{
-		if ($this->ordersService->delete($id)) {
-			$this->message->info('Order deleted!');
-		} else {
-			$this->message->error('A problem occurred while deleting the order!');
-		}
-
-		Router::redirect('/orders');
-	}
-
-	/**
 	 * @RequestMap /finish/{id}
 	 */
 	public function finish($id)
@@ -141,6 +147,20 @@ class OrdersController
 			$this->message->info('Order finished!');
 		} else {
 			$this->message->error('A problem occurred while finishing the order!');
+		}
+
+		Router::redirect('/orders');
+	}
+
+	/**
+	 * @RequestMap /delete/{id}
+	 */
+	public function delete($id)
+	{
+		if ($this->ordersService->delete($id)) {
+			$this->message->info('Order deleted!');
+		} else {
+			$this->message->error('A problem occurred while deleting the order!');
 		}
 
 		Router::redirect('/orders');
@@ -181,6 +201,7 @@ class OrdersController
 		}
 
 		$order->date = new \DateTime;
+		$order->finished = false;
 
 		$order->customer = new \App\Models\Customer;
 		$order->customer->id = (int) $_POST['customer'];
@@ -188,16 +209,11 @@ class OrdersController
 		$email = $this->security->getUserProfile()->getId();
 		$order->salesman = $this->employeesService->findByEmail($email);
 
-
 		if (!empty($_POST['products'])) {
 			$items = [];
 
 			foreach ($_POST['products'] as $product) {
 				$item = new \App\Models\ItemOrder;
-
-				if (!empty($product['item-id'])) {
-					$item->id = (int) $product['item-id'];
-				}
 
 				$item->order = $order;
 				$item->product = new \App\Models\Product;
@@ -213,7 +229,6 @@ class OrdersController
 		}
 
 		return $order;
-		// vd($order);
 	}
 
 }

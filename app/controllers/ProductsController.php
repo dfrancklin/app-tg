@@ -15,7 +15,6 @@ use App\Interfaces\Services\IProductsService;
  * @Controller
  * @Route /products
  * @Authenticate
- * @Roles [ADMIN, STOCK]
  */
 class ProductsController
 {
@@ -33,6 +32,9 @@ class ProductsController
 		$this->message = FlashMessages::getInstance();
 	}
 
+	/**
+	 * @Roles [ADMIN, STOCK]
+	 */
 	public function products()
 	{
 		$quantity = 10;
@@ -55,6 +57,7 @@ class ProductsController
 
 	/**
 	 * @RequestMap /form/{id}
+	 * @Roles [ADMIN, STOCK]
 	 */
 	public function edit(int $id)
 	{
@@ -70,6 +73,7 @@ class ProductsController
 
 	/**
 	 * @RequestMap /form
+	 * @Roles [ADMIN, STOCK]
 	 */
 	public function create()
 	{
@@ -78,6 +82,7 @@ class ProductsController
 
 	/**
 	 * @RequestMethod POST
+	 * @Roles [ADMIN, STOCK]
 	 */
 	public function save()
 	{
@@ -95,6 +100,7 @@ class ProductsController
 
 	/**
 	 * @RequestMap /delete/{id}
+	 * @Roles [ADMIN, STOCK]
 	 */
 	public function delete($id)
 	{

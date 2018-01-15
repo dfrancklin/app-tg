@@ -193,7 +193,7 @@ class ProductPicklist {
 					data-name="${item.name}"
 					data-quantity="${item.quantity}"
 					data-price="${item.price}"
-					>
+				>
 					${(
 						item.picture &&
 						`<img
@@ -226,14 +226,12 @@ class ProductPicklist {
 	_selectValue(evt) {
 		evt.preventDefault();
 
-		const itemId = this._getMaxListId();
 		const id = evt.target.getAttribute('data-id');
 		const name = evt.target.getAttribute('data-name');
 		const quantity = evt.target.getAttribute('data-quantity');
 		const price = evt.target.getAttribute('data-price');
 
 		this.selectedItem = {
-			itemId,
 			id,
 			name,
 			quantity: parseInt(quantity),
@@ -249,18 +247,6 @@ class ProductPicklist {
 		this.quantityInput.removeAttribute('tabindex');
 		this.addButton.removeAttribute('tabindex');
 		this.cancelButton.removeAttribute('tabindex');
-	}
-
-	_getMaxListId() {
-		let max = 0;
-
-		this.list.forEach(item => {
-			if (max < item.itemId) {
-				max = item.itemId;
-			}
-		});
-
-		return max + 1;
 	}
 
 	_updateShowSelectedList() {
@@ -290,11 +276,10 @@ class ProductPicklist {
 
 			items.push(`<tr>
 				<td class="id" style="text-align: right;">
-					<input type="hidden" name="${this.name}[${item.itemId}][item-id]" value="${item.itemId}">
-					<input type="hidden" name="${this.name}[${item.itemId}][id]" value="${item.id}">
-					<input type="hidden" name="${this.name}[${item.itemId}][name]" value="${item.name}">
-					<input type="hidden" name="${this.name}[${item.itemId}][quantity]" value="${item.quantity}">
-					<input type="hidden" name="${this.name}[${item.itemId}][price]" value="${item.price}">
+					<input type="hidden" name="${this.name}[${item.id}][id]" value="${item.id}">
+					<input type="hidden" name="${this.name}[${item.id}][name]" value="${item.name}">
+					<input type="hidden" name="${this.name}[${item.id}][quantity]" value="${item.quantity}">
+					<input type="hidden" name="${this.name}[${item.id}][price]" value="${item.price}">
 					${item.id}
 				</td>
 				<td class="name">${item.name}</td>
@@ -302,7 +287,7 @@ class ProductPicklist {
 				<td class="price" style="text-align: right;">$ ${item.price.toFixed(2)}</td>
 				<td style="text-align: right;">$ ${subtotal.toFixed(2)}</td>
 				<td>
-					<a href="#" class="btn btn-sm btn-danger" data-item-id="${item.itemId}">
+					<a href="#" class="btn btn-sm btn-danger" data-item="${item.id}">
 						<spam class="material-icons">delete</spam>
 					</a>
 				</td>
@@ -331,14 +316,12 @@ class ProductPicklist {
 		const rows = Array.from(this.showSelectedList.querySelectorAll('tbody tr'));
 
 		this.list = rows.map(item => {
-			const itemId = parseInt(item.getAttribute('data-item-id'));
 			const id = parseInt(item.getAttribute('data-id'));
 			const name = item.getAttribute('data-name');
 			const quantity = parseInt(item.getAttribute('data-quantity'));
 			const price = item.getAttribute('data-price');
 
 			return {
-				itemId,
 				id,
 				name,
 				quantity,
@@ -362,9 +345,9 @@ class ProductPicklist {
 	_removeItem(evt) {
 		evt.preventDefault();
 		const btn = evt.currentTarget;
-		const itemId = btn.getAttribute('data-item-id');
+		const id = btn.getAttribute('data-id');
 
-		this.list = this.list.filter(item => item.itemId != itemId);
+		this.list = this.list.filter(item => item.id != id);
 		this._updateShowSelectedList();
 	}
 

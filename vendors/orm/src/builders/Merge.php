@@ -79,6 +79,16 @@ class Merge
 		$statement = $this->connection->prepare($query);
 		$executed = $statement->execute($this->values);
 
+		if (isset($this->logger)) {
+			$log = $query;
+
+			if (!empty($this->values)) {
+				$log .= "\n" . print_r($this->values, true);
+			}
+
+			$this->logger->debug($log, static::class);
+		}
+
 		$this->updateManyToMany();
 		$this->updateAfter();
 
@@ -160,6 +170,16 @@ class Merge
 
 		$statement = $this->connection->prepare($sql);
 		$statement->execute($values);
+
+		if (isset($this->logger)) {
+			$log = $sql;
+
+			if (!empty($values)) {
+				$log .= "\n" . print_r($values, true);
+			}
+
+			$this->logger->debug($log, static::class);
+		}
 	}
 
 	private function insertManyToMany(Join $join)
@@ -215,6 +235,16 @@ class Merge
 
 			$statement = $this->connection->prepare($sql);
 			$statement->execute($values);
+
+			if (isset($this->logger)) {
+				$log = $sql;
+
+				if (!empty($values)) {
+					$log .= "\n" . print_r($values, true);
+				}
+
+				$this->logger->debug($log, static::class);
+			}
 		}
 	}
 
@@ -349,6 +379,11 @@ class Merge
 		}
 
 		$builder = new $builder($this->connection, $this->em);
+
+		if ($this->logger) {
+			$builder->logger = $this->logger;
+		}
+
 		$newValue = $builder->exec($value, $this->original);
 
 		if ($newValue) {

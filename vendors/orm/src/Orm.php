@@ -10,10 +10,13 @@ use ORM\Core\EntityManager;
 
 use ORM\Helpers\Annotation;
 
+use ORM\Mappers\Table;
+
+use ORM\Logger\Logger;
+
 use ORM\Interfaces\IConnection;
 use ORM\Interfaces\IEntityManager;
-
-use ORM\Mappers\Table;
+use ORM\Interfaces\ILogger;
 
 class Orm
 {
@@ -27,6 +30,8 @@ class Orm
 	private $connections;
 
 	private $defaultConnection;
+
+	private $logger;
 
 	protected function __construct()
 	{
@@ -258,7 +263,20 @@ class Orm
 
 	public function createEntityManager(String $connectionName = null) : IEntityManager
 	{
-		return new EntityManager($this->getConnection($connectionName));
+		if (!$this->logger) {
+			$this->setLogger();
+		}
+
+		return new EntityManager($this->getConnection($connectionName), $this->logger);
+	}
+
+	public function setLogger($file = null, $level = null)
+	{
+		if (!$file) {
+			$file = __DIR__ . '/../log.' . date('Y-m') . '.log';
+		}
+
+		$this->logger = new Logger($file, $level);
 	}
 
 }

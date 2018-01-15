@@ -92,6 +92,16 @@ class Remove
 		$statement = $this->connection->prepare($query);
 		$executed = $statement->execute($this->values);
 
+		if (isset($this->logger)) {
+			$log = $query;
+
+			if (!empty($this->values)) {
+				$log .= "\n" . print_r($this->values, true);
+			}
+
+			$this->logger->debug($log, static::class);
+		}
+
 		if (!($rowCount = $statement->rowCount())) {
 			throw new \Exception('Something went wrong while removing a register');
 		}
@@ -172,6 +182,16 @@ class Remove
 
 		$statement = $this->connection->prepare($sql);
 		$statement->execute($values);
+
+		if (isset($this->logger)) {
+			$log = $sql;
+
+			if (!empty($values)) {
+				$log .= "\n" . print_r($values, true);
+			}
+
+			$this->logger->debug($log, static::class);
+		}
 	}
 
 	private function removeBefore() : int
