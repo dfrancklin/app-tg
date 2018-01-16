@@ -24,22 +24,19 @@ class ProductPicklist {
 			return;
 		}
 
-		const fg = this.root.querySelector('.form-group');
-
-		this.showSelectList.style.top = fg.offsetHeight + 5;
-		this.showSelectList.style.width = fg.offsetWidth - 30;
-		this.loader.style.top = fg.offsetHeight - 35;
-		this.loader.style.left = fg.offsetWidth - 40;
-
 		this._binds();
 		this._loadPreset();
 		this._addEventListeners();
+
+		this._updatePosition();
 	}
 
 	_binds() {
 		this._onBlur = this._onBlur.bind(this);
 		this._onFocus = this._onFocus.bind(this);
 		this._onKeyUp = this._onKeyUp.bind(this);
+		this._onKeyPress = this._onKeyPress.bind(this);
+		this._onPressEnter = this._onPressEnter.bind(this);
 		this._onAdd = this._onAdd.bind(this);
 		this._onCancel = this._onCancel.bind(this);
 		this._fetchData = this._fetchData.bind(this);
@@ -48,14 +45,29 @@ class ProductPicklist {
 		this._onReady = this._onReady.bind(this);
 		this._selectValue = this._selectValue.bind(this);
 		this._removeItem = this._removeItem.bind(this);
+		this._updatePosition = this._updatePosition.bind(this);
 	}
 
 	_addEventListeners() {
 		this.searchInput.addEventListener('blur', this._onBlur, false);
 		this.searchInput.addEventListener('focus', this._onFocus, false);
 		this.searchInput.addEventListener('keyup', this._onKeyUp, false);
+		this.searchInput.addEventListener('keypress', this._onKeyPress, false);
+		this.quantityInput.addEventListener('keypress', this._onPressEnter, false);
 		this.addButton.addEventListener('click', this._onAdd, false);
 		this.cancelButton.addEventListener('click', this._onCancel, false);
+
+		window.addEventListener('resize', this._updatePosition, false);
+	}
+
+	_updatePosition() {
+		const fg = this.root.querySelector('.form-group');
+
+		this.showSelectList.style.top = fg.offsetHeight + 5;
+		this.showSelectList.style.width = fg.offsetWidth - 30;
+		this.loader.style.top = fg.offsetHeight - 35;
+		this.loader.style.left = fg.offsetWidth - 40;
+
 	}
 
 	_onBlur() {
@@ -69,7 +81,7 @@ class ProductPicklist {
 	}
 
 	_onFocus() {
-		if (this.searchInput.value.trim() === '') {
+		if (this.searchInput.value.trim() !== '') {
 			this._onKeyUp();
 		}
 	}
@@ -98,6 +110,24 @@ class ProductPicklist {
 		this.timeout = setTimeout(this._fetchData, 500);
 	}
 
+	_onKeyPress(evt) {
+		const key = evt && (evt.which || evt.keyCode);
+
+		if (key === 13) {
+			evt.preventDefault();
+			this.quantityInput.focus();
+		}
+	}
+
+	_onPressEnter(evt) {
+		const key = evt && (evt.which || evt.keyCode);
+
+		if (key === 13) {
+			evt.preventDefault();
+			this.addButton.click();
+		}
+	}
+
 	_onAdd(evt) {
 		evt.preventDefault();
 
@@ -105,16 +135,27 @@ class ProductPicklist {
 			return;
 		}
 
-		if (this.quantityInput.value.trim()) {
+		if (this.quantityInput.value.trim() && this.quantityInput.value > 0) {
+			if (this.quantityInput.value > this.quantityInput.max) {
+				this.quantityInput.value = this.quantityInput.max;
+				this.quantityInput.focus();
+				return;
+			}
+
 			this.selectedItem.quantity = parseInt(this.quantityInput.value);
+		} else {
+			this.quantityInput.value = 1;
+			this.quantityInput.focus();
+			return;
 		}
 
 		this.list.push(this.selectedItem);
 
 		this.selectedItem = null;
+		this.searchInput.value = null;
+		this.quantityInput.value = null;
+
 		this.searchInput.focus();
-		this.searchInput.value = '';
-		this.quantityInput.value = '';
 
 		this._updateShowSelectedList();
 	}
@@ -154,13 +195,16 @@ class ProductPicklist {
 
 	_onReady() {
 		if (this.request.readyState === 4 && this.request.status === 200) {
-			if (!this.request.response || this.request.response.trim()) {
+			let list = [];
+
+			if (this.request.response && this.request.response.trim()) {
+				list = JSON.parse(this.request.response);
+				list = this._removeUsedItems(list);
+				this._updateShowSelectList(list);
+			} else {
 				this._updateShowSelectList([]);
 			}
 
-			let list = JSON.parse(this.request.response);
-			list = this._removeUsedItems(list);
-			this._updateShowSelectList(list);
 			this._clear();
 		}
 	}
@@ -240,7 +284,7 @@ class ProductPicklist {
 
 		this.searchInput.value = name;
 		this.quantityInput.max = quantity;
-		this.quantityInput.value = quantity;
+		this.quantityInput.value = 1;
 		this.quantityInput.focus();
 		this.showSelectList.innerHTML = '';
 		this.showSelectList.style.display = 'none';
@@ -287,7 +331,7 @@ class ProductPicklist {
 				<td class="price" style="text-align: right;">$ ${item.price.toFixed(2)}</td>
 				<td style="text-align: right;">$ ${subtotal.toFixed(2)}</td>
 				<td>
-					<a href="#" class="btn btn-sm btn-danger" data-item="${item.id}">
+					<a href="#" class="btn btn-sm btn-danger" data-id="${item.id}">
 						<spam class="material-icons">delete</spam>
 					</a>
 				</td>
