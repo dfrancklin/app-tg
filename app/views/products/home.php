@@ -16,8 +16,9 @@
 		'Picture' => function($row) {
 			if ($row->picture){
 				return sprintf(
-					'<img src="%s" alt="%s" class="img-fluid rounded d-block mx-auto">',
+					'<img src="%s" title="%s" alt="%s" class="img-fluid rounded d-block mx-auto">',
 					$row->picture,
+					$row->name,
 					$row->name
 				);
 			}

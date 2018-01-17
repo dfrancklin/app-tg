@@ -34,24 +34,29 @@ class OrdersRepository implements IOrdersRepository
 		return $this->em->find(Order::class, $id);
 	}
 
-	public function save($employee)
+	public function save($order)
 	{
 		$this->em->beginTransaction();
-		$employee = $this->em->save($employee);
+
+		if ($order->finished) {
+			$this->updateProducts($order);
+		}
+
+		$order = $this->em->save($order);
 		$this->em->commit();
 
-		return $employee;
+		return $order;
 	}
 
 	public function delete(int $id) : bool
 	{
-		$employee = $this->findById($id);
+		$order = $this->findById($id);
 
 		$this->em->beginTransaction();
-		$employee = $this->em->remove($employee);
+		$order = $this->em->remove($order);
 		$this->em->commit();
 
-		return $employee > 0;
+		return $order > 0;
 	}
 
 	public function total() : int
@@ -60,6 +65,21 @@ class OrdersRepository implements IOrdersRepository
 		$count = $query->count('o.id', 'total')->one();
 
 		return $count['total'] ?? 0;
+	}
+
+	private function updateProducts($order)
+	{
+		if (empty($order->items)) {
+			return;
+		}
+
+		foreach ($order->items as $item) {
+			$product = $item->product;
+			$newQuantity = $item->product->quantity - $item->quantity;
+			$product->quantity = $newQuantity;
+
+			$this->em->save($product);
+		}
 	}
 
 }

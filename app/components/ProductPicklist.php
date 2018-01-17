@@ -176,6 +176,7 @@ class ProductPicklist implements IComponent
 		$head = '<thead class="thead-inverse">
 			<tr>
 				<th style="width: 5%%; text-align: right;">#</th>
+				<th style="width: 5%%;">Picture</th>
 				<th>%s</th>
 				<th style="width: 10%%; text-align: right;">Quantity</th>
 				<th style="width: 10%%; text-align: right;">Price</th>
@@ -186,17 +187,20 @@ class ProductPicklist implements IComponent
 		$body = '<tbody>%s</tbody>';
 		$foot = '<tfoot class="text-white bg-dark">
 			<tr class="font-weight-bold text-right">
-				<td colspan="4">Total</td>
-				<td colspan="2">$ %.2f</td>
+				<td colspan="5">Total</td>
+				<td>$ %.2f</td>
+				<td></td>
 			</tr>
 		</tfoot>';
 		$rowTemplate = '<tr
 			data-id="%s"
+			data-picture="%s"
 			data-name="%s"
 			data-quantity="%s"
 			data-price="%s"
 		>
 			<td class="id" style="text-align: right;">%s</td>
+			<td class="picture" style="text-align: center;">%s</td>
 			<td class="name">%s</td>
 			<td class="quantity" style="text-align: right;">%s</td>
 			<td class="price" style="text-align: right;">$ %.2f</td>
@@ -207,6 +211,7 @@ class ProductPicklist implements IComponent
 
 		$total = 0;
 		$inputId = new Hidden;
+		$inputPicture = new Hidden;
 		$inputName = new Hidden;
 		$inputQuantity = new Hidden;
 		$inputPrice = new Hidden;
@@ -220,12 +225,14 @@ class ProductPicklist implements IComponent
 		$button->iconOnly = true;
 
 		foreach ($this->values as $item) {
-			$inputId->name = $this->name . '[' . $item->id . '][id]';
-			$inputName->name = $this->name . '[' . $item->id . '][name]';
-			$inputQuantity->name = $this->name . '[' . $item->id . '][quantity]';
-			$inputPrice->name = $this->name . '[' . $item->id . '][price]';
+			$inputId->name = $this->name . '[' . $item->product->id . '][id]';
+			$inputPicture->name = $this->name . '[' . $item->product->id . '][picture]';
+			$inputName->name = $this->name . '[' . $item->product->id . '][name]';
+			$inputQuantity->name = $this->name . '[' . $item->product->id . '][quantity]';
+			$inputPrice->name = $this->name . '[' . $item->product->id . '][price]';
 
 			$inputId->value = $item->product->id;
+			$inputPicture->value = $item->product->picture;
 			$inputName->value = $item->product->name;
 			$inputQuantity->value = $item->quantity;
 			$inputPrice->value = $item->price;
@@ -237,10 +244,28 @@ class ProductPicklist implements IComponent
 			$rows[] = sprintf(
 				$rowTemplate,
 				$item->product->id,
+				$item->product->picture,
 				$item->product->name,
 				$item->quantity,
 				$item->price,
-				implode('', [$inputId, $inputName, $inputQuantity, $inputPrice, $item->product->id]),
+				implode('', [
+					$inputId,
+					$inputPicture,
+					$inputName,
+					$inputQuantity,
+					$inputPrice,
+					$item->product->id
+				]),
+				(
+					$item->product->picture ?
+						sprintf(
+							'<img src="%s" title="%s" alt="%s" class="img-fluid rounded d-block mx-auto">',
+							$item->product->picture,
+							$item->product->name,
+							$item->product->name
+						) :
+						''
+				),
 				$item->product->name,
 				$item->quantity,
 				$item->price,

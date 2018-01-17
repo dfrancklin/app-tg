@@ -17,7 +17,21 @@
 	$table = new \PHC\Components\Table;
 	$table->resource = $this->order->items;
 	$table->columns = [
-		'#' => ['product', 'name'],
+		'#' => ['product', 'id'],
+		'Name' => function($item) {
+			$product = $item->product;
+			return '<a href="/products/form/' . $product->id . '">' . $product->name . '</a>';
+		},
+		'Picture' => function($row) {
+			if ($row->product->picture){
+				return sprintf(
+					'<img src="%s" title="%s" alt="%s" class="img-fluid rounded d-block mx-auto">',
+					$row->product->picture,
+					$row->product->name,
+					$row->product->name
+				);
+			}
+		},
 		'Quantity' => 'quantity',
 		'Price' => function($item) {
 			return '$ ' . number_format($item->price, 2);

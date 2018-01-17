@@ -43,7 +43,6 @@ class ProductPicklist {
 		this._clear = this._clear.bind(this);
 		this._onError = this._onError.bind(this);
 		this._onReady = this._onReady.bind(this);
-		this._selectValue = this._selectValue.bind(this);
 		this._removeItem = this._removeItem.bind(this);
 		this._updatePosition = this._updatePosition.bind(this);
 	}
@@ -231,19 +230,14 @@ class ProductPicklist {
 		list.forEach(item => {
 			items += `
 			<li>
-				<a
-					href="#"
-					data-id="${item.id}"
-					data-name="${item.name}"
-					data-quantity="${item.quantity}"
-					data-price="${item.price}"
-				>
+				<a href="#" data-id="${item.id}">
 					${(
 						item.picture &&
 						`<img
 							src="${item.picture}"
 							title="${item.name}"
-							alt="${item.name}">`
+							alt="${item.name}"
+							class="img-fluid rounded mx-auto">`
 					)}
 					${item.name} :
 					$ ${item.price.toFixed(2)}
@@ -256,41 +250,33 @@ class ProductPicklist {
 		this.addButton.setAttribute('tabindex', -1);
 		this.cancelButton.setAttribute('tabindex', -1);
 		this.showSelectList.innerHTML = `<ul>${items}</ul>`;
-		this._addSelectListeners();
+		this._addSelectListeners(list);
 	}
 
-	_addSelectListeners() {
-		const links = this.showSelectList.querySelectorAll('a');
+	_addSelectListeners(list) {
+		list.forEach(item => {
+			const link = this.showSelectList.querySelector(`a[data-id="${item.id}"]`);
 
-		links.forEach(item => {
-			item.addEventListener('click', this._selectValue);
+			link.addEventListener('click', this._selectValue(item));
 		});
 	}
 
-	_selectValue(evt) {
-		evt.preventDefault();
+	_selectValue(item) {
+		return (evt) => {
+			evt.preventDefault();
 
-		const id = evt.target.getAttribute('data-id');
-		const name = evt.target.getAttribute('data-name');
-		const quantity = evt.target.getAttribute('data-quantity');
-		const price = evt.target.getAttribute('data-price');
+			this.selectedItem = item;
 
-		this.selectedItem = {
-			id,
-			name,
-			quantity: parseInt(quantity),
-			price: parseFloat(price)
+			this.searchInput.value = item.name;
+			this.quantityInput.max = item.quantity;
+			this.quantityInput.value = 1;
+			this.quantityInput.focus();
+			this.showSelectList.innerHTML = '';
+			this.showSelectList.style.display = 'none';
+			this.quantityInput.removeAttribute('tabindex');
+			this.addButton.removeAttribute('tabindex');
+			this.cancelButton.removeAttribute('tabindex');
 		};
-
-		this.searchInput.value = name;
-		this.quantityInput.max = quantity;
-		this.quantityInput.value = 1;
-		this.quantityInput.focus();
-		this.showSelectList.innerHTML = '';
-		this.showSelectList.style.display = 'none';
-		this.quantityInput.removeAttribute('tabindex');
-		this.addButton.removeAttribute('tabindex');
-		this.cancelButton.removeAttribute('tabindex');
 	}
 
 	_updateShowSelectedList() {
@@ -304,6 +290,7 @@ class ProductPicklist {
 		const head = `<thead class="thead-inverse">
 			<tr>
 				<th style="width: 5%;">#</th>
+				<th style="width: 5%;">Picture</th>
 				<th>${this.title}</th>
 				<th style="width: 10%; text-align: right;">Quantity</th>
 				<th style="width: 10%; text-align: right;">Price</th>
@@ -322,9 +309,20 @@ class ProductPicklist {
 				<td class="id" style="text-align: right;">
 					<input type="hidden" name="${this.name}[${item.id}][id]" value="${item.id}">
 					<input type="hidden" name="${this.name}[${item.id}][name]" value="${item.name}">
+					<input type="hidden" name="${this.name}[${item.id}][picture]" value="${item.picture}">
 					<input type="hidden" name="${this.name}[${item.id}][quantity]" value="${item.quantity}">
 					<input type="hidden" name="${this.name}[${item.id}][price]" value="${item.price}">
 					${item.id}
+				</td>
+				<td class="picture" style="text-align: center">
+					${
+						item.picture &&
+						`<img
+							src="${item.picture}"
+							title="${item.name}"
+							alt="${item.name}"
+							class="img-fluid rounded d-block mx-auto">`
+					}
 				</td>
 				<td class="name">${item.name}</td>
 				<td class="quantity" style="text-align: right;">${item.quantity}</td>
@@ -344,8 +342,9 @@ class ProductPicklist {
 
 		const foot = `<tfoot class="text-white bg-dark">
 			<tr class="font-weight-bold text-right">
-				<td colspan="4">Total</td>
-				<td colspan="2">$ ${total.toFixed(2)}</td>
+				<td colspan="5">Total</td>
+				<td>$ ${total.toFixed(2)}</td>
+				<td></td>
 			</tr>
 		</tfoot>`;
 
@@ -361,12 +360,14 @@ class ProductPicklist {
 
 		this.list = rows.map(item => {
 			const id = parseInt(item.getAttribute('data-id'));
+			const picture = item.getAttribute('data-picture');
 			const name = item.getAttribute('data-name');
 			const quantity = parseInt(item.getAttribute('data-quantity'));
 			const price = item.getAttribute('data-price');
 
 			return {
 				id,
+				picture,
 				name,
 				quantity,
 				price: parseFloat(price.replace(/[^0-9.]/g, ''))
@@ -379,20 +380,20 @@ class ProductPicklist {
 	}
 
 	_addRemoveListeners() {
-		const links = this.showSelectedList.querySelectorAll('a');
+		this.list.forEach(item => {
+			const link = this.showSelectedList.querySelector(`a[data-id="${item.id}"]`);
 
-		links.forEach(item => {
-			item.addEventListener('click', this._removeItem, false);
+			link.addEventListener('click', this._removeItem(item), false);
 		});
 	}
 
-	_removeItem(evt) {
-		evt.preventDefault();
-		const btn = evt.currentTarget;
-		const id = btn.getAttribute('data-id');
+	_removeItem(item) {
+		return (evt) => {
+			evt.preventDefault();
 
-		this.list = this.list.filter(item => item.id != id);
-		this._updateShowSelectedList();
+			this.list = this.list.filter(_item => _item.id != item.id);
+			this._updateShowSelectedList();
+		};
 	}
 
 	_isValidKey(key) {

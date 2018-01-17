@@ -219,6 +219,7 @@ class OrdersController
 				$item->product = new \App\Models\Product;
 				$item->product->id = (int) $product['id'];
 				$item->product->name = $product['name'];
+				$item->product->picture = $product['picture'];
 				$item->quantity = $product['quantity'];
 				$item->price = $product['price'];
 
