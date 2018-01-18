@@ -209,14 +209,16 @@ class ProductPicklist implements IComponent
 		</tr>';
 		$rows = [];
 
+		$inputNames = [
+			'id' => ['product', 'id'],
+			'picture' => ['product', 'picture'],
+			'name' => ['product', 'name'],
+			'quantity' => ['quantity'],
+			'price' => ['price'],
+		];
 		$total = 0;
-		$inputId = new Hidden;
-		$inputPicture = new Hidden;
-		$inputName = new Hidden;
-		$inputQuantity = new Hidden;
-		$inputPrice = new Hidden;
-		$button = new Button;
 
+		$button = new Button;
 		$button->type = 'link';
 		$button->title = 'Remove';
 		$button->icon = 'delete';
@@ -225,17 +227,26 @@ class ProductPicklist implements IComponent
 		$button->iconOnly = true;
 
 		foreach ($this->values as $item) {
-			$inputId->name = $this->name . '[' . $item->product->id . '][id]';
-			$inputPicture->name = $this->name . '[' . $item->product->id . '][picture]';
-			$inputName->name = $this->name . '[' . $item->product->id . '][name]';
-			$inputQuantity->name = $this->name . '[' . $item->product->id . '][quantity]';
-			$inputPrice->name = $this->name . '[' . $item->product->id . '][price]';
+			$inputs = [];
 
-			$inputId->value = $item->product->id;
-			$inputPicture->value = $item->product->picture;
-			$inputName->value = $item->product->name;
-			$inputQuantity->value = $item->quantity;
-			$inputPrice->value = $item->price;
+			foreach ($inputNames as $name => $props) {
+				$input = new Hidden;
+				$input->name = sprintf(
+					'%s[%s][%s]',
+					$this->name,
+					$item->product->id,
+					$name
+				);
+
+				$prop = null;
+				$value = $item;
+				foreach ($props as $prop) {
+					$value = $value->{$prop};
+				}
+
+				$input->value = $value;
+				$inputs[] = $input;
+			}
 
 			$button->additional = ['data-id' => $item->product->id];
 
@@ -248,14 +259,7 @@ class ProductPicklist implements IComponent
 				$item->product->name,
 				$item->quantity,
 				$item->price,
-				implode('', [
-					$inputId,
-					$inputPicture,
-					$inputName,
-					$inputQuantity,
-					$inputPrice,
-					$item->product->id
-				]),
+				implode('', array_merge($inputs, [$item->product->id])),
 				(
 					$item->product->picture ?
 						sprintf(

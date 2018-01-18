@@ -7,9 +7,7 @@ use PHC\Interfaces\IComponent;
 class Hidden implements IComponent
 {
 
-	private $templates = [
-		'input' => '<input type="hidden" name="%s" value="%s">',
-	];
+	const TEMPLATES = ['input' => '<input type="hidden" name="%s" value="%s">'];
 
 	private $value;
 
@@ -32,9 +30,11 @@ class Hidden implements IComponent
 			throw new \Exception('The name of the input must be informed');
 		}
 
-		return sprintf($this->templates['input'],
-						$this->name,
-						$this->value);
+		return sprintf(
+			self::TEMPLATES['input'],
+			$this->name,
+			$this->value
+		);
 	}
 
 	public function __get(String $attr)

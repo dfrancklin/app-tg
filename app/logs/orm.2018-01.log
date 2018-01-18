@@ -11296,3 +11296,5363 @@ Array
     [p_id] => 3
 )
 
+2018-01-17 22:46:10 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:46:10 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:46:11 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:46:11 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:46:11 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:46:11 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:46:17 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:46:17 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:46:17 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:46:17 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:46:17 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:46:17 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:46:22 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:46:22 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:46:22 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:46:22 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:46:22 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:46:22 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:46:28 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:46:28 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:46:28 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:46:28 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:46:28 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:46:28 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:46:33 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:46:33 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:46:33 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:46:33 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:46:33 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:46:33 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:46:38 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:46:38 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:46:38 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:46:38 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:46:38 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:46:38 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:46:43 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:46:43 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:46:43 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:46:43 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:46:43 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:46:43 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:46:48 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:46:48 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:46:48 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:46:48 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:46:48 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:46:48 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:46:53 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:46:53 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:46:53 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:46:53 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:46:53 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:46:53 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:46:58 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:46:58 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:46:58 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:46:58 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:46:59 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:46:59 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:47:04 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:47:04 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:47:04 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:47:04 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:47:04 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:47:04 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:47:09 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:47:09 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:47:09 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:47:09 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:47:09 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:47:09 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:47:14 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:47:14 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:47:14 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:47:14 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:47:14 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:47:14 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:47:19 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:47:19 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:47:19 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:47:19 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:47:19 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:47:19 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:47:24 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:47:24 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:47:24 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:47:24 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:47:24 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:47:24 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:47:29 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:47:29 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:47:29 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:47:29 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:47:29 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:47:29 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:47:34 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:47:34 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:47:34 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:47:34 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:47:34 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:47:34 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:47:40 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:47:40 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:47:40 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:47:40 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:47:40 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:47:40 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:48:51 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:48:51 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:48:51 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:48:51 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:48:51 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:48:51 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:48:56 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:48:56 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:48:56 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:48:56 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:48:56 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:48:56 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:50:37 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:50:37 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:50:37 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:50:37 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:50:37 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:50:37 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:50:51 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:50:51 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:50:51 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:50:51 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:50:56 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:50:56 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:50:56 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:50:56 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:51:02 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:51:02 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:51:02 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:51:02 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:51:02 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:51:02 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:51:13 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:51:13 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:51:13 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:51:13 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:51:13 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:51:13 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:51:17 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:51:17 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:51:17 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:51:17 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:51:17 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:51:17 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:51:22 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:51:22 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:51:22 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:51:22 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:51:22 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:51:22 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:51:27 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:51:27 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:51:27 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:51:27 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:51:27 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:51:27 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:51:32 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:51:32 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:51:32 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:51:32 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:51:32 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:51:32 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:51:37 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:51:37 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:51:37 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:51:37 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:51:37 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:51:37 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:51:42 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:51:42 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:51:42 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:51:42 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:51:42 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:51:42 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:51:47 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:51:47 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:51:47 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:51:47 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:51:47 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:51:47 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:51:52 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:51:52 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:51:52 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:51:52 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:51:52 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:51:52 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:51:57 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:51:57 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:51:57 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:51:57 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:51:57 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:51:57 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:52:01 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:52:01 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:52:01 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:52:01 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:52:01 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:52:01 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:52:06 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:52:06 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:52:06 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:52:06 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:52:06 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:52:06 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:52:11 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:52:11 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:52:11 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:52:11 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:52:11 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:52:11 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:52:22 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:52:22 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:52:22 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:52:22 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:52:23 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:52:23 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:52:27 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:52:27 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:52:27 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:52:27 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:52:27 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:52:27 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:52:32 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:52:32 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:52:32 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:52:32 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:52:32 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:52:32 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:52:43 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:52:43 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:52:43 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:52:43 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:52:43 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:52:43 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:52:48 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:52:48 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:52:48 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:52:48 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:52:53 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:52:53 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:52:53 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:52:53 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:53:10 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:53:10 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:53:10 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:53:10 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:53:10 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:53:10 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:53:24 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:53:24 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:53:24 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:53:24 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:53:24 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:53:24 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:53:29 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:53:29 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:53:29 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:53:29 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:53:29 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:53:29 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:53:37 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:53:37 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:53:37 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:53:37 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:53:37 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:53:37 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:53:45 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:53:45 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:53:45 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:53:45 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:53:45 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:53:45 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:53:49 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:53:50 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:53:50 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:53:50 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:53:50 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:53:50 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:53:54 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:53:54 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:53:54 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:53:54 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:53:59 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:53:59 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:53:59 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:53:59 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:53:59 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:53:59 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:54:04 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:54:04 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:54:04 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:54:04 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:54:04 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:54:04 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:54:09 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:54:09 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:54:09 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:54:09 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:54:09 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:54:09 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:54:14 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:54:14 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:54:14 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:54:14 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:54:14 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:54:14 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:54:19 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:54:19 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:54:19 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:54:19 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:54:19 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:54:19 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:54:24 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:54:24 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:54:24 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:54:24 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:54:29 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:54:29 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:54:29 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:54:29 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:54:29 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:54:29 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:54:34 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:54:34 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:54:34 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:54:34 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:54:34 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:54:34 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:54:39 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:54:39 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:54:39 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:54:39 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:54:39 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:54:39 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:54:44 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:54:44 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:54:44 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:54:44 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:54:44 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:54:44 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:54:57 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:54:57 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:54:57 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:54:57 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:54:57 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:54:57 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:55:02 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:55:02 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:55:02 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:55:02 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:55:02 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:55:02 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:55:07 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:55:07 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:55:07 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:55:07 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:55:07 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:55:07 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:55:12 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:55:12 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:55:12 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:55:12 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:55:12 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:55:12 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:55:18 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:55:18 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:55:18 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:55:18 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:55:18 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:55:18 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:55:22 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:55:23 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:55:23 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:55:23 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:55:23 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:55:23 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:55:28 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:55:28 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:55:28 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:55:28 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:55:28 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:55:28 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:55:33 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:55:33 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:55:33 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:55:34 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:55:34 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:55:34 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:55:38 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:55:38 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:55:38 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:55:38 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:55:44 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:55:44 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:55:44 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:55:44 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:55:55 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:55:55 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:55:55 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:55:55 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:55:55 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:55:55 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:56:00 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:56:00 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:56:00 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:56:00 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:56:00 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:56:00 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:56:05 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:56:05 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:56:05 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:56:05 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:56:05 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:56:05 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 22:56:09 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:56:09 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:56:09 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:56:09 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:56:09 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:56:23 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:56:23 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:56:23 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:56:23 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:56:23 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:56:56 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:56:56 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:56:56 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:56:56 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:56:56 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:57:16 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:57:16 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:57:16 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:57:16 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:57:16 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 22:59:15 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 22:59:15 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 22:59:15 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 22:59:15 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 22:59:15 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:00:26 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:00:26 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:00:26 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:00:26 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:00:26 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:00:26 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:00:29 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:00:29 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:00:29 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:00:29 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:00:29 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:00:29 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:01:06 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:01:06 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:01:06 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:01:06 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:01:06 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:01:06 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:01:37 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:01:37 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:01:37 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:01:37 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:01:37 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:01:37 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:02:30 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o 
+LIMIT 0, 10
+2018-01-17 23:02:30 - [DEBUG] - ORM\Builders\Query - SELECT count(o.id) as total
+FROM orders o 
+LIMIT 1
+2018-01-17 23:02:30 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:02:30 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-17 23:02:30 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 13
+)
+
+2018-01-17 23:02:30 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:02:30 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-17 23:02:30 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 14
+)
+
+2018-01-17 23:02:30 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:02:30 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-17 23:02:30 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 15
+)
+
+2018-01-17 23:02:30 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:02:30 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-17 23:02:30 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:02:33 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:02:33 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:02:33 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:02:33 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:02:33 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:02:33 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:03:21 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:03:21 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:03:21 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:03:21 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:03:21 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:03:21 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:03:36 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.email = :e_email 
+LIMIT 1
+Array
+(
+    [e_email] => default@user.com
+)
+
+2018-01-17 23:03:36 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:03:37 - [DEBUG] - ORM\Builders\Merge - UPDATE orders SET date = :date, finished = :finished, customer_id = :customer_id, salesman_id = :salesman_id WHERE id = :id
+Array
+(
+    [:id] => 16
+    [:date] => 2018-01-17 23:03:36
+    [:finished] => 0
+    [:customer_id] => 1
+    [:salesman_id] => 1
+)
+
+2018-01-17 23:03:37 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:03:37 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:03:37 - [DEBUG] - ORM\Builders\Query - SELECT i.*
+FROM item_order i
+WHERE i.id = :i_id 
+LIMIT 1
+Array
+(
+    [i_id] => 24
+)
+
+2018-01-17 23:03:37 - [DEBUG] - ORM\Builders\Remove - DELETE FROM item_order WHERE id = :id
+Array
+(
+    [:id] => 24
+)
+
+2018-01-17 23:03:37 - [DEBUG] - ORM\Builders\Query - SELECT i.*
+FROM item_order i
+WHERE i.id = :i_id 
+LIMIT 1
+Array
+(
+    [i_id] => 25
+)
+
+2018-01-17 23:03:37 - [DEBUG] - ORM\Builders\Remove - DELETE FROM item_order WHERE id = :id
+Array
+(
+    [:id] => 25
+)
+
+2018-01-17 23:03:37 - [DEBUG] - ORM\Builders\Query - SELECT i.*
+FROM item_order i
+WHERE i.id = :i_id 
+LIMIT 1
+Array
+(
+    [i_id] => 
+)
+
+2018-01-17 23:03:37 - [DEBUG] - ORM\Builders\Persist - INSERT INTO item_order (id, quantity, price, order_id, product_id) VALUES (:id, :quantity, :price, :order_id, :product_id)
+Array
+(
+    [:id] => 
+    [:quantity] => 1
+    [:price] => 100
+    [:order_id] => 16
+    [:product_id] => 1
+)
+
+2018-01-17 23:03:37 - [DEBUG] - ORM\Builders\Query - SELECT i.*
+FROM item_order i
+WHERE i.id = :i_id 
+LIMIT 1
+Array
+(
+    [i_id] => 
+)
+
+2018-01-17 23:03:37 - [DEBUG] - ORM\Builders\Persist - INSERT INTO item_order (id, quantity, price, order_id, product_id) VALUES (:id, :quantity, :price, :order_id, :product_id)
+Array
+(
+    [:id] => 
+    [:quantity] => 1
+    [:price] => 300
+    [:order_id] => 16
+    [:product_id] => 3
+)
+
+2018-01-17 23:03:37 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:03:37 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:03:37 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:03:37 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:03:37 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:03:37 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:03:47 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.name like :p_name and 
+		p.quantity > :p_quantity
+Array
+(
+    [p_name] => %Boo%
+    [p_quantity] => 0
+)
+
+2018-01-17 23:03:53 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.email = :e_email 
+LIMIT 1
+Array
+(
+    [e_email] => default@user.com
+)
+
+2018-01-17 23:03:53 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:03:53 - [DEBUG] - ORM\Builders\Merge - UPDATE orders SET date = :date, finished = :finished, customer_id = :customer_id, salesman_id = :salesman_id WHERE id = :id
+Array
+(
+    [:id] => 16
+    [:date] => 2018-01-17 23:03:53
+    [:finished] => 0
+    [:customer_id] => 1
+    [:salesman_id] => 1
+)
+
+2018-01-17 23:03:53 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:03:53 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:03:53 - [DEBUG] - ORM\Builders\Query - SELECT i.*
+FROM item_order i
+WHERE i.id = :i_id 
+LIMIT 1
+Array
+(
+    [i_id] => 26
+)
+
+2018-01-17 23:03:53 - [DEBUG] - ORM\Builders\Remove - DELETE FROM item_order WHERE id = :id
+Array
+(
+    [:id] => 26
+)
+
+2018-01-17 23:03:53 - [DEBUG] - ORM\Builders\Query - SELECT i.*
+FROM item_order i
+WHERE i.id = :i_id 
+LIMIT 1
+Array
+(
+    [i_id] => 27
+)
+
+2018-01-17 23:03:53 - [DEBUG] - ORM\Builders\Remove - DELETE FROM item_order WHERE id = :id
+Array
+(
+    [:id] => 27
+)
+
+2018-01-17 23:03:53 - [DEBUG] - ORM\Builders\Query - SELECT i.*
+FROM item_order i
+WHERE i.id = :i_id 
+LIMIT 1
+Array
+(
+    [i_id] => 
+)
+
+2018-01-17 23:03:54 - [DEBUG] - ORM\Builders\Persist - INSERT INTO item_order (id, quantity, price, order_id, product_id) VALUES (:id, :quantity, :price, :order_id, :product_id)
+Array
+(
+    [:id] => 
+    [:quantity] => 1
+    [:price] => 100
+    [:order_id] => 16
+    [:product_id] => 1
+)
+
+2018-01-17 23:03:54 - [DEBUG] - ORM\Builders\Query - SELECT i.*
+FROM item_order i
+WHERE i.id = :i_id 
+LIMIT 1
+Array
+(
+    [i_id] => 
+)
+
+2018-01-17 23:03:54 - [DEBUG] - ORM\Builders\Persist - INSERT INTO item_order (id, quantity, price, order_id, product_id) VALUES (:id, :quantity, :price, :order_id, :product_id)
+Array
+(
+    [:id] => 
+    [:quantity] => 1
+    [:price] => 300
+    [:order_id] => 16
+    [:product_id] => 3
+)
+
+2018-01-17 23:03:54 - [DEBUG] - ORM\Builders\Query - SELECT i.*
+FROM item_order i
+WHERE i.id = :i_id 
+LIMIT 1
+Array
+(
+    [i_id] => 
+)
+
+2018-01-17 23:03:54 - [DEBUG] - ORM\Builders\Persist - INSERT INTO item_order (id, quantity, price, order_id, product_id) VALUES (:id, :quantity, :price, :order_id, :product_id)
+Array
+(
+    [:id] => 
+    [:quantity] => 1
+    [:price] => 200
+    [:order_id] => 16
+    [:product_id] => 2
+)
+
+2018-01-17 23:03:54 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:03:54 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:03:54 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:03:54 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:03:54 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:03:54 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:03:54 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:03:55 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:03:55 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:03:55 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:03:55 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:03:55 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:03:55 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:03:55 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:04:12 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:04:12 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:04:12 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:04:12 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:04:12 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:04:12 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:04:12 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:04:17 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:04:17 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:04:17 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:04:17 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:04:17 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:06:28 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:06:28 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:06:28 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:06:28 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:06:28 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:06:30 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:06:30 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:06:30 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:06:30 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:06:30 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:07:21 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:07:21 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:07:21 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:07:21 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:07:21 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:07:21 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:07:21 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:07:26 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:07:26 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:07:26 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:07:26 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:07:26 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:07:26 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:07:26 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:08:31 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:08:31 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:08:31 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:08:31 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:08:31 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:08:31 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:08:31 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:08:37 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:08:37 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:08:37 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:08:37 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:08:37 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:08:37 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:08:37 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:08:42 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:08:42 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:08:42 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:08:42 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:08:42 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:08:42 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:08:42 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:08:47 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 16
+)
+
+2018-01-17 23:08:47 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+2018-01-17 23:08:47 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:08:47 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:08:47 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:08:47 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:08:47 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:09:28 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o 
+LIMIT 0, 10
+2018-01-17 23:09:28 - [DEBUG] - ORM\Builders\Query - SELECT count(o.id) as total
+FROM orders o 
+LIMIT 1
+2018-01-17 23:09:28 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:09:28 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-17 23:09:28 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 13
+)
+
+2018-01-17 23:09:28 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:09:28 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-17 23:09:28 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 14
+)
+
+2018-01-17 23:09:28 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:09:28 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-17 23:09:28 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 15
+)
+
+2018-01-17 23:09:28 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:09:28 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-17 23:09:28 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-17 23:09:33 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 15
+)
+
+2018-01-17 23:09:33 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:09:33 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-17 23:09:33 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 15
+)
+
+2018-01-17 23:09:33 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:09:33 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:09:33 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:09:59 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 15
+)
+
+2018-01-17 23:09:59 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:09:59 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-17 23:09:59 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 15
+)
+
+2018-01-17 23:09:59 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:09:59 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:09:59 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:10:09 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 15
+)
+
+2018-01-17 23:10:10 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:10:10 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-17 23:10:10 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 15
+)
+
+2018-01-17 23:10:10 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:10:10 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:10:10 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:10:14 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 15
+)
+
+2018-01-17 23:10:14 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:10:14 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-17 23:10:14 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 15
+)
+
+2018-01-17 23:10:14 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:10:14 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:10:14 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:10:54 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 15
+)
+
+2018-01-17 23:10:54 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:10:54 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-17 23:10:54 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 15
+)
+
+2018-01-17 23:10:54 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:10:54 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:10:54 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:10:55 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 15
+)
+
+2018-01-17 23:10:55 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:10:55 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-17 23:10:55 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 15
+)
+
+2018-01-17 23:10:55 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:10:55 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:10:55 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:23:33 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 15
+)
+
+2018-01-17 23:23:33 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:23:33 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-17 23:23:33 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 15
+)
+
+2018-01-17 23:23:33 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:23:33 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:23:33 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:23:34 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 15
+)
+
+2018-01-17 23:23:34 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:23:34 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-17 23:23:34 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 15
+)
+
+2018-01-17 23:23:34 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:23:34 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:23:34 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
+2018-01-17 23:23:39 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o
+WHERE o.id = :o_id 
+LIMIT 1
+Array
+(
+    [o_id] => 15
+)
+
+2018-01-17 23:23:39 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-17 23:23:39 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-17 23:23:39 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 15
+)
+
+2018-01-17 23:23:39 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 1
+)
+
+2018-01-17 23:23:39 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 2
+)
+
+2018-01-17 23:23:39 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p
+WHERE p.id = :p_id 
+LIMIT 1
+Array
+(
+    [p_id] => 3
+)
+
