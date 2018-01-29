@@ -16656,3 +16656,235 @@ Array
     [p_id] => 3
 )
 
+2018-01-19 18:46:29 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c 
+LIMIT 0, 10
+2018-01-19 18:46:29 - [DEBUG] - ORM\Builders\Query - SELECT count(c.id) as total
+FROM customer c 
+LIMIT 1
+2018-01-19 18:46:46 - [DEBUG] - ORM\Builders\Query - SELECT p.*
+FROM product p 
+LIMIT 0, 10
+2018-01-19 18:46:46 - [DEBUG] - ORM\Builders\Query - SELECT count(p.id) as total
+FROM product p 
+LIMIT 1
+2018-01-19 18:46:53 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o 
+LIMIT 0, 10
+2018-01-19 18:46:53 - [DEBUG] - ORM\Builders\Query - SELECT count(o.id) as total
+FROM orders o 
+LIMIT 1
+2018-01-19 18:46:53 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-19 18:46:53 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-19 18:46:53 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 13
+)
+
+2018-01-19 18:46:53 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-19 18:46:53 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-19 18:46:53 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 14
+)
+
+2018-01-19 18:46:53 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-19 18:46:53 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-19 18:46:53 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 15
+)
+
+2018-01-19 18:46:53 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-19 18:46:53 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-19 18:46:53 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+
+2018-01-19 18:47:02 - [DEBUG] - ORM\Builders\Query - SELECT o.*
+FROM orders o 
+LIMIT 0, 10
+2018-01-19 18:47:03 - [DEBUG] - ORM\Builders\Query - SELECT count(o.id) as total
+FROM orders o 
+LIMIT 1
+2018-01-19 18:47:03 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-19 18:47:03 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-19 18:47:03 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 13
+)
+
+2018-01-19 18:47:03 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-19 18:47:03 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-19 18:47:03 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 14
+)
+
+2018-01-19 18:47:03 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-19 18:47:03 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-19 18:47:03 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 15
+)
+
+2018-01-19 18:47:03 - [DEBUG] - ORM\Builders\Query - SELECT c.*
+FROM customer c
+WHERE c.id = :c_id 
+LIMIT 1
+Array
+(
+    [c_id] => 1
+)
+
+2018-01-19 18:47:03 - [DEBUG] - ORM\Builders\Query - SELECT e.*
+FROM employee e
+WHERE e.id = :e_id 
+LIMIT 1
+Array
+(
+    [e_id] => 1
+)
+
+2018-01-19 18:47:03 - [DEBUG] - ORM\Builders\Query - SELECT DISTINCT i.*
+FROM item_order i
+WHERE i.order_id = :i_order
+Array
+(
+    [i_order] => 16
+)
+

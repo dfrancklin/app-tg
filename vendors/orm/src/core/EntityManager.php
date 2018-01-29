@@ -100,6 +100,11 @@ class EntityManager implements IEntityManager
 
 		$class = get_class($object);
 		$table = $this->orm->getTable($class);
+
+		if (!$table->getMutable()) {
+			throw new \Exception('You shouldn\'t save a immutable object of the class "' . $class . '"');
+		}
+
 		$id = $table->getId();
 		$prop = $id->getProperty();
 
@@ -149,6 +154,13 @@ class EntityManager implements IEntityManager
 		if ($object instanceof Proxy) {
 			$proxy = $object;
 			$object = $object->__getObject();
+		}
+
+		$class = get_class($object);
+		$table = $this->orm->getTable($class);
+
+		if (!$table->getMutable()) {
+			throw new \Exception('You shouldn\'t remove a immutable object of the class "' . $class . '"');
 		}
 
 		if ($this->exists($object)) {

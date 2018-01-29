@@ -20,7 +20,7 @@
 		$table->columns = [
 			'#' => ['product', 'id'],
 			'Picture' => function($row) {
-				if ($row->product->picture){
+				if ($row->product->picture) {
 					return sprintf(
 						'<img src="%s" title="%s" alt="%s" class="img-fluid rounded d-block mx-auto">',
 						$row->product->picture,
