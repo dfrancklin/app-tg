@@ -23,6 +23,14 @@
 			]
 		],
 		'Supervisor' => ['supervisor', 'name'],
+		'Roles' => function($row) {
+			$roles = $row->roles ?? [];
+			$names = array_map(function($item) {
+				return $item->name;
+			}, $roles);
+
+			return implode(', ', $names);
+		},
 	];
 	$table->actions = [
 		(function () {

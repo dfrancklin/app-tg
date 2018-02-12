@@ -101,7 +101,7 @@ class EntityManager implements IEntityManager
 		$class = get_class($object);
 		$table = $this->orm->getTable($class);
 
-		if (!$table->getMutable()) {
+		if (!$table->isMutable()) {
 			throw new \Exception('You shouldn\'t save a immutable object of the class "' . $class . '"');
 		}
 
@@ -159,7 +159,7 @@ class EntityManager implements IEntityManager
 		$class = get_class($object);
 		$table = $this->orm->getTable($class);
 
-		if (!$table->getMutable()) {
+		if (!$table->isMutable()) {
 			throw new \Exception('You shouldn\'t remove a immutable object of the class "' . $class . '"');
 		}
 

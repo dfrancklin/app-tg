@@ -25,7 +25,5 @@ $orm->setConnection('sqlite', [
 	'afterCreate' => [$initDatabase, 'afterCreate']
 ]);
 
-vd($orm); die();
-
 $dm = \FW\Core\DependenciesManager::getInstance();
 $dm->value(\ORM\Orm::class, $orm);

@@ -24,6 +24,14 @@
 			}
 		},
 		'Name' => 'name',
+		'Categories' => function($row) {
+			$categories = $row->categories ?? [];
+			$names = array_map(function($item) {
+				return $item->name;
+			}, $categories);
+
+			return implode(', ', $names);
+		},
 		'Price' => function($row) {
 			return '$' . number_format($row->price, 2);
 		},

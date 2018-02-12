@@ -13,6 +13,7 @@
 	$table->resource = $this->customers;
 	$table->columns = [
 		'#' => 'id',
+		'Name' => 'name',
 		'E-mail' => 'email',
 		'Phone' => 'phone',
 	];

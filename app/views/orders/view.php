@@ -2,6 +2,10 @@
 
 <hr>
 
+<?php vd($_SERVER); ?>
+
+<hr>
+
 <dl class="row">
 	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">ID:</dt>
 	<dd class="col-lg-10 col-md-10 col-sm-9 col-8"><?php echo $this->order->id; ?></dd>
@@ -68,7 +72,17 @@
 		$voltar->name = 'voltar';
 		$voltar->type = 'link';
 		$voltar->icon = 'arrow_back';
-		$voltar->action = '/orders';
+
+		$ref = $_SERVER['HTTP_REFERER'] ?? '';
+		$uri = $_SERVER['REQUEST_URI'];
+		$server = $_SERVER['SERVER_NAME'];
+
+		if (strpos($ref, $uri) || !strpos($ref, $server)) {
+			$voltar->action = '/orders';
+		} else {
+			$voltar->additional = ['onclick' => '(function(e) { e.preventDefault(); window.history.back(); })(event)'];
+		}
+
 		$voltar->render();
 	?>
 </div>

@@ -9,7 +9,7 @@ class Pagination implements IComponent
 
 	const TEMPLATES = [
 		'pagination' => '<nav aria-label="Page navigation"><ul class="pagination justify-content-center">%s</ul></nav>',
-		'item' => '<li class="page-item%s"><a class="page-link" href="/categories?page=%s" tabindex="-1">%s</a></li>'
+		'item' => '<li class="page-item%s"><a class="page-link" href="%s?page=%s" tabindex="-1">%s</a></li>'
 	];
 
 	private $route;
@@ -58,6 +58,7 @@ class Pagination implements IComponent
 		$first = sprintf(
 			self::TEMPLATES['item'],
 			$this->active === 1 ? ' disabled' : '',
+			$this->route,
 			1,
 			'First'
 		);
@@ -65,6 +66,7 @@ class Pagination implements IComponent
 		$previous = sprintf(
 			self::TEMPLATES['item'],
 			$this->active === 1 ? ' disabled' : '',
+			$this->route,
 			$this->active === 1 ? 1 : $this->active - 1,
 			'Previous'
 		);
@@ -72,6 +74,7 @@ class Pagination implements IComponent
 		$next = sprintf(
 			self::TEMPLATES['item'],
 			$this->active === $this->total ? ' disabled' : '',
+			$this->route,
 			$this->active === $this->total ? $this->total : $this->active + 1,
 			'Next'
 		);
@@ -79,6 +82,7 @@ class Pagination implements IComponent
 		$last = sprintf(
 			self::TEMPLATES['item'],
 			$this->active === $this->total ? ' disabled' : '',
+			$this->route,
 			$this->total,
 			'Last'
 		);
@@ -96,6 +100,7 @@ class Pagination implements IComponent
 				$pages[] = sprintf(
 					self::TEMPLATES['item'],
 					$page === $this->active ? ' active' : '',
+					$this->route,
 					$page,
 					$page
 				);
