@@ -16,4 +16,5 @@ $config->set('scan-folders', [
 ]);
 
 $config->set('connection-file', __DIR__ . '/connections.php');
-$config->set('log-file', __DIR__ . '/logs/orm.' . date('Y-m') . '.log');
+$config->set('log-file', __DIR__ . '/logs/orm.' . date('Y-m-d') . '.log');
+$config->set('log-level', \ORM\Logger\Logger::ERROR);

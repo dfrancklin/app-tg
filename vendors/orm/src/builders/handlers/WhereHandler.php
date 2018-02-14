@@ -58,7 +58,7 @@ trait WhereHandler
 				$sql .= ' ' . $condition[2] . ' ';
 
 				if ($condition[2] !== 'or') {
-					$sql .= "\n\t\t";
+					$sql .= "\n\t";
 				}
 			}
 		}

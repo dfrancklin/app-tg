@@ -56,6 +56,26 @@ class CustomersController
 	}
 
 	/**
+	 * @RequestMap /view/{id}
+	 */
+	public function view(int $id)
+	{
+		$customer = $this->service->findById($id);
+
+		if (!$customer) {
+			$this->message->error('No customer with the ID ' . $id . ' was found!');
+
+			Router::redirect('/customers');
+		}
+
+		$view = $this->factory::create();
+		$view->pageTitle = 'View Customer';
+		$view->customer = $customer;
+
+		return $view->render('customers/view');
+	}
+
+	/**
 	 * @RequestMap /form/{id}
 	 */
 	public function edit(int $id)

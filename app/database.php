@@ -6,13 +6,14 @@ $orm = \ORM\Orm::getInstance();
 
 $connectionFile = $config->get('connection-file');
 $logFile = $config->get('log-file');
+$logLevel = $config->get('log-level');
 
 if ($connectionFile) {
 	$orm->setConnectionsFile($connectionFile);
 }
 
 if ($logFile) {
-	$orm->setLogger($logFile, \ORM\Logger\Logger::ERROR);
+	$orm->setLogger($logFile, $logLevel ?? \ORM\Logger\Logger::INFO);
 }
 
 $initDatabase = new \App\Helpers\InitDatabase;

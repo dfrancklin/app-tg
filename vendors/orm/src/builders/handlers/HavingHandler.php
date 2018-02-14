@@ -30,7 +30,7 @@ trait HavingHandler
 		$sql = '';
 
 		if (count($this->havingConditions)) {
-			$sql = "\n\t HAVING ";
+			$sql = "\nHAVING ";
 		}
 
 		$this->havingConditions[count($this->havingConditions) - 1][1] = 'and';
@@ -53,7 +53,7 @@ trait HavingHandler
 				$sql .= ' ' . $condition[1] . ' ';
 
 				if ($condition[1] !== 'or') {
-					$sql .= "\n\t\t";
+					$sql .= "\n\t";
 				}
 			}
 		}

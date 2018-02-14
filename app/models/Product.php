@@ -20,6 +20,9 @@ class Product
 	 */
 	public $name;
 
+	/**
+	 * @ORM/Column(type=lob)
+	 */
 	public $description;
 
 	/**
@@ -41,5 +44,10 @@ class Product
 	 * @ORM/ManyToMany(class=App\Models\Category)
 	 */
 	public $categories;
+
+	/**
+	 * @ORM/HasMany(class=App\Models\ItemOrder)
+	 */
+	public $items;
 
 }

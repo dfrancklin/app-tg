@@ -20,7 +20,7 @@ trait GroupByHandler
 		$sql = '';
 
 		if (!empty($this->groups)) {
-			$sql = "\n\t" . ' GROUP BY ';
+			$sql = "\n" . 'GROUP BY ';
 		}
 
 		foreach ($this->groups as $property) {

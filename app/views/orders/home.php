@@ -14,8 +14,26 @@
 	$table->resource = $this->orders;
 	$table->columns = [
 		'#' => 'id',
-		'Customer' => ['customer', 'name'],
-		'Salesman' => ['salesman', 'name'],
+		'Customer' => function($order) {
+			$link = '<a href="/customers/view/%d" title="%s">%s</a>';
+
+			return sprintf(
+				$link,
+				$order->customer->id,
+				$order->customer->name,
+				$order->customer->name
+			);
+		},
+		'Salesman' => function($order) {
+			$link = '<a href="/employees/view/%d" title="%s">%s</a>';
+
+			return sprintf(
+				$link,
+				$order->salesman->id,
+				$order->salesman->name,
+				$order->salesman->name
+			);
+		},
 		'Date' => [
 			'date',
 			[

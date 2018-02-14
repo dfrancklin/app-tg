@@ -21,11 +21,6 @@ class Employee
 	public $name;
 
 	/**
-	 * @ORM/Column(name=admission_date, type=date)
-	 */
-	public $admissionDate;
-
-	/**
 	 * @ORM/Column(length=50)
 	 */
 	public $email;
@@ -34,6 +29,11 @@ class Employee
 	 * @ORM/Column(length=100)
 	 */
 	public $password;
+
+	/**
+	 * @ORM/Column(name=admission_date, type=date)
+	 */
+	public $admissionDate;
 
 	/**
 	 * @ORM/ManyToMany(class=App\Models\Role)

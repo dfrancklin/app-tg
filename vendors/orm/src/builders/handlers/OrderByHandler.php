@@ -26,12 +26,17 @@ trait OrderByHandler
 		$sql = '';
 
 		if (!empty($this->orders)) {
-			$sql = "\n\t" . ' ORDER BY ';
+			$sql = "\n" . 'ORDER BY ';
 		}
 
 		foreach ($this->orders as $order) {
 			list($property, $dir) = $order;
-			list($prop) = $this->processProperty($property);
+
+			try {
+				list($prop) = $this->processProperty($property);
+			} catch (\Throwable $e) {
+				$prop = $property;
+			}
 
 			array_push($resolved, sprintf('%s %s', $prop, $dir));
 		}

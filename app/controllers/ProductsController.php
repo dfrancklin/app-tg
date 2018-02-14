@@ -56,6 +56,26 @@ class ProductsController
 	}
 
 	/**
+	 * @RequestMap /view/{id}
+	 */
+	public function view(int $id)
+	{
+		$product = $this->service->findById($id);
+
+		if (!$product) {
+			$this->message->error('No product with the ID ' . $id . ' was found!');
+
+			Router::redirect('/products');
+		}
+
+		$view = $this->factory::create();
+		$view->pageTitle = 'View Product';
+		$view->product = $product;
+
+		return $view->render('products/view');
+	}
+
+	/**
 	 * @RequestMap /form/{id}
 	 * @Roles [ADMIN, STOCK]
 	 */

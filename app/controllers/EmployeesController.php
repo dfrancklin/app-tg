@@ -20,7 +20,6 @@ use App\Interfaces\Services\IEmployeesService;
  * @Controller
  * @Route /employees
  * @Authenticate
- * @Roles ADMIN
  */
 class EmployeesController
 {
@@ -45,6 +44,9 @@ class EmployeesController
 		$this->message = FlashMessages::getInstance();
 	}
 
+	/**
+	 * @Roles ADMIN
+	 */
 	public function employees()
 	{
 		$quantity = 10;
@@ -66,7 +68,29 @@ class EmployeesController
 	}
 
 	/**
+	 * @RequestMap /view/{id}
+	 * @Roles [ADMIN, SALES]
+	 */
+	public function view(int $id)
+	{
+		$employee = $this->service->findById($id);
+
+		if (!$employee) {
+			$this->message->error('No employee with the ID ' . $id . ' was found!');
+
+			Router::redirect('/employees');
+		}
+
+		$view = $this->factory::create();
+		$view->pageTitle = 'View Employee';
+		$view->employee = $employee;
+
+		return $view->render('employees/view');
+	}
+
+	/**
 	 * @RequestMap /form/{id}
+	 * @Roles ADMIN
 	 */
 	public function edit(int $id)
 	{
@@ -83,6 +107,7 @@ class EmployeesController
 
 	/**
 	 * @RequestMap /form
+	 * @Roles ADMIN
 	 */
 	public function create()
 	{
@@ -91,6 +116,7 @@ class EmployeesController
 
 	/**
 	 * @RequestMethod POST
+	 * @Roles ADMIN
 	 */
 	public function save()
 	{
@@ -158,6 +184,7 @@ class EmployeesController
 
 	/**
 	 * @RequestMap /delete/{id}
+	 * @Roles ADMIN
 	 */
 	public function delete($id)
 	{

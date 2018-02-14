@@ -58,6 +58,7 @@ class Query
 		$this->em = $em;
 		$this->connection = $connection;
 
+		$this->selected = [];
 		$this->columns = [];
 		$this->joins = [];
 		$this->tablesByAlias = [];
@@ -69,6 +70,13 @@ class Query
 		$this->havingConditions = [];
 		$this->values = [];
 		$this->orders = [];
+	}
+
+	public function select(...$properties) : Query
+	{
+		array_push($this->selected, ...$properties);
+
+		return $this;
 	}
 
 	public function distinct() : Query
@@ -187,8 +195,15 @@ class Query
 			$query .= 'DISTINCT ';
 		}
 
-		$groupBy = $this->resolveGroupBy();
 		$aggregations = $this->resolveAggregations();
+		$groupBy = $this->resolveGroupBy();
+
+		foreach ($this->selected as $column) {
+			list($column) = $this->processProperty($column);
+
+			$this->columns[] = $column;
+		}
+
 		list($table, $alias) = $this->target;
 
 		if (empty($this->columns)) {
