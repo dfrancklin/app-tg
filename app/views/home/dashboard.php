@@ -3,12 +3,12 @@
 <hr>
 
 <div class="row">
-	<div class="col-6">
+	<div class="col-12 col-xl-6">
 		<canvas id="best-sellers"></canvas>
 	</div>
 </div>
 
-<?php vd($this->list); ?>
+<?php // vd($this->list); ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 <script>
@@ -60,12 +60,23 @@
         },
         options: {
             responsive: true,
+			onResize: (chart, newSize) => {
+				const _old = chart.legend.display;
+				window.config.options.legend.display = newSize.width >= 550;
+				const _new = chart.legend.display;
+
+				if (_old != _new) {
+					window.myPie.update();
+				}
+			},
 			legend: {
+				display: document.body.clientWidth >= 580,
 				position: 'right',
+				fullWidth: true,
 			},
 			title: {
 				display: true,
-				text: 'Best Sellers in the last 30 days'
+				text: 'Top 10 best sellers in the last 30 days'
 			}
         }
     };
