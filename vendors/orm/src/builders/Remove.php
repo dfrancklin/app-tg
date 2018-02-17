@@ -71,6 +71,10 @@ class Remove
 		$this->original = $original ?? $object;
 		$this->table = $this->orm->getTable($class);
 
+		if ($this->table->isMutable()) {
+			throw new \Exception('The object of the class "' . $this->table->getClass() . '" is not mutable');
+		}
+
 		if (!$this->proxy) {
 			foreach ($this->table->getJoins('type', 'belongsTo') as $join) {
 				$property = $join->getProperty();

@@ -450,7 +450,11 @@ class TableManager
 		$tables = [];
 
 		foreach ($this->classes as $class) {
-			$tables[$class] = $this->orm->getTable($class);
+			$table = $this->orm->getTable($class);
+
+			if (!$table->isMutable()) {
+				$tables[$class] = $table;
+			}
 		}
 
 		return $tables;

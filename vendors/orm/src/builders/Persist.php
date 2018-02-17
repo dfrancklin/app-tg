@@ -68,6 +68,11 @@ class Persist
 		$this->object = $object;
 		$this->original = $original ?? $object;
 		$this->table = $this->orm->getTable($class);
+
+		if ($this->table->isMutable()) {
+			throw new \Exception('The object of the class "' . $this->table->getClass() . '" is not mutable');
+		}
+
 		$id = $this->table->getId();
 		$prop = $id->getProperty();
 

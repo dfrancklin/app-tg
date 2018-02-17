@@ -56,6 +56,8 @@ class HomeController
 
 		$view->list = $query->list();
 
+		$view->months = $em->createQuery(\App\Models\SalesByMonth::class)->list();
+
 		return $view->render('home/dashboard');
 	}
 
