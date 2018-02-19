@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use ORM\Constants\OrderTypes;
+
 use App\Models\Order;
 
 use App\Interfaces\Repositories\IOrdersRepository;
@@ -26,7 +28,13 @@ class OrdersRepository implements IOrdersRepository
 
 	public function page(int $page, int $quantity) : Array
 	{
-		return $this->em->list(Order::class, $page, $quantity);
+		$query = $this->em->createQuery(Order::class, 'o');
+
+		$query->page($page, $quantity);
+		$query->orderBy('o.finished', OrderTypes::ASC);
+		$query->orderBy('o.id', OrderTypes::DESC);
+
+		return $query->list();
 	}
 
 	public function findById(int $id)

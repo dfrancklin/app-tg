@@ -5,8 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title><?=(!empty($pageTitle) ? $pageTitle . ' &dash; ' : '');?> TG Book Store</title>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="/public/css/font-family.css">
+	<link rel="stylesheet" href="/public/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/public/css/components.css">
 	<link rel="stylesheet" href="/public/css/style.css">
 

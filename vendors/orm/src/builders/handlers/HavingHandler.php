@@ -12,7 +12,7 @@ trait HavingHandler
 
 	public function having()
 	{
-		$this->chain = Operator::$HAVING;
+		$this->chain = OperatorHandler::$HAVING;
 
 		$aggregate = new Aggregate($this);
 

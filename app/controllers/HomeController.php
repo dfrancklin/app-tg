@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
-use \FW\View\IViewFactory;
+use FW\View\IViewFactory;
+
+use App\Interfaces\Services\IHomeService;
 
 /**
  * @Controller
@@ -14,10 +16,12 @@ class HomeController
 
 	private $factory;
 
-	public function __construct(IViewFactory $factory, \ORM\Orm $orm)
+	private $service;
+
+	public function __construct(IViewFactory $factory, IHomeService $service)
 	{
 		$this->factory = $factory;
-		$this->orm = $orm;
+		$this->service = $service;
 	}
 
 	public function index()
@@ -33,30 +37,11 @@ class HomeController
 		$view = $this->factory::create();
 
 		$view->pageTitle = 'Dashboard';
-
-		$em = $this->orm->createEntityManager();
-		$query = $em->createQuery();
-		$query->count('p.id', 'total');
-		$query->select('p.name');
-		$query->from(\App\Models\ItemOrder::class, 'io');
-		$query->join(\App\Models\Order::class, 'o');
-		$query->join(\App\Models\Product::class, 'p');
-		$query->where('o.date')->greaterOrEqualsThan(
-			date(
-				'Y-m-d',
-				mktime(
-					0, 0, 0,
-					date('m') - 1, date('d'), date('Y')
-				)
-			)
-		);
-		$query->groupBy('p.id');
-		$query->orderBy('total', \ORM\Constants\OrderTypes::DESC);
-		$query->top(10);
-
-		$view->list = $query->list();
-
-		$view->months = $em->createQuery(\App\Models\SalesByMonth::class)->list();
+		$view->bestSellers = $this->service->bestSellers();
+		$view->salesByMonth = $this->service->salesByMonth();
+		$view->lastSales = $this->service->lastSales();
+		$view->bestCustomers = $this->service->bestCustomers();
+		$view->customersThatNeedsAttention = $this->service->customersThatNeedsAttention();
 
 		return $view->render('home/dashboard');
 	}

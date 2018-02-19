@@ -51,7 +51,7 @@ class EntityManager implements IEntityManager
 		return $query->list();
 	}
 
-	public function createQuery(String $class = null) : Query
+	public function createQuery(String $class = null, String $alias = null) : Query
 	{
 		$query = new Query($this->connection, $this);
 
@@ -60,7 +60,7 @@ class EntityManager implements IEntityManager
 		}
 
 		if (!empty($class)) {
-			$query->from($class);
+			$query->from($class, $alias);
 		}
 
 		return $query;

@@ -13,7 +13,7 @@ interface IEntityManager
 
 	function list(String $class);
 
-	function createQuery(String $class = null) : Query;
+	function createQuery(String $class = null, String $alias = null) : Query;
 
 	function remove($object);
 

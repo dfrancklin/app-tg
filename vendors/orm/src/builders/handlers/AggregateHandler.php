@@ -130,7 +130,7 @@ trait AggregateHandler
 		return $this->action;
 	}
 
-	private function getCriteria() : Criteria
+	private function getCriteria()
 	{
 		return $this->criteria;
 	}
