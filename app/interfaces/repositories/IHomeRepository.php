@@ -13,6 +13,6 @@ interface IHomeRepository
 
 	function bestCustomers() : Array;
 
-	function customersThatNeedsAttention() : Array;
+	function customerLastBuy() : Array;
 
 }

@@ -9,8 +9,17 @@ namespace App\Models;
 class BestCustomers
 {
 
+	/**
+	 * @ORM/Id
+	 * @ORM/Column(name=customer_id, type=int)
+	 */
+	public $id;
+
 	public $total;
 
-	public $name;
+	/**
+	 * @ORM/BelongsTo(class=App\Models\Customer)
+	 */
+	public $customer;
 
 }

@@ -29,7 +29,7 @@
 				$order->salesman->name
 			);
 		},
-		'Date' => [ 'date', [ 'method' => 'format', 'args' => [ 'd/m/Y' ] ] ],
+		'Date' => [ 'date', [ 'method' => 'format', 'args' => [ 'm/d/Y' ] ] ],
 		'Total' => function($order) {
 			$total = 0;
 

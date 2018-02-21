@@ -88,6 +88,7 @@ class OrdersController
 		$view = $this->factory::create();
 		$view->pageTitle = 'View Order';
 		$view->order = $order;
+		$view->canEdit = $this->security->hasAnyRoles(['ADMIN', 'SALES']);
 
 		return $view->render('orders/view');
 	}

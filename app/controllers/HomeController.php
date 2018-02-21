@@ -41,7 +41,7 @@ class HomeController
 		$view->salesByMonth = $this->service->salesByMonth();
 		$view->lastSales = $this->service->lastSales();
 		$view->bestCustomers = $this->service->bestCustomers();
-		$view->customersThatNeedsAttention = $this->service->customersThatNeedsAttention();
+		$view->customerLastBuy = $this->service->customerLastBuy();
 
 		return $view->render('home/dashboard');
 	}

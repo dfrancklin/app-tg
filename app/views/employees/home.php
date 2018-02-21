@@ -19,7 +19,7 @@
 			'admissionDate',
 			[
 				'method' => 'format',
-				'args' => ['d/m/Y']
+				'args' => ['m/d/Y']
 			]
 		],
 		'Supervisor' => ['supervisor', 'name'],

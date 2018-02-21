@@ -10,7 +10,7 @@
 	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">E-mail:</dt>
 	<dd class="col-lg-10 col-md-10 col-sm-9 col-8"><?php echo $this->employee->email; ?></dd>
 	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">Admission Date:</dt>
-	<dd class="col-lg-10 col-md-10 col-sm-9 col-8"><?php echo $this->employee->admissionDate->format('d/m/Y'); ?></dd>
+	<dd class="col-lg-10 col-md-10 col-sm-9 col-8"><?php echo $this->employee->admissionDate->format('m/d/Y'); ?></dd>
 	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">Roles:</dt>
 	<dd class="col-lg-10 col-md-10 col-sm-9 col-8">
 		<?php
@@ -41,7 +41,7 @@
 				$order->customer->name
 			);
 		},
-		'Date' => [ 'date', [ 'method' => 'format', 'args' => [ 'd/m/Y' ] ] ],
+		'Date' => [ 'date', [ 'method' => 'format', 'args' => [ 'm/d/Y' ] ] ],
 		'Total' => function($order) {
 			$total = 0;
 

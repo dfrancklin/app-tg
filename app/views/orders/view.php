@@ -18,7 +18,30 @@
 		</a>
 	</dd>
 	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">Date: </dt>
-	<dd class="col-lg-10 col-md-10 col-sm-9 col-8"><?php echo $this->order->date->format('d/m/Y'); ?></dd>
+	<dd class="col-lg-10 col-md-10 col-sm-9 col-8"><?php echo $this->order->date->format('m/d/Y'); ?></dd>
+	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">Finished:</dt>
+	<dd class="col-lg-10 col-md-10 col-sm-9 col-8">
+		<?php
+			if ($this->order->finished) {
+				echo 'Yes';
+			} else {
+				echo 'No ';
+
+				if ($this->canEdit) {
+					$edit = new \PHC\Components\Form\Button;
+
+					$edit->name = 'Edit';
+					$edit->type = 'link';
+					$edit->icon = 'edit';
+					$edit->size = 's';
+					$edit->style = 'success';
+					$edit->action = '/orders/form/' . $order->id;
+
+					$edit->render();
+				}
+			}
+		?>
+	</dd>
 </dl>
 
 <div>

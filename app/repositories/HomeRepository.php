@@ -60,7 +60,7 @@ class HomeRepository implements IHomeRepository
 
 		$query->orderBy('o.finished', OrderTypes::ASC);
 		$query->orderBy('o.id', OrderTypes::DESC);
-		$query->top(10);
+		$query->top(5);
 
 		return $query->list();;
 	}
@@ -70,24 +70,18 @@ class HomeRepository implements IHomeRepository
 		return $this->em->createQuery(BestCustomers::class)->top(10)->list();
 	}
 
-	public function customersThatNeedsAttention() : Array
+	public function customerLastBuy() : Array
 	{
 		$query = $this->em->createQuery();
 
 		$query->max('o.date', 'date');
 		$query->from(Order::class, 'o');
 		$query->join(Customer::class, 'c');
-		$query->having()->max('o.date')->lessOrEqualsThan(
-			date(
-				'Y-m-d',
-				mktime(
-					0, 0, 0,
-					date('m') - 3, date('d'), date('Y')
-				)
-			)
+		$query->where('o.date')->greaterOrEqualsThan(
+			(new \DateTimeImmutable('-1 year'))->format('Y-m-d')
 		);
 		$query->groupBy('o.customer', 'c.name');
-		$query->orderBy('o.date', OrderTypes::DESC);
+		$query->orderBy('o.date');
 		$query->top(10);
 
 		return $query->list();

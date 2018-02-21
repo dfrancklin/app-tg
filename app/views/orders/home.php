@@ -38,7 +38,7 @@
 			'date',
 			[
 				'method' => 'format',
-				'args' => ['d/m/Y']
+				'args' => ['m/d/Y']
 			]
 		],
 		'Total' => function($order) {

@@ -38,9 +38,9 @@ class HomeService implements IHomeService
 		return $this->repository->bestCustomers();
 	}
 
-	public function customersThatNeedsAttention() : Array
+	public function customerLastBuy() : Array
 	{
-		return $this->repository->customersThatNeedsAttention();
+		return $this->repository->customerLastBuy();
 	}
 
 }

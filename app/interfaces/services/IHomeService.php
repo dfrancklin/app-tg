@@ -13,6 +13,6 @@ interface IHomeService
 
 	function bestCustomers() : Array;
 
-	function customersThatNeedsAttention() : Array;
+	function customerLastBuy() : Array;
 
 }

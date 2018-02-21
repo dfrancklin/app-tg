@@ -100,7 +100,7 @@ body {
 		margin-left: 250px;
 	}
 	.menu__wrapper {
-		top: 56px;
+		top: 55px;
 		transform: translateX(0);
 		pointer-events: auto;
 	}
