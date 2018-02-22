@@ -57,6 +57,7 @@ class Query
 		$this->orm = Orm::getInstance();
 		$this->em = $em;
 		$this->connection = $connection;
+		$this->logger = $this->orm->getLogger();
 
 		$this->selected = [];
 		$this->columns = [];

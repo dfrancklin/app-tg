@@ -40,6 +40,7 @@ class Persist
 		$this->orm = Orm::getInstance();
 		$this->em = $em;
 		$this->connection = $connection;
+		$this->logger = $this->orm->getLogger();
 	}
 
 	public function exec($object, $original = null)

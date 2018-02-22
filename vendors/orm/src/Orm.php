@@ -31,12 +31,21 @@ class Orm
 
 	private $defaultConnection;
 
+	private $logConfig;
+
 	private $logger;
 
 	protected function __construct()
 	{
 		$this->tables = [];
 		$this->connections = [];
+		$this->logConfig = [
+			'location' => __DIR__ . '/../',
+			'filename' => 'orm',
+			'level' => Logger::LEVEL_INFO,
+			'occurrency' => Logger::OCCURRENCY_DAILY,
+			'disabled' => false
+		];
 	}
 
 	public static function getInstance() : Orm
@@ -263,20 +272,41 @@ class Orm
 
 	public function createEntityManager(String $connectionName = null) : IEntityManager
 	{
-		if (!$this->logger) {
-			$this->setLogger();
-		}
-
-		return new EntityManager($this->getConnection($connectionName), $this->logger);
+		return new EntityManager($this->getConnection($connectionName));
 	}
 
-	public function setLogger($file = null, $level = null)
+	public function getLogger()
 	{
-		if (!$file) {
-			$file = __DIR__ . '/../log.' . date('Y-m') . '.log';
+		if (!$this->logger) {
+			$this->logger = new Logger(...array_values($this->logConfig));
 		}
 
-		$this->logger = new Logger($file, $level);
+		return $this->logger;
+	}
+
+	public function setLogDisable(bool $disabled)
+	{
+		$this->logConfig['disabled'] = $disabled;
+	}
+
+	public function setLogLocation(String $location)
+	{
+		$this->logConfig['location'] = $location;
+	}
+
+	public function setLogFilename(String $filename)
+	{
+		$this->logConfig['filename'] = $filename;
+	}
+
+	public function setLogLevel(int $level)
+	{
+		$this->logConfig['level'] = $level;
+	}
+
+	public function setLogOccurrency(int $occurrency)
+	{
+		$this->logConfig['occurrency'] = $occurrency;
 	}
 
 }

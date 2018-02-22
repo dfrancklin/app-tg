@@ -5,15 +5,19 @@ $config = \FW\Core\Config::getInstance();
 $orm = \ORM\Orm::getInstance();
 
 $connectionFile = $config->get('connection-file');
-$logFile = $config->get('log-file');
+$logLocation = $config->get('log-location');
 $logLevel = $config->get('log-level');
 
 if ($connectionFile) {
 	$orm->setConnectionsFile($connectionFile);
 }
 
-if ($logFile) {
-	$orm->setLogger($logFile, $logLevel ?? \ORM\Logger\Logger::INFO);
+if ($logLocation) {
+	$orm->setLogLocation($logLocation);
+}
+
+if ($logLevel) {
+	$orm->setLogLevel($logLevel);
 }
 
 $initDatabase = new \App\Helpers\InitDatabase;

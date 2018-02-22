@@ -7,30 +7,58 @@ use ORM\Interfaces\ILogger;
 class Logger implements ILogger
 {
 
-	const INFO = 1;
-	const DEBUG = 2;
-	const WARNING = 3;
-	const ERROR = 4;
+	const LEVEL_INFO = 1;
+	const LEVEL_DEBUG = 2;
+	const LEVEL_WARNING = 3;
+	const LEVEL_ERROR = 4;
+
 	const LABEL = [
-		self::INFO => 'INFO',
-		self::DEBUG => 'DEBUG',
-		self::WARNING => 'WARNING',
-		self::ERROR => 'ERROR',
+		self::LEVEL_INFO => 'INFO',
+		self::LEVEL_DEBUG => 'DEBUG',
+		self::LEVEL_WARNING => 'WARNING',
+		self::LEVEL_ERROR => 'ERROR',
 	];
 
-	private static $template = "{datetime} - {level} - {class} - {message}\n";
+	const OCCURRENCY_DAILY = 1;
+	const OCCURRENCY_MONTHLY = 2;
 
-	private $file;
+	const TEMPLATE = "{datetime} - {level} - {class} - {message}\n";
+
+	private $location;
+
+	private $filename;
 
 	private $level;
 
-	public function __construct(String $file, ?int $level = self::INFO) {
-		$this->file = $file;
+	private $occurrency;
+
+	private $disabled;
+
+	public function __construct(
+		String $location,
+		String $filename,
+		int $level,
+		int $occurrency,
+		bool $disabled
+	)
+	{
+		$this->location = $location;
+		$this->filename = $filename;
 		$this->level = $level;
+		$this->occurrency = $occurrency;
+		$this->disabled = $disabled;
+	}
+
+	public function setLogDisable() {
+		$this->disabled = $disabled;
 	}
 
 	private function log(String $text, String $class, String $level)
 	{
+		if ($this->disabled) {
+			return;
+		}
+
 		if ($level <= $this->level) {
 			$log = $this->format($text, $class, $level);
 
@@ -40,27 +68,27 @@ class Logger implements ILogger
 
 	public function debug(String $text, String $class)
 	{
-		return $this->log($text, $class, self::DEBUG);
+		return $this->log($text, $class, self::LEVEL_DEBUG);
 	}
 
 	public function info(String $text, String $class)
 	{
-		return $this->log($text, $class, self::INFO);
+		return $this->log($text, $class, self::LEVEL_INFO);
 	}
 
 	public function warning(String $text, String $class)
 	{
-		return $this->log($text, $class, self::WARNING);
+		return $this->log($text, $class, self::LEVEL_WARNING);
 	}
 
 	public function error(String $text, String $class)
 	{
-		return $this->log($text, $class, self::ERROR);
+		return $this->log($text, $class, self::LEVEL_ERROR);
 	}
 
 	private function format(String $text, String $class, String $level)
 	{
-		$log = self::$template;
+		$log = self::TEMPLATE;
 		$now = new \DateTime();
 
 		$log = str_replace('{date}', $now->format('Y-m-d'), $log);
@@ -75,13 +103,30 @@ class Logger implements ILogger
 
 	private function saveLog($log)
 	{
-		$dir = dirname($this->file);
-
-		if (!file_exists($dir) && is_writable($dir)) {
+		if (!file_exists($this->location) && is_writable($this->location)) {
 			throw new \Exception('No such directory or the directory is not writable for logs: "' . $dir . '"');
 		}
 
-		return file_put_contents($this->file, $log, FILE_APPEND|FILE_TEXT);
+		$file = $this->location;
+		$file .= $this->filename . '.';
+
+		switch ($this->occurrency) {
+			case self::OCCURRENCY_DAILY:
+				$file .= date('Y-m-d');
+				break;
+
+			case self::OCCURRENCY_MONTHLY:
+				$file .= date('Y-m');
+				break;
+
+			default:
+				throw new \Exception('Invalid occurrency was informed for the logger: "' . $this->occurrency . '"');
+				break;
+		}
+
+		$file .= '.log';
+
+		return file_put_contents($file, $log, FILE_APPEND|FILE_TEXT);
 	}
 
 }
