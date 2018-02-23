@@ -70,7 +70,7 @@ class Merge
 		$this->original = $original ?? $object;
 		$this->table = $this->orm->getTable($class);
 
-		if ($this->table->isMutable()) {
+		if (!$this->table->isMutable()) {
 			throw new \Exception('The object of the class "' . $this->table->getClass() . '" is not mutable');
 		}
 
@@ -406,6 +406,7 @@ class Merge
 	{
 		$idName = $idBind = null;
 		$sets = $values = [];
+		$driver = $this->connection->getDriver();
 
 		foreach (array_merge($this->table->getColumns(), $this->table->getJoins()) as $column) {
 			if ($column instanceof Join && $column->getType() !== 'belongsTo') {
@@ -448,7 +449,7 @@ class Merge
 				$value = $this->object->{$column->getProperty()};
 
 				$sets[] = sprintf('%s = %s', $name, $bind);
-				$values[$bind] = $this->convertValue($value, $column->getType());
+				$values[$bind] = $driver->convertFromType($value, $column->getType());
 			}
 		}
 
@@ -472,19 +473,6 @@ class Merge
 		$this->values = $values;
 
 		return !empty($sets) ? $query : false;
-	}
-
-	private function convertValue($value, String $type)
-	{
-		if ($value instanceof \DateTime) {
-			$format = $this->connection->getDriver()->FORMATS[$type] ?? 'Y-m-d';
-
-			return $value->format($format);
-		} elseif (is_bool($value)) {
-			return $value ? 1 : 0;
-		} else {
-			return $value;
-		}
 	}
 
 }

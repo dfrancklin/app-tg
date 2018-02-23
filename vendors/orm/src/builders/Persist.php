@@ -70,7 +70,7 @@ class Persist
 		$this->original = $original ?? $object;
 		$this->table = $this->orm->getTable($class);
 
-		if ($this->table->isMutable()) {
+		if (!$this->table->isMutable()) {
 			throw new \Exception('The object of the class "' . $this->table->getClass() . '" is not mutable');
 		}
 
@@ -342,6 +342,7 @@ class Persist
 		$columns = [];
 		$binds = [];
 		$values = [];
+		$driver = $this->connection->getDriver();
 
 		foreach (array_merge($this->table->getColumns(), $this->table->getJoins()) as $column) {
 			if ($column instanceof Join && $column->getType() !== 'belongsTo') {
@@ -364,7 +365,7 @@ class Persist
 				$columns[] = $column->getName();
 				$binds[] = ':' . $column->getName();
 				$value = $this->object->{$column->getProperty()};
-				$values[':' . $column->getName()] = $this->convertValue($value, $column->getType());
+				$values[':' . $column->getName()] = $driver->convertFromType($value, $column->getType());
 			}
 		}
 
@@ -387,19 +388,6 @@ class Persist
 		$this->values = $values;
 
 		return !empty($columns) ? $query : false;
-	}
-
-	private function convertValue($value, String $type)
-	{
-		if ($value instanceof \DateTime) {
-			$format = $this->connection->getDriver()->FORMATS[$type] ?? 'Y-m-d';
-
-			return $value->format($format);
-		} elseif (is_bool($value)) {
-			return $value ? 1 : 0;
-		} else {
-			return $value;
-		}
 	}
 
 }

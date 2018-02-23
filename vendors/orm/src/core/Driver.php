@@ -29,4 +29,89 @@ abstract class Driver
 		'datetime' => 'Y-m-d H:i:s'
 	];
 
+	public function convertToType($value, String $type)
+	{
+		$method = 'convertTo' . ucfirst($type);
+
+		if (method_exists($this, $method)) {
+			return $this->$method($value);
+		}
+
+		return $value;
+	}
+
+	public function convertFromType($value, String $type)
+	{
+		$method = 'convertFrom' . ucfirst($type);
+
+
+		if (method_exists($this, $method)) {
+			return $this->$method($value);
+		}
+
+		return $value;
+	}
+
+	public function convertToInt($value) : int
+	{
+		return (int) $value;
+	}
+
+	public function convertToFloat($value) : float
+	{
+		return (float) $value;
+	}
+
+	public function convertToDate($value) : \DateTime
+	{
+		return new \DateTime($value);
+	}
+
+	public function convertFromDate($value) : String
+	{
+		if ($value instanceof \DateTime) {
+			return $value->format(self::FORMATS['date']);
+		}
+
+		return $value;
+	}
+
+	public function convertToTime($value) : \DateTime
+	{
+		return $this->convertToDate($value);
+	}
+
+	public function convertFromTime($value) : String
+	{
+		if ($value instanceof \DateTime) {
+			return $value->format(self::FORMATS['time']);
+		}
+
+		return $value;
+	}
+
+	public function convertToDatetime($value) : \DateTime
+	{
+		return $this->convertToDate($value);
+	}
+
+	public function convertFromDateTime($value) : String
+	{
+		if ($value instanceof \DateTime) {
+			return $value->format(self::FORMATS['datetime']);
+		}
+
+		return $value;
+	}
+
+	public function convertToBool($value) : bool
+	{
+		return in_array($value, [1, '1', 'true', 'TRUE', 't', 'T'], true);
+	}
+
+	public function convertFromBool($value) : int
+	{
+		return $value ? 1 : 0;
+	}
+
 }

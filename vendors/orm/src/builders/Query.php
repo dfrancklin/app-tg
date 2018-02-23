@@ -265,6 +265,7 @@ class Query
 		list($table) = $this->target;
 		$class = $table->getClass();
 		$object = new $class;
+		$driver = $this->connection->getDriver();
 
 		foreach ($table->getColumns() as $column) {
 			$name = $column->getName();
@@ -274,7 +275,7 @@ class Query
 				$type = $column->getType();
 				$property = $column->getProperty();
 
-				$object->{$property} = $this->convertType($value, $type);
+				$object->{$property} = $driver->convertToType($value, $type);
 			}
 		}
 
@@ -291,34 +292,18 @@ class Query
 
 			if (in_array($name, array_keys($resultSet))) {
 				$value = $resultSet[$name];
-				$type = $column->getType();
+				$refTable = $this->orm->getTable($column->getReference());
+				$id = $refTable->getId();
+				$type = $id->getType();
 				$property = $column->getProperty();
 
-				$values[$property] = $this->convertType($value, $type);
+				$values[$property] = $driver->convertToType($value, $type);
 			}
 		}
 
 		$proxy = new Proxy($this->em, $object, $values);
 
 		return $proxy;
-	}
-
-	public function convertType($value, $type)
-	{
-		switch ($type) {
-			case 'int':
-				return (int) $value;
-			case 'float':
-				return (float) $value;
-			case 'date':
-			case 'time':
-			case 'datetime':
-				return new \DateTime($value);
-			case 'bool':
-				return in_array($value, [1, '1', 'true', 'TRUE', 't', 'T'], true);
-			default:
-				return $value;
-		}
 	}
 
 }
