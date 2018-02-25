@@ -70,7 +70,7 @@ abstract class Driver
 	public function convertFromDate($value) : String
 	{
 		if ($value instanceof \DateTime) {
-			return $value->format(self::FORMATS['date']);
+			return $value->format($this->FORMATS['date']);
 		}
 
 		return $value;
@@ -84,7 +84,7 @@ abstract class Driver
 	public function convertFromTime($value) : String
 	{
 		if ($value instanceof \DateTime) {
-			return $value->format(self::FORMATS['time']);
+			return $value->format($this->FORMATS['time']);
 		}
 
 		return $value;
@@ -98,7 +98,7 @@ abstract class Driver
 	public function convertFromDateTime($value) : String
 	{
 		if ($value instanceof \DateTime) {
-			return $value->format(self::FORMATS['datetime']);
+			return $value->format($this->FORMATS['datetime']);
 		}
 
 		return $value;

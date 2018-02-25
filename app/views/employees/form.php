@@ -94,7 +94,7 @@
 			]
 		]);
 	}
-
+	
 	$this->form->button([
 		'name' => 'cancel',
 		'style' => 'warning',

@@ -125,18 +125,17 @@ class EmployeesController
 		if (!empty($employee->id)) {
 			$old = $this->service->findById($employee->id);
 
+			if (empty($old)) {
+				$this->message->error('Error while saving');
+				Router::redirect('/employees');
+				return;
+			}
+
 			if(!$this->security->hasRoles(['ADMIN'])) {
 				if (empty($_POST['password'])) {
 					$this->message->warning('You must inform the password to continue!');
 
 					return $this->form($employee);
-				}
-
-				if (empty($old)) {
-					$this->message->error('Error while saving');
-					Router::redirect('/employees');
-
-					return;
 				}
 
 				if (md5($_POST['password']) !== $old->password) {
