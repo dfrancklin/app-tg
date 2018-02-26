@@ -40,7 +40,6 @@
 		$this->form->button([
 			'name' => 'finish',
 			'type' => 'link',
-			// 'action' => '/orders/finish/' . $this->order->id,
 			'style' => 'primary',
 			'icon' => 'credit_card',
 			'additional' => [
@@ -104,7 +103,7 @@
 		$finish = new \PHC\Components\Modal;
 		$finish->name = 'finish-modal';
 		$finish->title = 'Are you sure?';
-		$finish->body = '<p>Are you sure that you want to finish this order?</p>';
+		$finish->body = '<p>Are you sure that you want to finish this order?<br>Make sure that all information was saved.</p>';
 		$finish->actions = [
 			(function () use ($order) {
 				$delete = new \PHC\Components\Form\Button;

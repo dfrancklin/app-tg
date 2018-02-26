@@ -77,13 +77,13 @@
 
 <div class="text-right">
 	<?php
-		$voltar = new \PHC\Components\Form\Button;
+		$back = new \PHC\Components\Form\Button;
 
-		$voltar->name = 'voltar';
-		$voltar->type = 'link';
-		$voltar->icon = 'arrow_back';
-		$voltar->additional = ['onclick' => '(function(e) { e.preventDefault(); window.history.back(); })(event)'];
+		$back->name = 'back';
+		$back->type = 'link';
+		$back->icon = 'arrow_back';
+		$back->additional = ['onclick' => '(function(e) { e.preventDefault(); window.history.back(); })(event)'];
 
-		$voltar->render();
+		$back->render();
 	?>
 </div>

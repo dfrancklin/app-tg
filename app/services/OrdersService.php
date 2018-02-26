@@ -41,6 +41,7 @@ class OrdersService implements IOrdersService
 			return false;
 		}
 
+		$order->date = new \Datetime();
 		$order->finished = true;
 
 		$order = $this->save($order);
