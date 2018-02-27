@@ -374,8 +374,6 @@ class ProductPicklist {
 			};
 		});
 
-		console.log(this.list);
-
 		this._addRemoveListeners();
 	}
 

@@ -5,6 +5,7 @@
 <?php
 	$this->form->action = '/orders';
 	$this->form->method = 'POST';
+	$this->form->id = 'form-order';
 
 	$this->form->hidden([
 		'name' => 'id',
@@ -106,15 +107,22 @@
 		$finish->body = '<p>Are you sure that you want to finish this order?<br>Make sure that all information was saved.</p>';
 		$finish->actions = [
 			(function () use ($order) {
-				$delete = new \PHC\Components\Form\Button;
+				$finish = new \PHC\Components\Form\Button;
 
-				$delete->name = 'Finish';
-				$delete->type = 'link';
-				$delete->icon = 'credit_card';
-				$delete->style = 'primary';
-				$delete->action = '/orders/finish/' . $order->id;
+				$finish->name = 'Finish';
+				$finish->type = 'link';
+				$finish->icon = 'credit_card';
+				$finish->style = 'primary';
+				// $finish->action = '/orders/finish/' . $order->id;
+				$finish->additional = [
+					'onclick' => '(function(e){
+						e.preventDefault();
+						$(\'#form-order\')
+						alert(\'/orders/finish/' . $order->id . '\')
+					})(event)'
+				];
 
-				return $delete;
+				return $finish;
 			})()
 		];
 		$finish->render();
