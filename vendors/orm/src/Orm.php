@@ -138,14 +138,8 @@ class Orm
 	private function createConnection(String $name) : IConnection
 	{
 		$config = $this->getConfiguration($name);
-		$dsn = $this->getDSN($config);
 		$driver = $this->loadDriver($config['db'], $config['version'] ?? null);
-
-		$pdo = new \PDO($dsn, $config['user'] ?? null, $config['pass'] ?? null);
-
-		$pdo->setAttribute(\PDO::ATTR_STRINGIFY_FETCHES, false);
-		$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-		$pdo->setAttribute(\PDO::ATTR_ORACLE_NULLS, \PDO::NULL_EMPTY_STRING);
+		$pdo = $driver->getConnection($config);
 
 		return new Connection($pdo, $driver, $config['schema'] ?? null);
 	}
@@ -163,7 +157,7 @@ class Orm
 		require $this->connectionsFile;
 
 		if (!isset($connections[$name])) {
-			throw new \Exception("Configuração de conexão \"$name\" não definida");
+			throw new \Exception('There is no connection definition with such name "' . $name . '"');
 		}
 
 		return $connections[$name];
@@ -205,35 +199,6 @@ class Orm
 		return $driver;
 	}
 
-	private function getDSN(Array $config) : String
-	{
-		switch ($config['db']) {
-			case 'mysql':
-				if ($this->validateFields(['db', 'host', 'schema', 'user', 'pass'], $config)) {
-					return "$config[db]:host=$config[host];dbname=$config[schema]";
-				}
-				break;
-			case 'sqlite':
-			case 'sqlite2':
-				if ($this->validateFields(['db', 'file'], $config)) {
-					return "$config[db]:$config[file]";
-				}
-		}
-
-		throw new \Exception('The database "' . $config['db'] . '" is not supported yet');
-	}
-
-	private function validateFields(Array $fields, Array $config) : bool
-	{
-		foreach($fields as $field) {
-			if (!isset($config[$field])) {
-				throw new \Exception("O campo $config[$field] não foi definido na definição de conexão");
-			}
-		}
-
-		return true;
-	}
-
 	public function getConnection(String $name = null) : IConnection
 	{
 		if (empty($name)) {
@@ -252,13 +217,13 @@ class Orm
 			return $this->connections[$name];
 		}
 
-		throw new \Exception("Não foram encontradas conexões definidas para \"$name\"");
+		throw new \Exception('There is no connection with such name "' . $name . '"');
 	}
 
 	public function getTable(String $class) : Table
 	{
 		if (!$class) {
-			throw new \Exception('Necessário informar o nome da classe');
+			throw new \Exception('You must inform the class name');
 		}
 
 		if (!array_key_exists($class, $this->tables)) {

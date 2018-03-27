@@ -29,6 +29,22 @@ abstract class Driver
 		'datetime' => 'Y-m-d H:i:s'
 	];
 
+	public function getConnection(Array $info) : \PDO
+	{
+		throw new \Exception('Not implemented');
+	}
+
+	protected function validateFields(Array $fields, Array $config) : bool
+	{
+		foreach($fields as $field) {
+			if (!isset($config[$field])) {
+				throw new \Exception('The field "' . $field . '" has no value or wasn\'t set on the connection config.');
+			}
+		}
+
+		return true;
+	}
+
 	public function convertToType($value, String $type)
 	{
 		$method = 'convertTo' . ucfirst($type);

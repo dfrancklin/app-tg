@@ -29,6 +29,20 @@ if (!class_exists('MySQLDriver_5_7_11')) {
 			];
 		}
 
+		public function getConnection(Array $config) : \PDO
+		{
+			$this->validateFields(['db', 'host', 'schema', 'user', 'pass'], $config);
+			$dsn = "$config[db]:$config[file]";
+
+			$pdo = new \PDO($dsn, $config['user'] ?? null, $config['pass'] ?? null);
+
+			$pdo->setAttribute(\PDO::ATTR_STRINGIFY_FETCHES, false);
+			$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+			$pdo->setAttribute(\PDO::ATTR_ORACLE_NULLS, \PDO::NULL_EMPTY_STRING);
+
+			return $pdo;
+		}
+
 	}
 
 }
