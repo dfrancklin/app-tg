@@ -117,8 +117,10 @@
 				$finish->additional = [
 					'onclick' => '(function(e){
 						e.preventDefault();
-						$(\'#form-order\')
-						alert(\'/orders/finish/' . $order->id . '\')
+						const $form = $(\'#form-order\');
+
+						$form.attr(\'action\', \'/orders/finish/' . $order->id . '\');
+						$form.submit();
 					})(event)'
 				];
 

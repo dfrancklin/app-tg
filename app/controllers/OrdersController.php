@@ -141,10 +141,13 @@ class OrdersController
 
 	/**
 	 * @RequestMap /finish/{id}
+	 * @RequestMethod POST
 	 */
 	public function finish($id)
 	{
-		if ($this->ordersService->finish($id)) {
+		$order = $this->createOrder();
+
+		if ($this->ordersService->finish($order)) {
 			$this->message->info('Order finished!');
 		} else {
 			$this->message->error('A problem occurred while finishing the order!');

@@ -33,10 +33,8 @@ class OrdersService implements IOrdersService
 		return $this->repository->findById($id);
 	}
 
-	public function finish($id)
+	public function finish($order)
 	{
-		$order = $this->findById($id);
-
 		if (!$order) {
 			return false;
 		}
