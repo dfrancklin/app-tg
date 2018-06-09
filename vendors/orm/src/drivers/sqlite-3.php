@@ -1,5 +1,6 @@
 <?php
 
+use ORM\Constants\GeneratedTypes;
 use ORM\Core\Driver;
 
 if (!class_exists('SQLiteDriver_3')) {
@@ -15,7 +16,7 @@ if (!class_exists('SQLiteDriver_3')) {
 
 		private function __construct()
 		{
-			$this->GENERATE_ID_TYPE = 'ATTR';
+			$this->GENERATE_ID_TYPE = GeneratedTypes::ATTR;
 			$this->GENERATE_ID_ATTR = 'AUTOINCREMENT';
 			$this->FK_ENABLES = false;
 			$this->PAGE_TEMPLATE = '%s ' . "\n" . 'LIMIT %d, %d';

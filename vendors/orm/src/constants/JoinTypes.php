@@ -11,6 +11,6 @@ class JoinTypes
 
 	const RIGHT = 'RIGHT';
 
-	const TYPES = [self::INNER, self::LEFT, self::RIGHT];
+	const TYPES = [ self::INNER, self::LEFT, self::RIGHT ];
 
 }

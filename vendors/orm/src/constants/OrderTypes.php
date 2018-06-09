@@ -9,6 +9,6 @@ class OrderTypes
 
 	const DESC = 'DESC';
 
-	const TYPES = [self::ASC, self::DESC];
+	const TYPES = [ self::ASC, self::DESC ];
 
 }

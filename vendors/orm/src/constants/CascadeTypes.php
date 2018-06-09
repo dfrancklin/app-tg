@@ -11,6 +11,6 @@ class CascadeTypes
 
 	const DELETE = 'DELETE';
 
-	const TYPES = [self::INSERT, self::UPDATE, self::DELETE];
+	const TYPES = [ self::INSERT, self::UPDATE, self::DELETE ];
 
 }

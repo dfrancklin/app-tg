@@ -4,6 +4,8 @@ namespace ORM\Builders;
 
 use ORM\Orm;
 
+use ORM\Constants\GeneratedTypes;
+
 use ORM\Mappers\Column;
 use ORM\Mappers\Join;
 use ORM\Mappers\Table;
@@ -56,7 +58,7 @@ class TableManager
 			$drops = array_merge($drops, $_drops);
 		}
 
-		if ($driver->GENERATE_ID_TYPE === 'SEQUENCE') {
+		if ($driver->GENERATE_ID_TYPE === GeneratedTypes::SEQUENCE) {
 			$drops[] = $this->resolveDropSequence($driver->SEQUENCE_NAME);
 		}
 
@@ -80,7 +82,7 @@ class TableManager
 			$creates = array_merge($creates, $_creates);
 		}
 
-		if ($driver->GENERATE_ID_TYPE === 'SEQUENCE') {
+		if ($driver->GENERATE_ID_TYPE === GeneratedTypes::SEQUENCE) {
 			$creates[] = $this->resolveCreateSequence($driver->SEQUENCE_NAME);
 		}
 
@@ -227,7 +229,11 @@ class TableManager
 				$definition .= ' PRIMARY KEY';
 			}
 
-			if ($column->isGenerated() && $driver->GENERATE_ID_TYPE === 'ATTR' && !$driver->IGNORE_ID_DATA_TYPE) {
+			if (
+				$column->isGenerated() &&
+				$driver->GENERATE_ID_TYPE === GeneratedTypes::ATTR &&
+				!$driver->IGNORE_ID_DATA_TYPE
+			) {
 				$definition .= ' ' . $driver->GENERATE_ID_ATTR;
 			}
 		}

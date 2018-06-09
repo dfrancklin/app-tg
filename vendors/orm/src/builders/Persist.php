@@ -5,6 +5,7 @@ namespace ORM\Builders;
 use ORM\Orm;
 
 use ORM\Constants\CascadeTypes;
+use ORM\Constants\GeneratedTypes;
 
 use ORM\Core\Proxy;
 
@@ -127,7 +128,12 @@ class Persist
 
 	private function fetchNextId()
 	{
-		if (in_array($this->connection->getDriver()->GENERATE_ID_TYPE, ['QUERY', 'SEQUENCE'])) {
+		if (
+			in_array(
+				$this->connection->getDriver()->GENERATE_ID_TYPE,
+				[ GeneratedTypes::QUERY, GeneratedTypes::SEQUENCE ]
+			)
+		) {
 			$statement = $this->connection->prepare($this->connection->getDriver()->GENERATE_ID_QUERY);
 			$executed = $statement->execute();
 

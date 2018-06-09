@@ -1,5 +1,6 @@
 <?php
 
+use ORM\Constants\GeneratedTypes;
 use ORM\Core\Driver;
 
 if (!class_exists('MySQLDriver')) {
@@ -15,7 +16,7 @@ if (!class_exists('MySQLDriver')) {
 
 		private function __construct()
 		{
-			$this->GENERATE_ID_TYPE = 'ATTR';
+			$this->GENERATE_ID_TYPE = GeneratedTypes::ATTR;
 			$this->GENERATE_ID_ATTR = 'AUTO_INCREMENT';
 			$this->PAGE_TEMPLATE = '%s ' . "\n" . 'LIMIT %d, %d';
 			$this->TOP_TEMPLATE = '%s ' . "\n" . 'LIMIT %d';
