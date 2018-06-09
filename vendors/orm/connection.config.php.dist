@@ -1,6 +1,6 @@
 <?php
 
-return $connections = [
+return [
 	'default' => [
 		'db' => 'mysql',
 		'version' => '5.7.11',

@@ -67,8 +67,6 @@ class InitDatabase
 			$objects[] = $object;
 		}
 
-		vd($objects);
-
 		return $objects;
 	}
 

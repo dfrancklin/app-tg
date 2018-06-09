@@ -7,11 +7,13 @@ if (!class_exists('MySQLDriver_5_7_11')) {
 	class MySQLDriver_5_7_11 extends Driver
 	{
 
+		private static $instance;
+
 		const NAME = 'MySQL';
 
 		const VERSION = '5.7.11';
 
-		public function __construct()
+		private function __construct()
 		{
 			$this->GENERATE_ID_TYPE = 'ATTR';
 			$this->GENERATE_ID_ATTR = 'AUTO_INCREMENT';
@@ -29,10 +31,19 @@ if (!class_exists('MySQLDriver_5_7_11')) {
 			];
 		}
 
+		public static function getInstance() : Driver
+		{
+			if (!self::$instance) {
+				self::$instance = new self();
+			}
+
+			return self::$instance;
+		}
+
 		public function getConnection(Array $config) : \PDO
 		{
 			$this->validateFields(['db', 'host', 'schema', 'user', 'pass'], $config);
-			$dsn = "$config[db]:$config[file]";
+			$dsn = "$config[db]:host=$config[host];dbname=$config[schema]";
 
 			$pdo = new \PDO($dsn, $config['user'] ?? null, $config['pass'] ?? null);
 
@@ -47,4 +58,4 @@ if (!class_exists('MySQLDriver_5_7_11')) {
 
 }
 
-return $driver = new MySQLDriver_5_7_11;
+return MySQLDriver_5_7_11::class;

@@ -2,33 +2,32 @@
 
 use ORM\Core\Driver;
 
-if (!class_exists('SQLiteDriver_3')) {
+if (!class_exists('MySQLDriver')) {
 
-	class SQLiteDriver_3 extends Driver
+	class MySQLDriver extends Driver
 	{
 
 		private static $instance;
 
-		const NAME = 'SQLite';
+		const NAME = 'MySQL';
 
-		const VERSION = '3';
+		const VERSION = 'none';
 
 		private function __construct()
 		{
 			$this->GENERATE_ID_TYPE = 'ATTR';
-			$this->GENERATE_ID_ATTR = 'AUTOINCREMENT';
-			$this->FK_ENABLES = false;
+			$this->GENERATE_ID_ATTR = 'AUTO_INCREMENT';
 			$this->PAGE_TEMPLATE = '%s ' . "\n" . 'LIMIT %d, %d';
 			$this->TOP_TEMPLATE = '%s ' . "\n" . 'LIMIT %d';
 			$this->DATA_TYPES = [
-				'string' => 'TEXT',
+				'string' => 'VARCHAR(%d)',
 				'int' => 'INTEGER',
-				'float' => 'REAL',
-				'lob' => 'BLOB',
-				'date' => 'TEXT',
-				'time' => 'TEXT',
-				'datetime' => 'TEXT',
-				'bool' => 'INTEGER'
+				'float' => 'DOUBLE',
+				'lob' => 'TEXT',
+				'date' => 'DATE',
+				'time' => 'TIME',
+				'datetime' => 'DATETIME',
+				'bool' => 'TINYINT(1)',
 			];
 		}
 
@@ -43,8 +42,8 @@ if (!class_exists('SQLiteDriver_3')) {
 
 		public function getConnection(Array $config) : \PDO
 		{
-			$this->validateFields(['db', 'file'], $config);
-			$dsn = "$config[db]:$config[file]";
+			$this->validateFields(['db', 'host', 'schema', 'user', 'pass'], $config);
+			$dsn = "$config[db]:host=$config[host];dbname=$config[schema]";
 
 			$pdo = new \PDO($dsn, $config['user'] ?? null, $config['pass'] ?? null);
 
@@ -59,4 +58,4 @@ if (!class_exists('SQLiteDriver_3')) {
 
 }
 
-return SQLiteDriver_3::class;
+return MySQLDriver::class;

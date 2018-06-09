@@ -154,7 +154,11 @@ class Orm
 			$this->setConnectionsFile(__DIR__ . '/../connection.config.php');
 		}
 
-		require $this->connectionsFile;
+		$connections = require $this->connectionsFile;
+
+		if (empty($connections)) {
+			throw new \Exception('There are no connection definitions found');
+		}
 
 		if (!isset($connections[$name])) {
 			throw new \Exception('There is no connection definition with such name "' . $name . '"');
@@ -166,7 +170,8 @@ class Orm
 	private function loadDriver(String $db, String $version) : Driver
 	{
 		$ds = DIRECTORY_SEPARATOR;
-		$driverFile = __DIR__ . $ds . 'drivers' . $ds . $db;
+		$driverPath = __DIR__ . $ds . 'drivers' . $ds;
+		$driverFile = $driverPath . $db;
 
 		if (!empty($version)) {
 			$driverFile .= '-' . $version;
@@ -175,22 +180,28 @@ class Orm
 		$driverFile .= '.php';
 
 		if (!file_exists($driverFile)) {
-			$message = 'The driver file for "' . $db . '"';
+			$driverFile = $driverPath . $db . '.php';
 
-			if (!empty($version)) {
-				$message .= ' on version "' . $version . '"';
+			if (!file_exists($driverFile)) {
+				$message = 'The driver file for "' . $db . '"';
+
+				if (!empty($version)) {
+					$message .= ' on version "' . $version . '"';
+				}
+
+				$message .= ' nor a generic Driver was not found!';
+
+				throw new \Exception($message);
 			}
-
-			$message .= ' was not found!';
-
-			throw new \Exception($message);
 		}
 
-		require $driverFile;
+		$driverClass = require $driverFile;
 
-		if (!isset($driver)) {
-			throw new \Exception('The driver instance was not found on driver file "' . $driverFile . '"');
+		if (empty($driverClass)) {
+			throw new \Exception('The driver class was not found on driver file "' . $driverFile . '"');
 		}
+
+		$driver = $driverClass::getInstance();
 
 		if (!($driver instanceof Driver)) {
 			throw new \Exception('The driver instance must be an implementation of "' . Driver::class . '"');
