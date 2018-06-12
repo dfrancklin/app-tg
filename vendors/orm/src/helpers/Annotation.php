@@ -130,10 +130,6 @@ class Annotation
 			$join->setCascade($cascade);
 		}
 
-		if ($optional = $this->resolver->get('optional', $has)) {
-			$join->setOptional($optional === 'true');
-		}
-
 		if ($type === 'manyToMany') {
 			if ($mappedBy = $this->resolver->get('mappedBy', $has)) {
 				$join->setMappedBy($mappedBy);
@@ -188,6 +184,10 @@ class Annotation
 				$name = $property->getName() . '_id';
 				$join->setName($name);
 			}
+
+			if ($optional = $this->resolver->get('optional', $has)) {
+				$join->setOptional($optional === 'true');
+			}
 		}
 
 		$this->table->addJoin($join);
@@ -223,10 +223,18 @@ class Annotation
 
 			if ($scale = $this->resolver->get('scale', $_column)) {
 				$column->setScale((int) $scale);
+			} else {
+				if ($column->getType() === 'float') {
+					$column->setScale(14);
+				}
 			}
 
 			if ($precision = $this->resolver->get('precision', $_column)) {
 				$column->setPrecision((int) $precision);
+			} else {
+				if ($column->getType() === 'float') {
+					$column->setScale(2);
+				}
 			}
 
 			if ($unique = $this->resolver->get('unique', $_column)) {

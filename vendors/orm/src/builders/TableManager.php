@@ -303,7 +303,8 @@ class TableManager
 				"\n\t" . self::FOREIGN_KEY_CONSTRAINT_TEMPLATE,
 				$joinTable->getInverseName(),
 				$referenceTableName,
-				$reference->getId()->getName());
+				$reference->getId()->getName()
+			);
 		}
 
 		$columns = array_merge($columns, $foreigns);
