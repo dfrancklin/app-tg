@@ -47,13 +47,7 @@ if (!class_exists('SQLiteDriver_3')) {
 			$this->validateFields(['db', 'file'], $config);
 			$dsn = "$config[db]:$config[file]";
 
-			$pdo = new \PDO($dsn, $config['user'] ?? null, $config['pass'] ?? null);
-
-			$pdo->setAttribute(\PDO::ATTR_STRINGIFY_FETCHES, false);
-			$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-			$pdo->setAttribute(\PDO::ATTR_ORACLE_NULLS, \PDO::NULL_EMPTY_STRING);
-
-			return $pdo;
+			return $this->createConnection($dsn, $config['user'] ?? null, $config['pass'] ?? null);
 		}
 
 	}

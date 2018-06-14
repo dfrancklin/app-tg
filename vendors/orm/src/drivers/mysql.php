@@ -46,13 +46,7 @@ if (!class_exists('MySQLDriver')) {
 			$this->validateFields(['db', 'host', 'schema', 'user', 'pass'], $config);
 			$dsn = "$config[db]:host=$config[host];dbname=$config[schema]";
 
-			$pdo = new \PDO($dsn, $config['user'] ?? null, $config['pass'] ?? null);
-
-			$pdo->setAttribute(\PDO::ATTR_STRINGIFY_FETCHES, false);
-			$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-			$pdo->setAttribute(\PDO::ATTR_ORACLE_NULLS, \PDO::NULL_EMPTY_STRING);
-
-			return $pdo;
+			return $this->createConnection($dsn, $config['user'] ?? null, $config['pass'] ?? null);
 		}
 
 	}

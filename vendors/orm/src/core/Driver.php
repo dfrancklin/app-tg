@@ -34,6 +34,17 @@ abstract class Driver
 		throw new \Exception('Not implemented');
 	}
 
+	protected function createConnection(String $dns, String $user, String $pass) : \PDO
+	{
+		$pdo = new \PDO($dsn, $user, $pass);
+
+		$pdo->setAttribute(\PDO::ATTR_STRINGIFY_FETCHES, false);
+		$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+		$pdo->setAttribute(\PDO::ATTR_ORACLE_NULLS, \PDO::NULL_EMPTY_STRING);
+
+		return $pdo;
+	}
+
 	protected function validateFields(Array $fields, Array $config) : bool
 	{
 		foreach($fields as $field) {
