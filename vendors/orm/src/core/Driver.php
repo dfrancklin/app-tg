@@ -34,7 +34,7 @@ abstract class Driver
 		throw new \Exception('Not implemented');
 	}
 
-	protected function createConnection(String $dns, String $user, String $pass) : \PDO
+	protected function createConnection(String $dsn, ?String $user, ?String $pass) : \PDO
 	{
 		$pdo = new \PDO($dsn, $user, $pass);
 

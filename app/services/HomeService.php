@@ -25,7 +25,34 @@ class HomeService implements IHomeService
 
 	public function salesByMonth() : Array
 	{
-		return $this->repository->salesByMonth();
+		$quantity = 12;
+		$sales = $this->repository->salesByMonth($quantity);
+		$months = [];
+		$currentMonth = date('m');
+		$currentYear = date('Y');
+
+		while($quantity--) {
+			$month = sprintf('%04d-%02d', $currentYear, $currentMonth);
+			$total = 0;
+
+			if (($i = array_search($month, array_column($sales, 'month'))) !== false) {
+				$total = $sales[$i]->total;
+			}
+
+			$months[] = (object) [
+				'month' => $month,
+				'total' => $total
+			];
+
+			$currentMonth--;
+
+			if ($currentMonth === 0) {
+				$currentYear--;
+				$currentMonth = 12;
+			}
+		}
+
+		return $months;
 	}
 
 	public function lastSales() : Array

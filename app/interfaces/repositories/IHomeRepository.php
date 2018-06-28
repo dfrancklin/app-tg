@@ -7,7 +7,7 @@ interface IHomeRepository
 
 	function bestSellers() : Array;
 
-	function salesByMonth() : Array;
+	function salesByMonth(int $quantity) : Array;
 
 	function lastSales() : Array;
 

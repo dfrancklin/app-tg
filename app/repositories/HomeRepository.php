@@ -49,9 +49,9 @@ class HomeRepository implements IHomeRepository
 		return $query->list();
 	}
 
-	public function salesByMonth() : Array
+	public function salesByMonth(int $quantity) : Array
 	{
-		return $this->em->createQuery(SalesByMonth::class)->top(12)->list();
+		return $this->em->createQuery(SalesByMonth::class)->top($quantity)->list();
 	}
 
 	public function lastSales() : Array
