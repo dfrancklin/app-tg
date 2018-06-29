@@ -37,6 +37,8 @@ class FW
 		$this->watchFolders = [];
 		$this->watchURI = '/--watched-files-have-changed';
 		$this->session = new \FW\Storage\Strategies\SessionStorageStrategy('watch');
+
+		$this->config->set('watching', false);
 	}
 
 	public static function getInstance() : self

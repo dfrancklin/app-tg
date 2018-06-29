@@ -20,20 +20,25 @@ class View
 
 	private $messages;
 
+	private $template;
+
 	private $views;
 
-	private $template;
+	private $lang;
 
 	public function __construct(
 		ISecurityService $security,
+		String $template,
 		String $views,
-		String $template)
+		Array $lang
+	)
 	{
 		$this->security = $security;
 		$this->router = Router::getInstance();
 		$this->messages = FlashMessages::getInstance();
 		$this->template = $template;
 		$this->views = $views;
+		$this->lang = $lang;
 		$this->data = [];
 	}
 
@@ -49,6 +54,27 @@ class View
 	public function __set($name, $value)
 	{
 		$this->data[$name] = $value;
+	}
+
+	public function lang($key, ...$args) {
+		$notFound = "not found on lang's file";
+		$text = sprintf("&lt;Key '%s' %s&gt;", $key, $notFound);
+
+		if (array_key_exists($key, $this->lang)) {
+			$text = $this->lang[$key];
+
+			for ($i = 0; $i < count($args); $i++) {
+				$value = $this->lang($args[$i]);
+
+				if (strpos($value, $notFound)) {
+					$value = $args[$i];
+				}
+
+				$text = str_replace('{' . $i . '}', $value, $text);
+			}
+		}
+
+		return $text;
 	}
 
 	public function render($__view)

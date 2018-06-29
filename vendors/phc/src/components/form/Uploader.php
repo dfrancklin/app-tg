@@ -41,7 +41,7 @@ class Uploader implements IComponent
 		'label' => '<label%s for="%s">%s:</label>',
 		'previewer' => '<div class="previewer"%s>%s</div>',
 		'progress-bar' => '<div class="progress mb-2"><div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div></div>',
-		'component' => '<div class="input-group"><label class="custom-file">%s<span class="custom-file-control"></span></label></div>',
+		'component' => '<div class="input-group"><label class="custom-file">%s<span class="custom-file-control" data-field-label="%s" data-button-label="%s"></span></label></div>',
 		'input' => '<input type="file" name="%s" id="%s" title="%s" class="custom-file-input" accept="%s"%s%s>',
 	];
 
@@ -60,6 +60,10 @@ class Uploader implements IComponent
 	private $accept;
 
 	private $additional;
+
+	private $fieldLabel = 'Choose file...';
+
+	private $buttonLabel = 'Browse';
 
 	public function render(bool $print = true)
 	{
@@ -82,12 +86,14 @@ class Uploader implements IComponent
 			$this->width = '1';
 		}
 
-		return sprintf(self::TEMPLATES['form-group'],
-						self::WIDTHS[$this->width],
-						$label,
-						$previewer,
-						self::TEMPLATES['progress-bar'],
-						$component);
+		return sprintf(
+			self::TEMPLATES['form-group'],
+			self::WIDTHS[$this->width],
+			$label,
+			$previewer,
+			self::TEMPLATES['progress-bar'],
+			$component
+		);
 	}
 
 	private function formatLabel()
@@ -96,10 +102,12 @@ class Uploader implements IComponent
 			$this->title = ucfirst($this->name);
 		}
 
-		return sprintf(self::TEMPLATES['label'],
-						($this->hideLabel ? ' class="sr-only"' : ''),
-						$this->name,
-						$this->title);
+		return sprintf(
+			self::TEMPLATES['label'],
+			($this->hideLabel ? ' class="sr-only"' : ''),
+			$this->name,
+			$this->title
+		);
 	}
 
 	private function formatPreviewer()
@@ -117,7 +125,12 @@ class Uploader implements IComponent
 
 	private function formatComponent()
 	{
-		return sprintf(self::TEMPLATES['component'], $this->formatInput());
+		return sprintf(
+			self::TEMPLATES['component'],
+			$this->formatInput(),
+			$this->fieldLabel,
+			$this->buttonLabel
+		);
 	}
 
 
@@ -145,13 +158,15 @@ class Uploader implements IComponent
 			}
 		}
 
-		return sprintf(self::TEMPLATES['input'],
-						$this->name,
-						$this->name,
-						$this->title,
-						$accept,
-						($this->required ? ' required' : null),
-						$additional);
+		return sprintf(
+			self::TEMPLATES['input'],
+			$this->name,
+			$this->name,
+			$this->title,
+			$accept,
+			($this->required ? ' required' : null),
+			$additional
+		);
 	}
 
 	public function __get(String $attr)

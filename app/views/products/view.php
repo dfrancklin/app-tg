@@ -1,17 +1,17 @@
-<h1><?=$pageTitle?></h1>
+<h1><?php echo $this->lang($pageTitle); ?></h1>
 
 <hr>
 
 <dl class="row">
-	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">ID:</dt>
+	<dt class="col-lg-2 col-md-2 col-sm-3 col-4"><?php echo $this->lang('id'); ?>:</dt>
 	<dd class="col-lg-10 col-md-10 col-sm-9 col-8"><?php echo $this->product->id; ?></dd>
-	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">Name:</dt>
+	<dt class="col-lg-2 col-md-2 col-sm-3 col-4"><?php echo $this->lang('name'); ?>:</dt>
 	<dd class="col-lg-10 col-md-10 col-sm-9 col-8"><?php echo $this->product->name; ?></dd>
-	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">Price:</dt>
+	<dt class="col-lg-2 col-md-2 col-sm-3 col-4"><?php echo $this->lang('price'); ?>:</dt>
 	<dd class="col-lg-10 col-md-10 col-sm-9 col-8"><?php echo $this->product->price; ?></dd>
-	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">Quantity:</dt>
+	<dt class="col-lg-2 col-md-2 col-sm-3 col-4"><?php echo $this->lang('quantity'); ?>:</dt>
 	<dd class="col-lg-10 col-md-10 col-sm-9 col-8"><?php echo $this->product->quantity; ?></dd>
-	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">Categories:</dt>
+	<dt class="col-lg-2 col-md-2 col-sm-3 col-4"><?php echo $this->lang('categories'); ?>:</dt>
 	<dd class="col-lg-10 col-md-10 col-sm-9 col-8">
 		<?php
 			echo (function($categories) {
@@ -40,6 +40,7 @@
 		$back = new \PHC\Components\Form\Button;
 
 		$back->name = 'back';
+		$back->title = $this->lang('back');
 		$back->type = 'link';
 		$back->icon = 'arrow_back';
 		$back->additional = ['onclick' => '(function(e) { e.preventDefault(); window.history.back(); })(event)'];

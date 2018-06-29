@@ -18,10 +18,4 @@ if (isset($menuDefinition)) {
 	echo $menu;
 }
 
-
-// private function init()
-// {
-
-// 	self::$menu = \FW\Core\Config::getInstance()->get('menu');
-// }
 ?>

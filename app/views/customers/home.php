@@ -1,8 +1,9 @@
 <h1>
-	<?=$pageTitle?>
+	<?php echo $this->lang($pageTitle); ?>
 
 	<a href="/customers/form" class="btn btn-primary">
-		New <span class="material-icons">add_circle_outline</span>
+		<?php echo $this->lang('new'); ?>
+		<span class="material-icons">add_circle_outline</span>
 	</a>
 </h1>
 
@@ -13,16 +14,18 @@
 	$table->resource = $this->customers;
 	$table->columns = [
 		'#' => 'id',
-		'Name' => 'name',
-		'E-mail' => 'email',
-		'Phone' => 'phone',
+		$this->lang('name') => 'name',
+		$this->lang('email') => 'email',
+		$this->lang('phone') => 'phone',
 	];
+	$table->actionsLabel = $this->lang('actions');
 	$table->actions = [
 		(function () {
 			$edit = new \PHC\Components\Form\Button;
 
-			$edit->name = 'Edit';
+			$edit->name = 'edit';
 			$edit->type = 'link';
+			$edit->title = $this->lang('edit');
 			$edit->icon = 'edit';
 			$edit->size = 's';
 			$edit->style = 'success';
@@ -33,8 +36,9 @@
 		(function () {
 			$delete = new \PHC\Components\Form\Button;
 
-			$delete->name = 'Delete';
+			$delete->name = 'delete';
 			$delete->icon = 'delete';
+			$delete->title = $this->lang('delete');
 			$delete->size = 's';
 			$delete->style = 'danger';
 			$delete->additional = [
@@ -52,18 +56,24 @@
 	$pagination->route = $this->router->getActiveRoute();
 	$pagination->active = $this->page;
 	$pagination->total = $this->totalPages;
+	$pagination->firstLabel = $this->lang('first');
+	$pagination->nextLabel = $this->lang('next');
+	$pagination->previousLabel = $this->lang('previous');
+	$pagination->lastLabel = $this->lang('last');
 	$pagination->render();
 
 	$modal = new \PHC\Components\Modal;
 	$modal->name = 'confirm-modal';
-	$modal->title = 'Are you sure?';
-	$modal->body = '<p>Are you sure that you want to delete this item permanently?</p>';
+	$modal->title = $this->lang('confirm-modal-title');
+	$modal->body = $this->lang('confirm-modal-message');
+	$modal->closeButtonLabel = $this->lang('close');
 	$modal->actions = [
 		(function () {
 			$delete = new \PHC\Components\Form\Button;
 
-			$delete->name = 'Delete';
+			$delete->name = 'delete';
 			$delete->type = 'link';
+			$delete->title = $this->lang('delete');
 			$delete->icon = 'delete';
 			$delete->style = 'danger';
 			$delete->additional = ['data-destiny' => '/customers/delete/'];

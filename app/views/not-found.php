@@ -1,4 +1,4 @@
-<h1>404 Not Found</h1>
+<h1><?php echo $this->lang('404-not-found'); ?></h1>
 
-<p>Ops! The page "<?=$route?>" that you're trying to request seems to not exists.</p>
-<p>Do you want do get back to <a href="/">home page</a>?</p>
+<p><?php echo $this->lang('404-message', $route); ?> </p>
+<p><?php echo $this->lang('404-get-back'); ?></p>

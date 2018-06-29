@@ -11,7 +11,7 @@ interface IAuthentication
 
 	function authenticate();
 
-	function forbidden($route);
+	function forbidden();
 
 	function logout();
 

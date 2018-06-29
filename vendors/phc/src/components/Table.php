@@ -22,6 +22,8 @@ class Table implements IComponent
 
 	private $actions;
 
+	private $actionsLabel = 'Actions';
+
 	public function render(bool $print = true)
 	{
 		$table = $this->formatTable();
@@ -58,7 +60,7 @@ class Table implements IComponent
 		}
 
 		if (!empty($this->actions)) {
-			$columns[] = sprintf(self::TEMPLATES['head-cell'], 'Actions');
+			$columns[] = sprintf(self::TEMPLATES['head-cell'], $this->actionsLabel);
 		}
 
 		return sprintf(

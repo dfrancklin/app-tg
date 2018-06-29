@@ -1,4 +1,4 @@
-<h1><?=$pageTitle?></h1>
+<h1><?php echo $this->lang($pageTitle); ?></h1>
 
 <hr>
 
@@ -12,6 +12,7 @@
 	]);
 	$this->form->input([
 		'name' => 'name',
+		'title' => $this->lang('name'),
 		'hideLabel' => true,
 		'required' => true,
 		'autofocus' => true,
@@ -19,6 +20,7 @@
 	]);
 	$this->form->button([
 		'name' => 'save',
+		'title' => $this->lang('save'),
 		'style' => 'primary',
 		'icon' => 'save',
 		'type' => 'submit',
@@ -27,6 +29,7 @@
 	if (!is_null($this->category)) {
 		$this->form->button([
 			'name' => 'delete',
+			'title' => $this->lang('delete'),
 			'style' => 'danger',
 			'icon' => 'delete',
 			'additional' => [
@@ -38,6 +41,7 @@
 
 	$this->form->button([
 		'name' => 'cancel',
+		'title' => $this->lang('cancel'),
 		'style' => 'warning',
 		'icon' => 'cancel',
 		'type' => 'link',
@@ -52,14 +56,16 @@
 
 		$modal = new \PHC\Components\Modal;
 		$modal->name = 'confirm-modal';
-		$modal->title = 'Are you sure?';
-		$modal->body = '<p>Are you sure that you want to delete this item permanently?</p>';
+		$modal->title = $this->lang('confirm-modal-title');
+		$modal->body = $this->lang('confirm-modal-message');
+		$modal->closeButtonLabel = $this->lang('close');
 		$modal->actions = [
 			(function () use ($category) {
 				$delete = new \PHC\Components\Form\Button;
 
-				$delete->name = 'Delete';
+				$delete->name = 'delete';
 				$delete->type = 'link';
+				$delete->title = $this->lang('delete');
 				$delete->icon = 'delete';
 				$delete->style = 'danger';
 				$delete->action = '/categories/delete/' . $category->id;

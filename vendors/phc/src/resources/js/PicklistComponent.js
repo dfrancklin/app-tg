@@ -5,6 +5,7 @@ class PicklistComponent {
 		this.root = root;
 		this.name = this.root.getAttribute('data-name');
 		this.title = this.root.getAttribute('data-title');
+		this.actionLabel = this.root.getAttribute('data-action-label');
 		this.label = this.root.getAttribute('data-label');
 		this.value = this.root.getAttribute('data-value');
 		this.source = this.root.getAttribute('data-source');
@@ -199,7 +200,7 @@ class PicklistComponent {
 			<tr>
 				<th style="width: 5%;">#</th>
 				<th>${this.title}</th>
-				<th style="width: 5%;">Action</th>
+				<th style="width: 5%;">${this.actionLabel}</th>
 			</tr>
 		</thead>`;
 

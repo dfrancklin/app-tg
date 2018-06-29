@@ -25,7 +25,7 @@ class ProductPicklist implements IComponent
 	];
 
 	const TEMPLATES = [
-		'component' => '<div class="component__product-picklist%s" data-name="%s" data-title="%s" data-source="%s">%s%s%s%s</div>',
+		'component' => '<div class="component__product-picklist%s" data-name="%s" data-title="%s" data-picture-label="%s" data-quantity-label="%s" data-price-label="%s" data-action-label="%s" data-source="%s">%s%s%s%s</div>',
 		'loader' => '<spam class="material-icons loader">sync</spam>',
 		'select-list' => '<div class="show-select-list"></div>',
 		'selected-list' => '<div class="show-selected-list">%s</div>',
@@ -48,6 +48,20 @@ class ProductPicklist implements IComponent
 	private $hideLabel;
 
 	private $placeholder;
+
+	private $addLabel = 'Add';
+
+	private $cancelLabel = 'Cancel';
+
+	private $removeLabel = 'Remove';
+
+	private $pictureLabel = 'Picture';
+
+	private $quantityLabel = 'Quantity';
+
+	private $priceLabel = 'Price';
+
+	private $actionLabel = 'Action';
 
 	public function render(bool $print = true)
 	{
@@ -80,6 +94,10 @@ class ProductPicklist implements IComponent
 			self::WIDTHS[$this->width],
 			$this->name,
 			$this->title,
+			$this->pictureLabel,
+			$this->quantityLabel,
+			$this->priceLabel,
+			$this->actionLabel,
 			$this->source,
 			$input,
 			$loader,
@@ -112,7 +130,7 @@ class ProductPicklist implements IComponent
 
 		$quantity->type = 'number';
 		$quantity->size = $this->size;
-		$quantity->title = 'Quantity';
+		$quantity->title = $this->quantityLabel;
 		$quantity->hideLabel = $this->hideLabel;
 		$quantity->width = '1/4';
 		$quantity->additional = ['min' => '1'];
@@ -135,7 +153,8 @@ class ProductPicklist implements IComponent
 		$add = new Button;
 
 		$add->type = 'link';
-		$add->title = 'Add';
+		$add->name = 'add';
+		$add->title = $this->addLabel;
 		$add->icon = 'add_circle_outline';
 		$add->style = 'primary';
 		$add->block = true;
@@ -144,14 +163,13 @@ class ProductPicklist implements IComponent
 		$cancel = new Button;
 
 		$cancel->type = 'link';
-		$cancel->title = 'Cancel';
+		$cancel->name = 'cancel';
+		$cancel->title = $this->cancelLabel;
 		$cancel->icon = 'cancel';
 		$cancel->style = 'warning';
 		$cancel->block = true;
 		$cancel->iconOnly = true;
-		$cancel->additional = [
-			'style' => 'margin-left: 0;'
-		];
+		$cancel->additional = [ 'style' => 'margin-left: 0;' ];
 
 		$buttons[] = sprintf($wrap, $add);
 		$buttons[] = sprintf($wrap, $cancel);
@@ -176,12 +194,12 @@ class ProductPicklist implements IComponent
 		$head = '<thead class="thead-inverse">
 			<tr>
 				<th style="width: 5%%; text-align: right;">#</th>
-				<th style="width: 5%%;">Picture</th>
+				<th style="width: 5%%;">'. $this->pictureLabel . '</th>
 				<th>%s</th>
-				<th style="width: 10%%; text-align: right;">Quantity</th>
-				<th style="width: 10%%; text-align: right;">Price</th>
+				<th style="width: 10%%; text-align: right;">'. $this->quantityLabel . '</th>
+				<th style="width: 10%%; text-align: right;">'. $this->priceLabel . '</th>
 				<th style="width: 10%%; text-align: right;">Subtotal</th>
-				<th style="width: 5%%;">Action</th>
+				<th style="width: 5%%;">'. $this->actionLabel . '</th>
 			</tr>
 		</thead>';
 		$body = '<tbody>%s</tbody>';
@@ -220,7 +238,7 @@ class ProductPicklist implements IComponent
 
 		$button = new Button;
 		$button->type = 'link';
-		$button->title = 'Remove';
+		$button->title = $this->removeLabel;
 		$button->icon = 'delete';
 		$button->size = 's';
 		$button->style = 'danger';

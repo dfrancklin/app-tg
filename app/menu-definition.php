@@ -5,7 +5,7 @@ $menuDefinition = (object) [
 		(object) [
 			'items' => [
 				(object) [
-					'title' => 'Dashboard',
+					'title' => $this->lang('dashboard'),
 					'icon' => 'dashboard',
 					'href' => '/dashboard',
 					'activeRoute' => '/',
@@ -13,18 +13,18 @@ $menuDefinition = (object) [
 			],
 		],
 		(object) [
-			'title' => 'Sales',
+			'title' => $this->lang('sales'),
 			'icon' => 'attach_money',
 			'roles' => ['ADMIN', 'SALES'],
 			'items' => [
 				(object) [
-					'title' => 'Customers',
+					'title' => $this->lang('customers'),
 					'icon' => 'person',
 					'href' => '/customers',
 					'activeRoute' => ['/customers/*'],
 				],
 				(object) [
-					'title' => 'Orders',
+					'title' => $this->lang('orders'),
 					'icon' => 'payment',
 					'href' => '/orders',
 					'activeRoute' => ['/orders/*'],
@@ -32,26 +32,26 @@ $menuDefinition = (object) [
 			],
 		],
 		(object) [
-			'title' => 'Administration',
+			'title' => $this->lang('administration'),
 			'icon' => 'build',
 			'roles' => ['ADMIN', 'STOCK'],
 			'items' => [
 				(object) [
-					'title' => 'Products',
+					'title' => $this->lang('products'),
 					'icon' => 'settings',
 					'href' => '/products',
 					'activeRoute' => ['/products/*'],
 					'roles' => ['ADMIN', 'STOCK'],
 				],
 				(object) [
-					'title' => 'Categories',
+					'title' => $this->lang('categories'),
 					'icon' => 'local_offer',
 					'href' => '/categories',
 					'activeRoute' => ['/categories/*'],
 					'roles' => ['ADMIN', 'STOCK'],
 				],
 				(object) [
-					'title' => 'Employees',
+					'title' => $this->lang('employees'),
 					'icon' => 'face',
 					'href' => '/employees',
 					'activeRoute' => ['/employees/*'],

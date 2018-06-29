@@ -77,9 +77,7 @@ class HomeRepository implements IHomeRepository
 		$query->max('o.date', 'date');
 		$query->from(Order::class, 'o');
 		$query->join(Customer::class, 'c');
-		$query->where('o.date')->greaterOrEqualsThan(
-			(new \DateTimeImmutable('-1 year'))->format('Y-m-d')
-		);
+		$query->where('o.date')->greaterOrEqualsThan(new \DateTime('-1 year'));
 		$query->groupBy('o.customer', 'c.name');
 		$query->orderBy('o.date');
 		$query->top(10);

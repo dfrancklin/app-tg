@@ -1,5 +1,5 @@
 <div id="form">
-	<h1 class="text-center"><?=$pageTitle?></h1>
+	<h1 class="text-center"><?php echo $this->lang($pageTitle); ?></h1>
 
 	<?php
 		$this->form->action = '/authenticate';
@@ -13,7 +13,7 @@
 				->input([
 					'type' => 'email',
 					'name' => 'email',
-					'title' => 'E-mail',
+					'title' => $this->lang('email'),
 					'size' => 'l',
 					'hideLabel' => true,
 					'required' => true,
@@ -23,6 +23,7 @@
 				->input([
 					'type' => 'password',
 					'name' => 'password',
+					'title' => $this->lang('password'),
 					'size' => 'l',
 					'hideLabel' => true,
 					'required' => true,
@@ -30,11 +31,12 @@
 				])
 				->checkbox([
 					'name' => 'remember-me',
+					'title' => $this->lang('remember-me'),
 					'value' => 'true'
 				])
 				->button([
 					'name' => 'submit',
-					'title' => 'Login',
+					'title' => $this->lang('login'),
 					'type' => 'submit',
 					'style' => 'dark',
 					'icon' => 'keyboard_return',

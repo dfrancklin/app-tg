@@ -1,4 +1,4 @@
-<h1><?=$pageTitle?></h1>
+<h1><?php echo $this->lang($pageTitle); ?></h1>
 
 <hr>
 
@@ -12,6 +12,7 @@
 	]);
 	$this->form->input([
 		'name' => 'name',
+		'title' => $this->lang('name'),
 		'hideLabel' => true,
 		'required' => true,
 		'autofocus' => true,
@@ -20,6 +21,7 @@
 	$this->form->input([
 		'name' => 'price',
 		'type' => 'number',
+		'title' => $this->lang('price'),
 		'hideLabel' => true,
 		'required' => true,
 		'value' => !is_null($this->product) ? $this->product->price : '',
@@ -32,6 +34,7 @@
 	$this->form->input([
 		'name' => 'quantity',
 		'type' => 'number',
+		'title' => $this->lang('quantity'),
 		'hideLabel' => true,
 		'required' => true,
 		'value' => !is_null($this->product) ? $this->product->quantity : '',
@@ -42,6 +45,10 @@
 	]);
 	$this->form->uploader([
 		'name' => 'picture',
+		'title' => $this->lang('picture'),
+		'fieldLabel' => $this->lang('picture-field', 'picture'),
+		'buttonLabel' => $this->lang('picture-button'),
+		'title' => $this->lang('picture'),
 		'hideLabel' => true,
 		'width' => '1/2',
 		'accept' => 'images',
@@ -49,21 +56,26 @@
 	]);
 	$this->form->picklist([
 		'name' => 'categories',
+		'title' => $this->lang('categories'),
+		'actionLabel' => $this->lang('action'),
+		'removeLabel' => $this->lang('remove'),
 		'value' => 'id',
 		'label' => 'name',
 		'source' => '/categories/json',
-		'placeholder' => 'Start typing to search categories...',
+		'placeholder' => $this->lang('picklist-placeholder', 'categories'),
 		'hideLabel' => true,
 		'width' => '1/2',
 		'values' => !is_null($this->product) ? $this->product->categories : null
 	]);
 	$this->form->text([
 		'name' => 'description',
+		'title' => $this->lang('description'),
 		'hideLabel' => true,
 		'value' => !is_null($this->product) ? $this->product->description : ''
 	]);
 	$this->form->button([
 		'name' => 'save',
+		'title' => $this->lang('save'),
 		'style' => 'primary',
 		'icon' => 'save',
 		'type' => 'submit',
@@ -72,6 +84,7 @@
 	if (!is_null($this->product)) {
 		$this->form->button([
 			'name' => 'delete',
+			'title' => $this->lang('delete'),
 			'style' => 'danger',
 			'icon' => 'delete',
 			'additional' => [
@@ -83,6 +96,7 @@
 
 	$this->form->button([
 		'name' => 'cancel',
+		'title' => $this->lang('cancel'),
 		'style' => 'warning',
 		'icon' => 'cancel',
 		'type' => 'link',
@@ -96,14 +110,16 @@
 
 		$modal = new \PHC\Components\Modal;
 		$modal->name = 'confirm-modal';
-		$modal->title = 'Are you sure?';
-		$modal->body = '<p>Are you sure that you want to delete this item permanently?</p>';
+		$modal->title = $this->lang('confirm-modal-title');
+		$modal->body = $this->lang('confirm-modal-message');
+		$modal->closeButtonLabel = $this->lang('close');
 		$modal->actions = [
 			(function () use ($product) {
 				$delete = new \PHC\Components\Form\Button;
 
-				$delete->name = 'Delete';
+				$delete->name = 'delete';
 				$delete->type = 'link';
+				$delete->title = $this->lang('delete');
 				$delete->icon = 'delete';
 				$delete->style = 'danger';
 				$delete->additional = '/products/delete/' . $product->id;

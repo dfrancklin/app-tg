@@ -1,66 +1,70 @@
-<h1><?=$pageTitle?></h1>
+<h1><?php echo $this->lang($pageTitle); ?></h1>
 
 <hr>
 
 <dl class="row">
-	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">ID:</dt>
+	<dt class="col-lg-2 col-md-2 col-sm-3 col-4"><?php echo $this->lang('id'); ?>:</dt>
 	<dd class="col-lg-10 col-md-10 col-sm-9 col-8"><?php echo $this->customer->id; ?></dd>
-	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">Name:</dt>
+	<dt class="col-lg-2 col-md-2 col-sm-3 col-4"><?php echo $this->lang('name'); ?>:</dt>
 	<dd class="col-lg-10 col-md-10 col-sm-9 col-8"><?php echo $this->customer->name; ?></dd>
-	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">E-mail:</dt>
+	<dt class="col-lg-2 col-md-2 col-sm-3 col-4"><?php echo $this->lang('email'); ?>:</dt>
 	<dd class="col-lg-10 col-md-10 col-sm-9 col-8"><?php echo $this->customer->email; ?></dd>
-	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">Phone:</dt>
+	<dt class="col-lg-2 col-md-2 col-sm-3 col-4"><?php echo $this->lang('phone'); ?>:</dt>
 	<dd class="col-lg-10 col-md-10 col-sm-9 col-8"><?php echo $this->customer->phone; ?></dd>
 </dl>
 
 <?php
-	$security = $this->security;
-	$table = new \PHC\Components\Table;
-	$table->resource = $this->customer->orders;
-	$table->columns = [
-		'#' => 'id',
-		'Salesman' => function($order) {
-			$link = '<a href="/employees/view/%d" title="%s">%s</a>';
+	if (!empty($this->customer->orders)) {
+		$security = $this->security;
+		$table = new \PHC\Components\Table;
+		$table->resource = $this->customer->orders;
+		$table->columns = [
+			'#' => 'id',
+			$this->lang('salesman') => function($order) {
+				$link = '<a href="/employees/view/%d" title="%s">%s</a>';
 
-			return sprintf(
-				$link,
-				$order->salesman->id,
-				$order->salesman->name,
-				$order->salesman->name
-			);
-		},
-		'Date' => [ 'date', [ 'method' => 'format', 'args' => [ 'm/d/Y' ] ] ],
-		'Total' => function($order) {
-			$total = 0;
+				return sprintf(
+					$link,
+					$order->salesman->id,
+					$order->salesman->name,
+					$order->salesman->name
+				);
+			},
+			$this->lang('date') => [ 'date', [ 'method' => 'format', 'args' => [ DATE_FORMAT ] ] ],
+			$this->lang('total') => function($order) {
+				$total = 0;
 
-			if (!empty($order->items)) {
-				foreach ($order->items as $item) {
-					$total += $item->price * $item->quantity;
+				if (!empty($order->items)) {
+					foreach ($order->items as $item) {
+						$total += $item->price * $item->quantity;
+					}
 				}
+
+				return '$ ' . number_format($total, 2);
+			},
+		];
+		$table->actionsLabel = $this->lang('actions');
+		$table->actions = [
+			function ($order) {
+				if (!$order->finished) {
+					return;
+				}
+
+				$view = new \PHC\Components\Form\Button;
+
+				$view->name = 'view';
+				$view->type = 'link';
+				$view->title = $this->lang('view');
+				$view->icon = 'visibility';
+				$view->size = 's';
+				$view->style = 'primary';
+				$view->action = '/orders/view/' . $order->id;
+
+				return $view;
 			}
-
-			return '$ ' . number_format($total, 2);
-		},
-	];
-	$table->actions = [
-		function ($order) {
-			if (!$order->finished) {
-				return;
-			}
-
-			$view = new \PHC\Components\Form\Button;
-
-			$view->name = 'View';
-			$view->type = 'link';
-			$view->icon = 'visibility';
-			$view->size = 's';
-			$view->style = 'primary';
-			$view->action = '/orders/view/' . $order->id;
-
-			return $view;
-		}
-	];
-	$table->render();
+		];
+		$table->render();
+	}
 ?>
 
 <div class="text-right">
@@ -69,6 +73,7 @@
 
 		$back->name = 'back';
 		$back->type = 'link';
+		$back->title = $this->lang('back');
 		$back->icon = 'arrow_back';
 		$back->additional = ['onclick' => '(function(e) { e.preventDefault(); window.history.back(); })(event)'];
 

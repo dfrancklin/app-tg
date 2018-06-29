@@ -18,4 +18,6 @@ $config->set('scan-folders', [
 $config->set('connection-file', __DIR__ . '/connections.php');
 $config->set('log-location', __DIR__ . '/logs/');
 $config->set('log-level', \ORM\Logger\Logger::LEVEL_ERROR);
-$config->set('lang', __DIR__ . '/lang/pt-br.php');
+$config->set('lang', require_once __DIR__ . '/lang/pt-br.php');
+
+define('DATE_FORMAT', 'd/m/Y');

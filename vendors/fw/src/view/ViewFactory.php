@@ -28,11 +28,13 @@ class ViewFactory implements IViewFactory
 		$security = self::$dm->resolve(ISecurityService::class);
 		$template = $template ?? self::$config->get('template');
 		$views = self::$config->get('views-folder');
+		$lang = self::$config->get('lang');
 
 		return new View(
 			$security,
+			$template,
 			$views,
-			$template
+			$lang
 		);
 	}
 

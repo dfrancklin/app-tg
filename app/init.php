@@ -10,7 +10,7 @@ if ($scanFolders = $config->get('scan-folders')) {
 	$fw->scanComponents(...$scanFolders);
 }
 
-$fw->enableWatch(__DIR__ . '/..');
+// $fw->enableWatch(__DIR__ . '/..');
 $fw->static('/public', [
 	__DIR__ . '/../resources/',
 	__DIR__ . '/../vendors/phc/src/resources/'

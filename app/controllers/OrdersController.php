@@ -176,7 +176,9 @@ class OrdersController
 
 		$view->pageTitle = (is_null($order) ? 'New' : 'Update') . ' Order';
 		$view->order = $order;
-		$view->customers = $this->createCustomersList();
+		$customers = $this->createCustomersList();
+		$customers[''] = $view->lang(strtolower($customers['']));
+		$view->customers = $customers;
 		$view->form = new Form;
 		$view->scripts = ['/public/js/ProductPicklist.js'];
 

@@ -14,7 +14,7 @@ class Modal implements IComponent
 		'body' => '<div class="modal-body">%s</div>',
 		'footer' => '<div class="modal-footer">%s</div>',
 		'close-icon' => '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
-		'close-button' => '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>',
+		'close-button' => '<button type="button" class="btn btn-secondary" data-dismiss="modal">%s</button>',
 	];
 
 	private $name;
@@ -28,6 +28,8 @@ class Modal implements IComponent
 	private $closeIcon;
 
 	private $closeButton;
+
+	private $closeButtonLabel = 'Close';
 
 	public function __construct()
 	{
@@ -106,7 +108,13 @@ class Modal implements IComponent
 	private function formatFooter()
 	{
 		if ($this->closeButton) {
-			array_unshift($this->actions, self::TEMPLATES['close-button']);
+			array_unshift(
+				$this->actions,
+				sprintf(
+					self::TEMPLATES['close-button'],
+					$this->closeButtonLabel
+				)
+			);
 		}
 
 		$actions = '';

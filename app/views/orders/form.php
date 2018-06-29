@@ -1,4 +1,4 @@
-<h1><?=$pageTitle?></h1>
+<h1><?php echo $this->lang($pageTitle); ?></h1>
 
 <hr>
 
@@ -14,6 +14,7 @@
 
 	$this->form->select([
 		'name' => 'customer',
+		'title' => $this->lang('customer'),
 		'selected' => (
 			!is_null($this->order) ?
 			(
@@ -31,8 +32,17 @@
 
 	$this->form->products([
 		'name' => 'products',
+		'title' => $this->lang('product'),
+		'pictureLabel' => $this->lang('picture'),
+		'addLabel' => $this->lang('add'),
+		'cancelLabel' => $this->lang('cancel'),
+		'removeLabel' => $this->lang('remove'),
+		'pictureLabel' => $this->lang('picture'),
+		'quantityLabel' => $this->lang('quantity'),
+		'priceLabel' => $this->lang('price'),
+		'actionLabel' => $this->lang('action'),
 		'source' => '/products/json',
-		'placeholder' => 'Start typing to search products...',
+		'placeholder' => $this->lang('picklist-placeholder', 'products'),
 		'hideLabel' => true,
 		'values' => !is_null($this->order) ? $this->order->items : null
 	]);
@@ -40,6 +50,7 @@
 	if (!is_null($this->order)) {
 		$this->form->button([
 			'name' => 'finish',
+			'title' => $this->lang('finish'),
 			'type' => 'link',
 			'style' => 'primary',
 			'icon' => 'credit_card',
@@ -52,6 +63,7 @@
 
 	$this->form->button([
 		'name' => 'save',
+		'title' => $this->lang('save'),
 		'style' => $this->order ? 'secondary' : 'primary',
 		'icon' => 'save',
 		'type' => 'submit',
@@ -60,6 +72,7 @@
 	if (!is_null($this->order)) {
 		$this->form->button([
 			'name' => 'delete',
+			'title' => $this->lang('delete'),
 			'style' => 'danger',
 			'icon' => 'delete',
 			'additional' => [
@@ -71,6 +84,7 @@
 
 	$this->form->button([
 		'name' => 'cancel',
+		'title' => $this->lang('cancel'),
 		'style' => 'warning',
 		'icon' => 'cancel',
 		'type' => 'link',
@@ -84,14 +98,16 @@
 
 		$confirm = new \PHC\Components\Modal;
 		$confirm->name = 'confirm-modal';
-		$confirm->title = 'Are you sure?';
-		$confirm->body = '<p>Are you sure that you want to delete this item permanently?</p>';
+		$confirm->title = $this->lang('confirm-modal-title');
+		$confirm->body = $this->lang('confirm-modal-message');
+		$confirm->closeButtonLabel = $this->lang('close');
 		$confirm->actions = [
 			(function () use ($order) {
 				$delete = new \PHC\Components\Form\Button;
 
-				$delete->name = 'Delete';
+				$delete->name = 'delete';
 				$delete->type = 'link';
+				$delete->title = $this->lang('delete');
 				$delete->icon = 'delete';
 				$delete->style = 'danger';
 				$delete->action = '/orders/delete/' . $order->id;
@@ -103,13 +119,15 @@
 
 		$finish = new \PHC\Components\Modal;
 		$finish->name = 'finish-modal';
-		$finish->title = 'Are you sure?';
-		$finish->body = '<p>Are you sure that you want to finish this order?<br>Make sure that all information was saved.</p>';
+		$finish->title = $this->lang('finish-modal-title');
+		$finish->body = $this->lang('finish-modal-message');
+		$finish->closeButtonLabel = $this->lang('close');
 		$finish->actions = [
 			(function () use ($order) {
 				$finish = new \PHC\Components\Form\Button;
 
-				$finish->name = 'Finish';
+				$finish->name = 'finish';
+				$finish->title = $this->lang('finish');
 				$finish->type = 'link';
 				$finish->icon = 'credit_card';
 				$finish->style = 'primary';

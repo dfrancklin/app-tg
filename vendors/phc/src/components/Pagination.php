@@ -22,6 +22,14 @@ class Pagination implements IComponent
 
 	private $showPageNumbers;
 
+	private $firstLabel = 'First';
+
+	private $nextLabel = 'Next';
+
+	private $previousLabel = 'Previous';
+
+	private $lastLabel = 'Last';
+
 	public function __construct()
 	{
 		$this->quantity = 3;
@@ -60,7 +68,7 @@ class Pagination implements IComponent
 			$this->active === 1 ? ' disabled' : '',
 			$this->route,
 			1,
-			'First'
+			$this->firstLabel
 		);
 
 		$previous = sprintf(
@@ -68,7 +76,7 @@ class Pagination implements IComponent
 			$this->active === 1 ? ' disabled' : '',
 			$this->route,
 			$this->active === 1 ? 1 : $this->active - 1,
-			'Previous'
+			$this->previousLabel
 		);
 
 		$next = sprintf(
@@ -76,7 +84,7 @@ class Pagination implements IComponent
 			$this->active === $this->total ? ' disabled' : '',
 			$this->route,
 			$this->active === $this->total ? $this->total : $this->active + 1,
-			'Next'
+			$this->nextLabel
 		);
 
 		$last = sprintf(
@@ -84,7 +92,7 @@ class Pagination implements IComponent
 			$this->active === $this->total ? ' disabled' : '',
 			$this->route,
 			$this->total,
-			'Last'
+			$this->lastLabel
 		);
 
 		$pages = [];

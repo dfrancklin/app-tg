@@ -154,6 +154,14 @@
 	width: 100%;
 }
 
+.component__uploader .custom-file .custom-file-control::before {
+	content: attr(data-button-label);
+}
+
+.component__uploader .custom-file .custom-file-control::after {
+	content: attr(data-field-label);
+}
+
 .component__uploader .drop-zone {
 	border: 2px dashed #bbb;
 	border-radius: 5px;

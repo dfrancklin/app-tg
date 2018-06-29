@@ -1,20 +1,22 @@
-<h1><?=$pageTitle?></h1>
+<h1><?php echo $this->lang($pageTitle); ?></h1>
 
 <hr>
 
 <div class="row">
 	<div class="col-12 col-sm-5">
-		<h3>Sales by Month</h3>
+		<h3><?php echo $this->lang('sales-by-month'); ?></h3>
+
 		<canvas id="sales-by-month"></canvas>
 	</div>
 
 	<div class="col-12 col-sm-7">
-		<h3>Top 10 best sellers in the last 30 days</h3>
+		<h3><?php echo $this->lang('top-10-best-sellers'); ?></h3>
+
 		<canvas id="best-sellers"></canvas>
 	</div>
 
 	<div class="col-12">
-		<h3>Last Sales</h3>
+		<h3><?php echo $this->lang('last-sales'); ?></h3>
 
 		<?php
 			$lastSalesTable = new \PHC\Components\Table;
@@ -22,7 +24,7 @@
 			$lastSalesTable->resource = $this->lastSales;
 			$lastSalesTable->columns = [
 				'#' => 'id',
-				'Salesman' => function($order) {
+				$this->lang('salesman') => function($order) {
 					$link = '<a href="/employees/view/%d" title="%s">%s</a>';
 
 					return sprintf(
@@ -32,7 +34,7 @@
 						$order->salesman->name
 					);
 				},
-				'Customer' => function($row) {
+				$this->lang('customer') => function($row) {
 					$link = '<a href="/customers/view/%d" title="%s">%s</a>';
 
 					return sprintf(
@@ -42,14 +44,8 @@
 						$row->customer->name
 					);
 				},
-				'Date' => [
-					'date',
-					[
-						'method' => 'format',
-						'args' => ['m/d/Y']
-					]
-				],
-				'Total' => function($order) {
+				$this->lang('date') => [ 'date', [ 'method' => 'format', 'args' => [ DATE_FORMAT ] ] ],
+				$this->lang('total') => function($order) {
 					$total = 0;
 
 					if (!empty($order->items)) {
@@ -60,11 +56,12 @@
 
 					return '$ ' . number_format($total, 2);
 				},
-				'Actions' => function ($order) {
+				$this->lang('actions') => function ($order) {
 					$view = new \PHC\Components\Form\Button;
 
-					$view->name = 'View';
+					$view->name = 'view';
 					$view->type = 'link';
+					$view->title = $this->lang('view');
 					$view->icon = 'visibility';
 					$view->size = 's';
 					$view->style = 'primary';
@@ -79,18 +76,15 @@
 	</div>
 
 	<div class="col-12 col-sm-6">
-		<h3>Best Customers</h3>
+		<h3><?php echo $this->lang('best-customers'); ?></h3>
 
 		<?php
 			$bestCustomersTable = new \PHC\Components\Table;
 
 			$bestCustomersTable->resource = $this->bestCustomers;
 			$bestCustomersTable->columns = [
-				'Total spent' => [
-					'function' => 'number_format',
-					'args' => ['{row->total}', 2, '.', '']
-				],
-				'Customer' => function($row) {
+				$this->lang('total-spent') => [ 'function' => 'number_format', 'args' => [ '{row->total}', 2, '.', '' ] ],
+				$this->lang('customer') => function($row) {
 					$link = '<a href="/customers/view/%d" title="%s">%s</a>';
 
 					return sprintf(
@@ -107,20 +101,20 @@
 	</div>
 
 	<div class="col-12 col-sm-6">
-		<h3>Customer's Last Buy</h3>
+		<h3><?php echo $this->lang('last-buy'); ?></h3>
 
 		<?php
 			$customerLastBuyTable = new \PHC\Components\Table;
 
 			$customerLastBuyTable->resource = $this->customerLastBuy;
 			$customerLastBuyTable->columns = [
-				'Date' => function($row) {
+				$this->lang('date') => function($row) {
 					list($year, $month, $day) = explode('-', $row['date']);
 					$time = mktime(0, 0, 0, $month, $day, $year);
 
-					return date('m/d/Y', $time);
+					return date(DATE_FORMAT, $time);
 				},
-				'Customer' => function($row) {
+				$this->lang('customer') => function($row) {
 					$link = '<a href="/customers/view/%d" title="%s">%s</a>';
 
 					return sprintf(

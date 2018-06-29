@@ -16,6 +16,7 @@
 	]);
 	$this->form->input([
 		'name' => 'name',
+		'title' => $this->lang('name'),
 		'hideLabel' => true,
 		'required' => true,
 		'autofocus' => true,
@@ -24,6 +25,7 @@
 	$this->form->input([
 		'name' => 'email',
 		'type' => 'email',
+		'title' => $this->lang('email'),
 		'hideLabel' => true,
 		'required' => true,
 		'value' => $this->employee->email
@@ -31,6 +33,7 @@
 	$this->form->input([
 		'name' => 'password',
 		'type' => 'password',
+		'title' => $this->lang('password'),
 		'hideLabel' => true,
 		'required' => true,
 		'width' => '1/3',
@@ -38,27 +41,29 @@
 
 	$this->form->input([
 		'name' => 'new-password',
-		'title' => 'New Password',
 		'type' => 'password',
+		'title' => $this->lang('new-password'),
 		'hideLabel' => true,
 		'width' => '1/3',
 	]);
 	$this->form->input([
 		'name' => 'confirm-password',
-		'title' => 'Confirm Password',
 		'type' => 'password',
+		'title' => $this->lang('confirm-password'),
 		'hideLabel' => true,
 		'width' => '1/3',
 	]);
 	$this->form->button([
 		'name' => 'save',
 		'style' => 'primary',
+		'title' => $this->lang('save'),
 		'icon' => 'save',
 		'type' => 'submit',
 	]);
 	$this->form->button([
 		'name' => 'cancel',
 		'style' => 'warning',
+		'title' => $this->lang('cancel'),
 		'icon' => 'cancel',
 		'type' => 'link',
 		'action' => '/',

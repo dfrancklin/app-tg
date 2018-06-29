@@ -5,11 +5,15 @@ class ProductPicklist {
 		this.root = root;
 		this.name = this.root.getAttribute('data-name');
 		this.title = this.root.getAttribute('data-title');
+		this.pictureLabel = this.root.getAttribute('data-picture-label');
+		this.quantityLabel = this.root.getAttribute('data-quantity-label');
+		this.priceLabel = this.root.getAttribute('data-price-label');
+		this.actionLabel = this.root.getAttribute('data-action-label');
 		this.source = this.root.getAttribute('data-source');
 		this.searchInput = this.root.querySelector('input[type=text]');
 		this.quantityInput = this.root.querySelector('input[type=number]');
-		this.addButton = this.root.querySelector('a[title="Add"]');
-		this.cancelButton = this.root.querySelector('a[title="Cancel"]');
+		this.addButton = this.root.querySelector('a[name="add"]');
+		this.cancelButton = this.root.querySelector('a[name="cancel"]');
 		this.loader = this.root.querySelector('.loader');
 		this.showSelectList = this.root.querySelector('.show-select-list');
 		this.showSelectedList = this.root.querySelector('.show-selected-list');
@@ -290,12 +294,12 @@ class ProductPicklist {
 		const head = `<thead class="thead-inverse">
 			<tr>
 				<th style="width: 5%;">#</th>
-				<th style="width: 5%;">Picture</th>
+				<th style="width: 5%;">${this.pictureLabel}</th>
 				<th>${this.title}</th>
-				<th style="width: 10%; text-align: right;">Quantity</th>
-				<th style="width: 10%; text-align: right;">Price</th>
+				<th style="width: 10%; text-align: right;">${this.quantityLabel}</th>
+				<th style="width: 10%; text-align: right;">${this.priceLabel}</th>
 				<th style="width: 10%; text-align: right;">Subtotal</th>
-				<th style="width: 5%;">Action</th>
+				<th style="width: 5%;">${this.actionLabel}</th>
 			</tr>
 		</thead>`;
 

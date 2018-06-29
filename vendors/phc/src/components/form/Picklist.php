@@ -21,7 +21,7 @@ class Picklist implements IComponent
 	];
 
 	const TEMPLATES = [
-		'component' => '<div class="component__picklist%s" data-name="%s" data-title="%s" data-value="%s" data-label="%s" data-source="%s">%s%s%s%s</div>',
+		'component' => '<div class="component__picklist%s" data-name="%s" data-title="%s" data-action-label="%s" data-value="%s" data-label="%s" data-source="%s">%s%s%s%s</div>',
 		'loader' => '<spam class="material-icons loader">sync</spam>',
 		'select-list' => '<div class="show-select-list"></div>',
 		'selected-list' => '<div class="show-selected-list">%s</div>',
@@ -48,6 +48,10 @@ class Picklist implements IComponent
 	private $hideLabel;
 
 	private $placeholder;
+
+	private $actionLabel = 'Action';
+
+	private $removeLabel = 'Remove';
 
 	public function render(bool $print = true)
 	{
@@ -88,6 +92,7 @@ class Picklist implements IComponent
 			self::WIDTHS[$this->width],
 			$this->name,
 			$this->title,
+			$this->actionLabel,
 			$this->value,
 			$this->label,
 			$this->source,
@@ -133,7 +138,7 @@ class Picklist implements IComponent
 	private function formatTable()
 	{
 		$table = '<table class="table table-bordered table-striped table-responsive table-hover">%s%s</table>';
-		$head = '<thead class="thead-inverse"><tr><th style="width: 5%%; text-align: right;">#</th><th>%s</th><th style="width: 5%%;">Action</th></tr></thead>';
+		$head = '<thead class="thead-inverse"><tr><th style="width: 5%%; text-align: right;">#</th><th>%s</th><th style="width: 5%%;">%s</th></tr></thead>';
 		$body = '<tbody>%s</tbody>';
 		$rowTemplate = '<tr><td class="value" style="text-align: right;">%s%s%s</td><td class="label">%s</td><td>%s</td></tr>';
 		$rows = [];
@@ -143,7 +148,7 @@ class Picklist implements IComponent
 		$button = new Button;
 
 		$button->type = 'link';
-		$button->title = 'Remove';
+		$button->title = $this->removeLabel;
 		$button->icon = 'delete';
 		$button->size = 's';
 		$button->style = 'danger';
@@ -175,7 +180,7 @@ class Picklist implements IComponent
 			);
 		}
 
-		$head = sprintf($head, $this->title);
+		$head = sprintf($head, $this->title, $this->actionLabel);
 		$body = sprintf($body, implode('', $rows));
 		$table = sprintf($table, $head, $body);
 

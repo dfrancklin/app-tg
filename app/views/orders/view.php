@@ -1,25 +1,25 @@
-<h1><?=$pageTitle?></h1>
+<h1><?php echo $this->lang($pageTitle); ?></h1>
 
 <hr>
 
 <dl class="row">
-	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">ID:</dt>
+	<dt class="col-lg-2 col-md-2 col-sm-3 col-4"><?php echo $this->lang('id'); ?>:</dt>
 	<dd class="col-lg-10 col-md-10 col-sm-9 col-8"><?php echo $this->order->id; ?></dd>
-	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">Customer: </dt>
+	<dt class="col-lg-2 col-md-2 col-sm-3 col-4"><?php echo $this->lang('customer'); ?>: </dt>
 	<dd class="col-lg-10 col-md-10 col-sm-9 col-8">
 		<a href="/customers/view/<?php echo $this->order->customer->id; ?>" title="<?php echo $this->order->customer->name; ?>">
 			<?php echo $this->order->customer->name; ?>
 		</a>
 	</dd>
-	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">Salesman: </dt>
+	<dt class="col-lg-2 col-md-2 col-sm-3 col-4"><?php echo $this->lang('salesman'); ?>: </dt>
 	<dd class="col-lg-10 col-md-10 col-sm-9 col-8">
 		<a href="/employees/view/<?php echo $this->order->salesman->id; ?>" title="<?php echo $this->order->salesman->name; ?>">
 			<?php echo $this->order->salesman->name; ?>
 		</a>
 	</dd>
-	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">Date: </dt>
-	<dd class="col-lg-10 col-md-10 col-sm-9 col-8"><?php echo $this->order->date->format('m/d/Y'); ?></dd>
-	<dt class="col-lg-2 col-md-2 col-sm-3 col-4">Finished:</dt>
+	<dt class="col-lg-2 col-md-2 col-sm-3 col-4"><?php echo $this->lang('date'); ?>: </dt>
+	<dd class="col-lg-10 col-md-10 col-sm-9 col-8"><?php echo $this->order->date->format(DATE_FORMAT); ?></dd>
+	<dt class="col-lg-2 col-md-2 col-sm-3 col-4"><?php echo $this->lang('finished'); ?>:</dt>
 	<dd class="col-lg-10 col-md-10 col-sm-9 col-8">
 		<?php
 			if ($this->order->finished) {
@@ -30,8 +30,9 @@
 				if ($this->canEdit) {
 					$edit = new \PHC\Components\Form\Button;
 
-					$edit->name = 'Edit';
+					$edit->name = 'edit';
 					$edit->type = 'link';
+					$edit->title = $this->lang('edit');
 					$edit->icon = 'edit';
 					$edit->size = 's';
 					$edit->style = 'success';
@@ -50,7 +51,7 @@
 		$table->resource = $this->order->items;
 		$table->columns = [
 			'#' => ['product', 'id'],
-			'Picture' => function($row) {
+			$this->lang('picture') => function($row) {
 				if ($row->product->picture) {
 					return sprintf(
 						'<img src="%s" title="%s" alt="%s" class="img-fluid rounded d-block mx-auto">',
@@ -60,15 +61,15 @@
 					);
 				}
 			},
-			'Name' => function($item) {
+			$this->lang('name') => function($item) {
 				$product = $item->product;
 				return '<a href="/products/view/' . $product->id . '">' . $product->name . '</a>';
 			},
-			'Quantity' => 'quantity',
-			'Price' => function($item) {
+			$this->lang('quantity') => 'quantity',
+			$this->lang('price') => function($item) {
 				return '$ ' . number_format($item->price, 2);
 			},
-			'SubTotal' => function($item) {
+			$this->lang('subtotal') => function($item) {
 				return '$ ' . number_format($item->quantity * $item->price, 2);
 			},
 		];
@@ -98,6 +99,7 @@
 		$back = new \PHC\Components\Form\Button;
 
 		$back->name = 'back';
+		$back->title = $this->lang('back');
 		$back->type = 'link';
 		$back->icon = 'arrow_back';
 		$back->additional = ['onclick' => '(function(e) { e.preventDefault(); window.history.back(); })(event)'];

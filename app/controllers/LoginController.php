@@ -85,7 +85,7 @@ class LoginController implements IAuthentication
 	/**
 	 * @RequestMap /forbidden
 	 */
-	public function forbidden($route)
+	public function forbidden()
 	{
 		return $this->factory::create()->render('forbidden');
 	}
