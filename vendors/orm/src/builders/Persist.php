@@ -128,17 +128,31 @@ class Persist
 
 	private function fetchNextId()
 	{
-		if (
-			in_array(
-				$this->connection->getDriver()->GENERATE_ID_TYPE,
-				[ GeneratedTypes::QUERY, GeneratedTypes::SEQUENCE ]
-			)
-		) {
-			$statement = $this->connection->prepare($this->connection->getDriver()->GENERATE_ID_QUERY);
+		$generateType = $this->connection->getDriver()->GENERATE_ID_TYPE;
+
+		if (in_array($generateType, [ GeneratedTypes::QUERY, GeneratedTypes::SEQUENCE ])) {
+			$args = [];
+			$query = $this->connection->getDriver()->GENERATE_ID_QUERY;
+
+			if ($generateType === GeneratedTypes::QUERY) {
+				$args[] = $this->table->getId()->getName();
+			}
+
+			if (!empty($this->table->getSchema())) {
+				$args[] = $this->table->getSchema();
+			} elseif (!empty($this->connection->getDefaultSchema())) {
+				$args[] = $this->connection->getDefaultSchema();
+			}
+
+			$args[] = $this->table->getName();
+
+			$query = sprintf($query, ...$args);
+
+			$statement = $this->connection->prepare($query);
 			$executed = $statement->execute();
 
 			if (isset($this->logger)) {
-				$this->logger->debug($this->connection->getDriver()->GENERATE_ID_QUERY, static::class);
+				$this->logger->debug($query, static::class);
 			}
 
 			if ($executed) {
